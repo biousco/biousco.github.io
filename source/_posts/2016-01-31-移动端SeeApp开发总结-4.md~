@@ -1,0 +1,219 @@
+title: '移动端SeeApp开发总结-4'
+date: 2016-01-31 12:15:44
+tags: [JavaScript,ajax,模板引擎,Angular]
+categories: 前端
+---
+![水一水][1]
+
+一晃眼已经2016年了，隔了几个月没有总结写文章好想抽死自己。而且要准备校招了得放点东西到这里呀。
+寒假又来See实习了。大三上学期也断断续续帮See写一些页面：`http://biouscowork.sinaapp.com/`，每次活动都各种熬夜，后面才慢慢改善。接下来写一些这些页面的总结和坑。这次是接口渲染。
+
+## Ajax & Cgi
+> CGI：通用网关接口（Common Gateway Interface）是一个Web服务器主机提供信息服务的标准接口。通过CGI接口，Web服务器就能够获取客户端提交的信息，转交给服务器端的CGI程序进行处理，最后返回结果给客户端。
+
+这就是经常说的接口啦。cgi这个词是看过某大大写的页面后才发现原来应该这么叫。一般请求接口返回的就是需要渲染的数据了，比如这个：[getActivity](http://m.seeapp.com/index.php/act/actShoppingYear/getActivity) 。一般后台给的都是json，如果是字符串的话就前端解析一下就好了。
+一般一个活动页面是这样的流程：前端重构好，拿到接口后就直接渲染。运营提供数据给后台开发，后台改接口返回的数据。不是之前的php框架那样服务器渲染好后吐出html，用接口的html一般没有太多数据，所以要是接口请求失败了或者请求时间比较长页面会有很长的空白，体验没那么好。自己总结一下优缺点吧：
+优点：
+1. 简单的前后端分离，后端只提供数据，前端专注渲染
+2. 容易控制一些异步的数据展现
+3. 可以通过接口的代理简单实现本地开发，不需要太依赖后端环境
+缺点：
+1. 请求上多了接口，渲染工作放在了客户端，性能不太好
+2. 和后台联调需要一些时间，沟通成本增加
+3. 不利于SEO，不过这种做的一般是活动页面，SEO并不是很重要
+4. js代码需要一定的组织
+
+<!-- more -->
+
+## 渲染的几种方式
+实习的时候有幸见到几种不同的方法渲染数据，总结一下，大概三种：jQuery的DOM操作，前端模板引擎，MV*框架
+### DOM操作
+用jquery操作数据：
+```javascript
+var li = t.li_sample.clone(true).attr('name','li_row').attr('f_id', f.f_id).show();
+if (f.u_id == see.user.uid) {
+    li.find('[name=delete]').attr('f_id', f.f_id).show();
+}
+li.find('[name=img]').attr('src', f.f_headimg).on('click', function () {
+    var u_url = see.isInApps()?"see://userCenter?u_id="+dt.circle.owner_id:"http://m.seeapp.com";
+    window.location.href = u_url;
+});
+li.find('[name=nick]').text(f.f_username);
+li.find('[name=comment]').text(f.f_comment);
+if(f.u_isdaren == 1) {
+    li.find('.daren-logo').show();
+}
+if(f.u_tag) {
+    li.find('[name=tag]').text(f.u_tag).css('display', 'inline-block');
+}
+if(f.circle) {
+    li.find('[name=circle_name]').text(f.circle.cir_name);
+    var url = see.getUrlPrefix() + "/static/detail/circle.html?cir_id=" + f.circle.cir_id;
+    li.find('.circle').show().attr('data-href',url).on('click', function(event) {
+        event.preventDefault();
+        window.location.href = url;
+    });
+}
+```
+嗯，第一次实习见到的代码是这样的。当时觉得好厉害，原来jQuery可以这么用，之前都只会用来写动画。后面见到其他的方法后觉得这种方法一般般咯：
+1. 需要不断的查找dom节点，觉得影响性能。而且一般通过属性name来查找，但是name属性一般用来给后台传值用，觉得可以用其他的字段来代替。
+2. 需要判断字段的合法性。当某个字段不存在时特别容易报错，影响接下来的数据渲染。
+3. 渲染和其他的操作混在一起了：比如添加类名、绑定事件
+4. 优点是比较直观易懂。适合小片的数据展示
+5. 主要流程是，复制一个html中的父节点，在里面渲染数据后append到容器中。
+
+还有一种同样是操作dom的方式：
+```javascript
+collection: function(ret){
+
+    if (render._check(ret)){
+
+        var goodsClass = ret.data.item_list;
+        var $collections = $('.mod_collection');
+
+        goodsClass.forEach(function(array,index){
+
+            var virtualDOMs = array.map(render._collectionBox);
+
+            $collections.eq(index).append(virtualDOMs);
+
+        });
+
+    }
+
+},
+_collectionBox: function(collectionObj){
+
+    var $collectionBox = $('<div class="mod_collection_box"></div>');
+
+    var itemInfo = collectionObj.item_info.map(render._collectionItem);
+
+    var $collectionGoods = $('<div class="box_content"></div>');
+    $collectionGoods.html(itemInfo);
+
+    $collectionBox.append(render._collectionBanner(collectionObj.base_info));
+    $collectionBox.append($collectionGoods);
+
+    return $collectionBox;
+},
+```
+用`map`函数返回做好的dom片段加入页面中，每个片段用$生成。感觉代码比上面的要好看的多。
+1. 没有了dom的查找，用$生成html片段，但js里就包含太多html的东西了
+2. 事件绑定都放到所有节点渲染完毕后来做
+3. 很多数据结构必须为数组，不过这个和后台约定就好了
+
+刚开始做的活动基本都是这么干，然后js随随便便就67百行了：[双11预热](http://m.seeapp.com/see/static/dailyactivity/1025/index.html)，当时不懂封装什么的，代码只是简单的分了点层。后面学习了其他的写法，有几点可以进行改进：
+1. 将所有请求的接口放到一个对象：
+```javascript
+t.RequestURL = {
+    'getUserdetail': t.apiDomain + '/user/getUserdetail',
+    'getFormalData': t.apiDomain + '/act1111_formal/getFormalData'
+};
+```
+或者这么写：
+```javascript
+var cgi = {
+    getOneDayLimitData: function(){
+        return $.getJSON(apiDomain + '/index.php/actBlack5/getOneDayLimitData');
+    }
+};
+```
+第二种方法可以很优雅的在函数里这么用：
+```javascript
+cgi.getOneDayLimitData().done(render.limit);
+```
+一股浓浓的angular的味道！缺点是用zepto就不能这么链式调用了。不过zepto改一下源码应该也能这么干。另外全部写在一起也方便对接口路径做一些处理，比如加上时间戳：
+```javascript
+getActivity: '/actXmas/getActivity' + '?timestamp=' + (new Date()).getTime(),
+```
+不用在函数里一个个找来修改了。
+
+2. 能放到对象的不止接口，像一些cdn处理的后缀也可以放进去
+```javascript
+t.ImageSnipper = {
+    group : "?imageView2/2/w/600/q/80",
+    collection : "?imageView2/2/w/600/q/80",
+    collection_item : "?imageView2/2/w/200/q/80",
+    recommend : "?imageView2/2/w/300/q/80",
+    top_item: "?imageView2/2/w/300/q/80",
+    bottom_item: "?imageView2/2/w/300/q/80"
+};
+```
+以前全部写在渲染的函数里真的太麻烦了，不方便维护和修改，当然这里也只是简单封装，后面angular可以配置得更灵活点
+
+
+### 前端模板引擎
+这个就类似后台的MVC的V了。只不过放到js来做。这是在另一个师兄的代码里看到的，第一眼又是惊艳到我：
+```javascript
+tags = $(Util.tmpl(tplCoverStr, {
+    collection_info: data[i].collection_info,
+    url:see.getUrlPrefix() + "/static/detail/collection.html?id="
+}));
+wrapper.appendChild(tags[0]);
+```
+js真的超级简单，然后看一下html：
+```html
+<script type="text/template" id="tpl-collection-items">
+<div class="j-slide-list com-wrap" curindex="0" size="<%= pageSize %>">
+<% for (var i = 0, k = 0; i < list.length; i+=3, k++) { %>
+    <ul class="com-list com<%= k %>" classindex="<%= k %>">
+        <% for (var j = 0; j < 3; j++) { %>
+            <% if (i + j >= list.length) { continue;} %>
+            <li>
+                <!-- 假数据里面没看到超链接，如果有的话，需要自己加上去 -->
+                <a href="<%=url + list[i + j].item_id %>">
+                    <b style="background-image:url(<%= list[i + j].item_imgurl %>)"></b>
+                    <p><%= list[i + j].item_name %></p>
+                    <p class="dis"><%= list[i + j].item_comments %></p>
+                    <p class="price">
+                        <span class="preferential">¥<%= list[i + j].price %></span>
+                        <span class="original">¥<%= list[i + j].ori_price %></span>
+                    </p>
+                </a>
+            </li>
+        <% } %>
+    </ul>
+<% } %>
+</div>
+</script>
+```
+和后台的MVC基本一样，用原生的js的语法进行循环赋值判断什么的。
+1. 适合直白的列表展示，没有太多的条件逻辑。如果条件很多的话html会很多很乱
+2. 可以在html里放一份注释的渲染后的样本例子，先改动栗子再改模板，方便调试
+3. 一些数据需要在js里进行处理后再进行渲染，或者改成适合渲染的结构
+4. 不好做数据有效性验证，最好渲染前处理一遍数据
+5. 数据出错不好做定位
+
+在开发里试过一两次，用的模板引擎好像是腾讯出品，选其他的大概也不会差太多：
+```javascript
+var top_item_list = {
+    data: data.top_item_list
+};
+_html = template('p_top_item_list',top_item_list);
+document.getElementById('T_top_item_list').innerHTML = _html;
+$(".m-goods-card04").find('img[name=lazyload]').on('load',resizeImg);
+```
+用模板引擎的函数处理一遍html和数据，返回html片段，直接塞进父容器就好，后面再进行一些事件绑定。
+
+### MV*框架
+现在都用这个来做活动了，用的是Angular。暑假实习的时候用这个写了后台，活动没有选他是因为觉得有点杀鸡用牛刀了。但是后面公司又来了一位大大，全部用Angular写，然后我也尝试了一下，发现效果真的很好~每次请求一次服务，在html里写好指令就ok了
+```javascript
+    BackEndList.getYearIndex().success(function (data) {
+        if (data.result == 1) {
+            $scope.data = data.data;
+
+            $scope.cur_firstList = data.data.firstList[$scope.cur_first_date];
+            $scope.typeList = data.data.typeList;
+            $scope.typeSubList = filterSubList($scope.typeList);
+        } else {
+            console.log('warn');
+        }
+    })
+};
+```
+终于不用花太多精力在写数据渲染上了TAT。后面再单独写一篇关于Angular的总结。总之用了这个，代码量真的会少，工作效率真的提高了！另外事件绑定也没有以前那么麻烦，更直白一点了。
+
+今天周末来公司加班。然而老大说需求改了，先不做。啊，今天就在公司坐着吹吹水写这个东西了。
+
+ [1]: http://ww4.sinaimg.cn/large/86509675gw1f0iprln524j20p00gon2e.jpg
+
