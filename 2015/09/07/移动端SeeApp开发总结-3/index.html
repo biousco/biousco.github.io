@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>移动端SeeApp开发总结-3 | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JavaScript,ajax,canvas,FileUpload" />
+    
+    <meta name="description" content="这次只讲一个东西：移动端图片压缩&amp;amp;上传。
+DOM12&amp;lt;input id=&quot;uploadPic_input&quot; type=&quot;file&quot; accept=&quot;image/*&quot; style=&quot;display:block;opacity:0;&quot; name=&quot;image&quot;&amp;gt;&amp;lt;a id=&quot;uploadPic_btn&quot; href=&quot;javascript:void(0);&quot; class=&quot;a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端SeeApp开发总结-3">
+<meta property="og:url" content="http://weibo.com/biousco/2015/09/07/移动端SeeApp开发总结-3/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="这次只讲一个东西：移动端图片压缩&amp;amp;上传。
+DOM12&amp;lt;input id=&quot;uploadPic_input&quot; type=&quot;file&quot; accept=&quot;image/*&quot; style=&quot;display:block;opacity:0;&quot; name=&quot;image&quot;&amp;gt;&amp;lt;a id=&quot;uploadPic_btn&quot; href=&quot;javascript:void(0);&quot; class=&quot;a">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/86509675gw1evtvaf5rmbj21kw16o7wh.jpg">
+<meta property="og:updated_time" content="2015-09-07T09:00:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端SeeApp开发总结-3">
+<meta name="twitter:description" content="这次只讲一个东西：移动端图片压缩&amp;amp;上传。
+DOM12&amp;lt;input id=&quot;uploadPic_input&quot; type=&quot;file&quot; accept=&quot;image/*&quot; style=&quot;display:block;opacity:0;&quot; name=&quot;image&quot;&amp;gt;&amp;lt;a id=&quot;uploadPic_btn&quot; href=&quot;javascript:void(0);&quot; class=&quot;a">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/86509675gw1evtvaf5rmbj21kw16o7wh.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/前端/">前端</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-移动端SeeApp开发总结-3" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        移动端SeeApp开发总结-3
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/09/07/移动端SeeApp开发总结-3/" class="article-date">
+    <time datetime="2015-09-07T08:56:00.000Z" itemprop="datePublished">2015-09-07</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FileUpload/">FileUpload</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">canvas</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://ww3.sinaimg.cn/large/86509675gw1evtvaf5rmbj21kw16o7wh.jpg" alt="哟西"></p>
+<p>这次只讲一个东西：<strong>移动端图片压缩&amp;上传</strong>。</p>
+<h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"uploadPic_input"</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"image/*"</span> <span class="attr">style</span>=<span class="string">"display:block;opacity:0;"</span> <span class="attr">name</span>=<span class="string">"image"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">"uploadPic_btn"</span> <span class="attr">href</span>=<span class="string">"javascript:void(0);"</span> <span class="attr">class</span>=<span class="string">"a02"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>在移动端，<code>input</code>大部分还是支持的，当类型为<code>file</code>时，苹果会弹出<code>拍照/录像</code>和<code>照片图库</code>；手上没安卓= =，记得也是类似的选项。但是需求是只要图片，所以用了<code>accpet</code>这个属性，就能自动地把<code>录像</code>这个选项去掉了。<br><code>accept</code>还支持选定的格式，语法：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">accept</span>=<span class="string">"audio/*|video/*|image/*|MIME_type"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>目前还是候选推荐标准（W3C Candidate Recommendation），但是支持的浏览器还是挺多的，测试中都能正常使用。<br>相关链接：<a href="https://docs.webplatform.org/wiki/html/attributes/accept" target="_blank" rel="external">accept</a><br>这里设置为透明是业务需要，默认不展示这个按钮。</p>
+<a id="more"></a>
+<h2 id="上传流程"><a href="#上传流程" class="headerlink" title="上传流程"></a>上传流程</h2><p>后台提供的上传图片的接口返回的是一个字符串，字符串的值是图片在服务器存放的路径。在整个流程的最后上传图片的路径，而不是图片。考虑到还要预览图片，就没有用<code>FileReader</code>这个接口来预览，而是等图片上传完毕后直接贴上链接，在上传图片时，还要有提示信息，比如上传进度。此外，预览的图片还能进行删除操作。在移动端，由于手机摄像头的升级，图片的体积一般很大，1~2M都是正常的范围，为了节省流量并加速，必须对图片进行压缩操作再进行上传，而服务器也会对图片进行压缩，所以最后再次请求的预览的图片其实很小。</p>
+<h2 id="图片压缩流程"><a href="#图片压缩流程" class="headerlink" title="图片压缩流程"></a>图片压缩流程</h2><p>参考文章：<a href="http://www.alixixi.com/web/a/2015070495005.shtml" target="_blank" rel="external">移动端图片上传后进行压缩功能</a></p>
+<blockquote>
+<p>在移动端压缩图片并且上传主要用到filereader、canvas以及formdata这三个h5的api。逻辑并不难。整个过程就是：</p>
+<ol>
+<li>用户使用input file上传图片的时候，用filereader读取用户上传的图片数据（base64格式）</li>
+<li>把图片数据传入img对象，然后将img绘制到canvas上，再调用canvas.toDataURL对图片进行压缩</li>
+<li>获取到压缩后的base64格式图片数据，转成二进制塞入formdata，再通过XmlHttpRequest提交formdata。</li>
+</ol>
+</blockquote>
+<h2 id="具体细节"><a href="#具体细节" class="headerlink" title="具体细节"></a>具体细节</h2><h3 id="利用FileReader获取图片"><a href="#利用FileReader获取图片" class="headerlink" title="利用FileReader获取图片"></a>利用FileReader获取图片</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> imageCompress = <span class="keyword">new</span> (<span class="function"><span class="keyword">function</span> (<span class="params">file</span>) </span>&#123;</div><div class="line"><span class="keyword">var</span> filechooser = <span class="built_in">document</span>.getElementById(<span class="string">"uploadPic_input"</span>);</div><div class="line"><span class="comment">//    用于压缩图片的canvas</span></div><div class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">"canvas"</span>);</div><div class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</div><div class="line"><span class="comment">//    瓦片canvas</span></div><div class="line"><span class="keyword">var</span> tCanvas = <span class="built_in">document</span>.createElement(<span class="string">"canvas"</span>);</div><div class="line"><span class="keyword">var</span> tctx = tCanvas.getContext(<span class="string">"2d"</span>);</div><div class="line"><span class="keyword">var</span> maxsize = <span class="number">100</span> * <span class="number">1024</span>;</div><div class="line"><span class="keyword">var</span> progress_timer = <span class="literal">null</span>;</div><div class="line"></div><div class="line">filechooser.onchange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">window</span>.navigator.userAgent.toLowerCase().indexOf(<span class="string">'android'</span>) &gt; <span class="number">-1</span>) &#123;</div><div class="line">        uploadPic.uploadWithnoCompress();</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.files.length) &#123;</div><div class="line">    see.tips(<span class="string">'请上传正确的图片'</span>);</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> files = <span class="built_in">Array</span>.prototype.slice.call(<span class="keyword">this</span>.files);</div><div class="line">  files.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">file, i</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (!<span class="regexp">/\/(?:jpeg|png|gif)/i</span>.test(file.type)) &#123;</div><div class="line">        see.tips(<span class="string">'非法格式'</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();</div><div class="line">      <span class="comment">//获取图片大小</span></div><div class="line">      <span class="keyword">var</span> size = file.size/<span class="number">1024</span> &gt; <span class="number">1024</span> ? (~~(<span class="number">10</span>*file.size/<span class="number">1024</span>/<span class="number">1024</span>))/<span class="number">10</span> + <span class="string">"MB"</span> :  ~~(file.size/<span class="number">1024</span>) + <span class="string">"KB"</span>;</div><div class="line"></div><div class="line">      reader.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">var</span> result = <span class="keyword">this</span>.result;</div><div class="line">          <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</div><div class="line">          img.src = result;</div><div class="line"></div><div class="line">          <span class="comment">//如果图片大小小于100kb，则直接上传</span></div><div class="line">          <span class="keyword">if</span> (result.length &lt;= maxsize) &#123;</div><div class="line">              img = <span class="literal">null</span>;</div><div class="line">              <span class="keyword">return</span>;</div><div class="line">          &#125;</div><div class="line">          <span class="comment">//图片加载完毕之后进行压缩，然后上传</span></div><div class="line">          <span class="keyword">if</span> (img.complete) &#123;</div><div class="line">              callback();</div><div class="line">          &#125; <span class="keyword">else</span> &#123;</div><div class="line">              img.onload = callback;</div><div class="line">          &#125;</div><div class="line">          <span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> data = compress(img);</div><div class="line">            upload(data, file.type, file.name);</div><div class="line">            img = <span class="literal">null</span>;</div><div class="line">          &#125;</div><div class="line">      &#125;;</div><div class="line">      reader.readAsDataURL(file);</div><div class="line">  &#125;)</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>由于很多微信内的安卓机并不支持Canvas的.toDataURL方法，这里安卓就用另一种没有压缩的办法来实现文件上传</li>
+<li>监听<code>input</code>元素，元素的<code>files</code>属性是一个<code>FileList</code>，存放着将要上传的文件，用<code>Array.prototype.slice.call()</code>方法将对象转换为数组，然后用<code>forEach</code>来遍历数组。</li>
+<li>紧接着对上传的文件进行一系列的判断，然后就开始调用<code>FileReader</code>接口了。</li>
+<li><code>~~</code>是将浮点数转为整数，只保留小数部分</li>
+<li>HTML5接口的<code>FileReader</code>有两个方法：<code>readAsDataURL</code>和<code>readAsText</code>。<code>readAsDataURL</code>传入一个<code>blob</code>类型的数据，返回<code>Data URL</code>，一般是<code>Base64</code>的字符串。这个两个方法是异步的，因此，给<code>reader</code>定义一个<code>onload</code>事件，数据加载完成后，<code>onload</code>事件里的<code>result</code>就是处理完成后的结果。参考：<a href="https://docs.webplatform.org/wiki/apis/file/FileReader" target="_blank" rel="external">FileReader</a></li>
+<li><code>readAsDataURL</code>完成后返回大概这么一个字符串：<code>data:image/jpeg;base64,/9j/4AAQSkZJRgABA...QAASABIAAD/4QB=</code>中间有7w多个字符，表示一张图片：</li>
+</ul>
+<blockquote>
+<p>Base64是网络上最常见的用于传输8Bit字节代码的编码方式之一，大家可以查看RFC2045～RFC2049，上面有MIME的详细规范。Base64编码可用于在HTTP环境下传递较长的标识信息。例如，在Java Persistence系统Hibernate中，就采用了Base64来将一个较长的唯一标识符（一般为128-bit的UUID）编码为一个字符串，用作HTTP表单和HTTP GET URL中的参数。在其他应用程序中，也常常需要把二进制数据编码为适合放在URL（包括隐藏表单域）中的形式。此时，采用Base64编码具有不可读性，即所编码的数据不会被人用肉眼所直接看到。</p>
+</blockquote>
+<ul>
+<li>在<code>onload</code>事件里，创建了一个Image对象，返回一个DOM元素，给Image对象赋<code>DataURL</code>的值。<code>Image</code>对象有很多属性，其中一个是<code>complete</code>，返回浏览器是否已完成对图像的加载。加载成功后，调用压缩方法，再调用上传的方法，否则等加载完成后再进行调用。参考：<a href="http://www.w3school.com.cn/jsref/dom_obj_image.asp" target="_blank" rel="external">HTML DOM Image 对象</a> <a href="https://docs.webplatform.org/wiki/dom/HTMLImageElement" target="_blank" rel="external">HTMLImageElement</a></li>
+</ul>
+<h3 id="用canvas压缩"><a href="#用canvas压缩" class="headerlink" title="用canvas压缩"></a>用canvas压缩</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">compress</span>(<span class="params">img</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> initSize = img.src.length;</div><div class="line">    <span class="keyword">var</span> width = img.width;</div><div class="line">    <span class="keyword">var</span> height = img.height;</div><div class="line">    <span class="comment">//如果图片大于四百万像素，计算压缩比并将大小压至400万以下</span></div><div class="line">    <span class="keyword">var</span> ratio;</div><div class="line">    <span class="keyword">if</span> ((ratio = width * height / <span class="number">4000000</span>)&gt;<span class="number">1</span>) &#123;</div><div class="line">        ratio = <span class="built_in">Math</span>.sqrt(ratio);</div><div class="line">        width /= ratio;</div><div class="line">        height /= ratio;</div><div class="line">    &#125;<span class="keyword">else</span> &#123;</div><div class="line">        ratio = <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    canvas.width = width;</div><div class="line">    canvas.height = height;</div><div class="line">    <span class="comment">//铺底色</span></div><div class="line">    ctx.fillStyle = <span class="string">"#fff"</span>;</div><div class="line">    ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);</div><div class="line"></div><div class="line">    <span class="comment">//如果图片像素大于100万则使用瓦片绘制</span></div><div class="line">    <span class="keyword">var</span> count;</div><div class="line">    <span class="keyword">if</span> ((count = width * height / <span class="number">1000000</span>) &gt; <span class="number">1</span>) &#123;</div><div class="line">        count = ~~(<span class="built_in">Math</span>.sqrt(count)+<span class="number">1</span>); <span class="comment">//计算要分成多少块瓦片`~~`是取整数部分</span></div><div class="line">        <span class="comment">//计算每块瓦片的宽和高</span></div><div class="line">        <span class="keyword">var</span> nw = ~~(width / count);</div><div class="line">        <span class="keyword">var</span> nh = ~~(height / count);</div><div class="line">        tCanvas.width = nw;</div><div class="line">        tCanvas.height = nh;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; count; j++) &#123;</div><div class="line">                tctx.drawImage(img, i * nw * ratio, j * nh * ratio, nw * ratio, nh * ratio, <span class="number">0</span>, <span class="number">0</span>, nw, nh);</div><div class="line">                ctx.drawImage(tCanvas, i * nw, j * nh, nw, nh);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, width, height);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//进行最小压缩</span></div><div class="line">    <span class="keyword">var</span> ndata = canvas.toDataURL(<span class="string">'image/jpeg'</span>, <span class="number">0.1</span>);</div><div class="line">    tCanvas.width = tCanvas.height = canvas.width = canvas.height = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> ndata;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>压缩函数接受的参数是一个image类型的DOM节点，这个image的url是base64编码的，能直接读取数据</li>
+<li>压缩图片主要就是canvas的<code>drawImage</code>方法以及<code>toDataURL</code>方法</li>
+<li><code>drawImage</code>：接受八个参数，分别是：数据类型（DOM节点），起始x坐标，起始y坐标，图像宽，图像高（相对于图像而言），起始x坐标，起始y坐标，画布宽，画布高（相对于画布而言）。非常详细。主要功能是在画板上绘画图片。参考：<a href="https://docs.webplatform.org/wiki/apis/canvas/CanvasRenderingContext2D/drawImage" target="_blank" rel="external">drawImage</a></li>
+<li><code>toDataURL</code>：接受两个参数，数据类型和jpeg质量，返回一个字符串，就是base64编码的图片数据。参考：<a href="https://docs.webplatform.org/wiki/canvas/methods/toDataURL" target="_blank" rel="external">toDataURL</a></li>
+<li>下面是原文内容：<blockquote>
+<p>  在IOS中，canvas绘制图片是有两个限制的：<br>　　首先是图片的大小，如果图片的大小超过两百万像素，图片也是无法绘制到canvas上的，调用drawImage的时候不会报错，但是你用toDataURL获取图片数据的时候获取到的是空的图片数据。<br>　　再者就是canvas的大小有限制，如果canvas的大小大于大概五百万像素（即宽高乘积）的时候，不仅图片画不出来，其他什么东西也都是画不出来的。<br>　　应对第一种限制，处理办法就是瓦片绘制了。瓦片绘制，也就是将图片分割成多块绘制到canvas上，我代码里的做法是把图片分割成100万像素一块的大小，再绘制到canvas上。<br>　　而应对第二种限制，我的处理办法是对图片的宽高进行适当压缩，我代码里为了保险起见，设的上限是四百万像素，如果图片大于四百万像素就压缩到小于四百万像素。四百万像素的图片应该够了，算起来宽高都有2000X2000了。<br>　　如此一来就解决了IOS上的两种限制了。<br>　　除了上面所述的限制，还有两个坑，一个就是canvas的toDataURL是只能压缩jpg的，当用户上传的图片是png的话，就需要转成 jpg，也就是统一用canvas.toDataURL(“image/jpeg”, 0.1) ， 类型统一设成jpeg，而压缩比就自己控制了。<br>　　另一个就是如果是png转jpg，绘制到canvas上的时候，canvas存在透明区域的话，当转成jpg的时候透明区域会变成黑色，因为 canvas的透明像素默认为rgba(0,0,0,0)，所以转成jpg就变成rgba(0,0,0,1)了，也就是透明背景会变成了黑色。解决办法就 是绘制之前在canvas上铺一层白色的底色。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="上传图片"><a href="#上传图片" class="headerlink" title="上传图片"></a>上传图片</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params">basestr, type, filename</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> text = <span class="built_in">window</span>.atob(basestr.split(<span class="string">","</span>)[<span class="number">1</span>]);</div><div class="line">    <span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(text.length);</div><div class="line">    <span class="keyword">var</span> pecent = <span class="number">0</span> , loop = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; text.length; i++) &#123;</div><div class="line">        buffer[i] = text.charCodeAt(i);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([buffer], &#123;type: type&#125;);</div><div class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">    <span class="keyword">var</span> formdata = <span class="keyword">new</span> FormData();</div><div class="line">    <span class="comment">//在一个Formdata里面传入多个数据，后台判断filename</span></div><div class="line">    formdata.append(<span class="string">'image'</span>, blob, filename);</div><div class="line">    formdata.append(<span class="string">'type'</span>,<span class="string">'1'</span>);</div><div class="line">    xhr.open(<span class="string">'post'</span>, <span class="string">'http://m.seeapp.com/image/upload'</span>);</div><div class="line">    <span class="comment">//设置与后台对应的请求头</span></div><div class="line">    xhr.setRequestHeader(<span class="string">"Accept"</span>,<span class="string">"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"</span>);</div><div class="line">    xhr.setRequestHeader(<span class="string">"Cache-Control"</span>,<span class="string">"max-age=0"</span>);</div><div class="line"></div><div class="line">    xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span> &amp;&amp; xhr.status == <span class="number">200</span>) &#123;</div><div class="line">            uploadPic.success($.parseJSON(xhr.responseText));</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    xhr.upload.addEventListener(<span class="string">'progress'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (loop) <span class="keyword">return</span>;</div><div class="line">        pecent = ~~(<span class="number">100</span> * e.loaded / e.total) / <span class="number">2</span>;</div><div class="line">        showProgress(<span class="string">"正在上传中..."</span> + pecent + <span class="string">"%"</span>);</div><div class="line">        <span class="keyword">if</span> (pecent == <span class="number">50</span>) &#123;</div><div class="line">            mockProgress();</div><div class="line">        &#125;</div><div class="line">    &#125;, <span class="literal">false</span>);</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">mockProgress</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (loop) <span class="keyword">return</span>;</div><div class="line">        loop = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            pecent = pecent+<span class="number">2</span>;</div><div class="line">            showProgress(<span class="string">"正在上传中..."</span> + pecent + <span class="string">"%"</span>);</div><div class="line">            <span class="keyword">if</span> (pecent &gt;= <span class="number">99</span>) &#123;</div><div class="line">                clearInterval(loop);</div><div class="line">            &#125;</div><div class="line">        &#125;, <span class="number">30</span>)</div><div class="line">    &#125;</div><div class="line">    xhr.send(formdata);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>首先是<code>btoa()</code>方法：<blockquote>
+<p>由于一些网络通讯协议的限制,你必须使用 window.btoa() 方法对原数据进行编码后，才能进行发送。接收方使用相当于 window.atob() 的方法对接受到的 base64 数据进行解码,得到原数据。例如，发送某些含有 ASCII 码表中 0 到 31 之间的控制字符的数据。</p>
+</blockquote>
+</li>
+<li>然后是<code>Uint8Array</code>对象：</li>
+</ul>
+<blockquote>
+<p>The Uint8Array typed array represents an array of 8-bit unsigned integers. The contents are initialized to 0. Once established, you can reference elements in the array using the object’s methods, or using standard array index syntax (that is, using bracket notation).<br>  Uint8Array数组类型表示一个8位无符号整型数组，创建时内容被初始化为0。创建完后，可以以对象的方式或使用数组下标索引的方式引用数组中的元素。</p>
+</blockquote>
+<ul>
+<li>把base64的内容都转移到<code>Uint8Array</code>对象中</li>
+<li><code>Blob</code>对象</li>
+</ul>
+<blockquote>
+<p>A Blob object represents a file-like object of immutable, raw data. Blobs represent data that isn’t necessarily in a JavaScript-native format. The File interface is based on Blob, inheriting blob functionality and expanding it to support files on the user’s system.</p>
+</blockquote>
+<ul>
+<li>好吧这三个东西把我搞懵了=。=，都是理解意思，然而并不知道以后可以怎么用。</li>
+<li>在调试接口的时候，用文章原来的实现方法并不能成功，后来调试才发现需要一些必要的参数：<code>formdata.append(&#39;image&#39;, blob, filename);</code>。当然不同项目也不同，随机应变，查一下文档就能知道使用方法了。</li>
+<li>后面紧接着<code>XMLHttpRequest</code>和<code>FormData</code>，这两个比较熟悉，就不贴了。另外用原生的xhr时，请求的头部一些必要的信息必须加上，通过测试用的接口和Chrome的工具来查看到底需要哪些参数，哪些头部。</li>
+<li>后面就是ajax请求了。新的接口提供了<code>progress</code>事件，可以检测上传的进度。</li>
+</ul>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>　　感觉写了好多= =。当时Sheen提出要压缩图片的时候，我内心是崩溃的..刚来公司几天就接手这个项目，好不容易摸清了ajax应用的套路，刚把无刷新上传写好就让我加个压缩功能~~不过后来百度了一下好像也没有特别难啦哈哈哈，虽然兼容性有点问题~后来在安卓版本的微信里面发现canvas有些功能不能用，就砍掉了，用一个上传插件来写，没有经过压缩的步骤。<br>　　不过在ios端加上这个之后确实好了很多，很多图片在一般的网络环境上传也快了，在wifi下能看到<code>正在上传50%</code>然后一下子就好了也是挺爽的一件事。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/09/07/移动端SeeApp开发总结-3/" data-id="cird76zeu00311klbhnd2zcuf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/09/07/移动端SeeApp开发总结-3/" data-title="移动端SeeApp开发总结-3" data-url="http://weibo.com/biousco/2015/09/07/移动端SeeApp开发总结-3/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/01/31/移动端SeeApp开发总结-4/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            移动端SeeApp开发总结-4
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/09/01/移动端SeeApp开发总结-2/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">移动端SeeApp开发总结-2</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>下拉菜单(2) | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="HTML,CSS,JS" />
+    
+    <meta name="description" content="我来填坑啦啦啦。这次是比较高级一点的下拉菜单。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="下拉菜单(2)">
+<meta property="og:url" content="http://weibo.com/biousco/2015/01/27/下拉菜单-2/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="我来填坑啦啦啦。这次是比较高级一点的下拉菜单。">
+<meta property="og:updated_time" content="2015-05-01T08:58:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="下拉菜单(2)">
+<meta name="twitter:description" content="我来填坑啦啦啦。这次是比较高级一点的下拉菜单。">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/前端/">前端</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-下拉菜单-2" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        下拉菜单(2)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/01/27/下拉菜单-2/" class="article-date">
+    <time datetime="2015-01-27T12:31:21.000Z" itemprop="datePublished">2015-01-27</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>你知道我这几天都在干嘛吗^_^<br>今天下午买的手柄到了！！！好开熏。<br><a id="more"></a></p>
+<h2 id="1-带动画效果的下拉菜单"><a href="#1-带动画效果的下拉菜单" class="headerlink" title="1. 带动画效果的下拉菜单"></a>1. 带动画效果的下拉菜单</h2><h3 id="js版"><a href="#js版" class="headerlink" title="js版"></a>js版</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">	&lt;title&gt;Document&lt;/title&gt;</div><div class="line">	&lt;style&gt;</div><div class="line">		.top-nav&#123;font-size: 14px; font-weight: bold; list-style: none; &#125;</div><div class="line">		.top-nav li &#123;float: left; margin-right: 1px; &#125;</div><div class="line">		.top-nav li a&#123;line-height: 34px; text-decoration: none; background-color: #3f240e; color: #fff; display: block; width: 80px; text-align: center; &#125;</div><div class="line">		/*二级菜单*/</div><div class="line">		.top-nav ul &#123;list-style: none; display: none; padding: 0; position: absolute; height: 0; overflow: hidden;&#125;</div><div class="line">		.top-nav li a:hover &#123; background-color: #e54; &#125;</div><div class="line">		.note &#123;background-color: #e54; display: block;&#125;</div><div class="line">	&lt;/style&gt;</div><div class="line">	&lt;script&gt;</div><div class="line">		window.onload = function () &#123;</div><div class="line">			var Lis = document.getElementsByTagName(&apos;li&apos;);</div><div class="line">			for (var i = 0; i &lt; Lis.length; i++) &#123;</div><div class="line">				Lis[i].onmouseover = function () &#123;</div><div class="line">					var u = this.getElementsByTagName(&apos;ul&apos;)[0];</div><div class="line">					if (u != undefined) &#123;</div><div class="line">						u.style.display = &quot;block&quot;;</div><div class="line">						ChangeH(u.id,1);</div><div class="line">					&#125;;</div><div class="line"></div><div class="line">				&#125;</div><div class="line"></div><div class="line">				Lis[i].onmouseleave = function () &#123;</div><div class="line">					var u = this.getElementsByTagName(&apos;ul&apos;)[0];</div><div class="line">					if (u != undefined) &#123;</div><div class="line">						ChangeH(u.id,-1);</div><div class="line">					&#125;;</div><div class="line">					</div><div class="line">				&#125;</div><div class="line">			&#125;;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		function ChangeH (id,count) &#123;</div><div class="line">			var ulList = document.getElementById(id);</div><div class="line">			var h = ulList.offsetHeight;</div><div class="line">			h += count;</div><div class="line">			if (count &gt; 0) &#123;</div><div class="line">				if (h &lt;= 34) &#123;</div><div class="line">					ulList.style.height = h + &quot;px&quot;;</div><div class="line">					setTimeout(&quot;ChangeH(&apos;&quot; + id + &quot;&apos;,1)&quot;,10);						</div><div class="line">				&#125; else &#123;</div><div class="line">					return ;</div><div class="line">				&#125;</div><div class="line">			&#125; else &#123;</div><div class="line">				if (h &gt; 0) &#123;</div><div class="line">					ulList.style.height = h + &quot;px&quot;;</div><div class="line">					setTimeout(&quot;ChangeH(&apos;&quot; + id + &quot;&apos;,-1)&quot;,10);</div><div class="line">				&#125; else &#123;</div><div class="line">					ulList.style.display = &quot;none&quot;;</div><div class="line">					return ;				</div><div class="line">				&#125;</div><div class="line">			&#125;		</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		// function AddH (id) &#123;</div><div class="line">		// 	var ulList = document.getElementById(id);</div><div class="line">		// 	var h = ulList.offsetHeight;</div><div class="line">		// 	h += 1;</div><div class="line">		// 	if (h&lt;=42) &#123;</div><div class="line">		// 		ulList.style.height = h + &quot;px&quot;;</div><div class="line">		// 		setTimeout(&quot;AddH(&apos;&quot; + id + &quot;&apos;)&quot;,10);</div><div class="line">		// 	&#125; else &#123;</div><div class="line">		// 		return;</div><div class="line">		// 	&#125;</div><div class="line">			</div><div class="line">		// &#125;</div><div class="line"></div><div class="line">		// function SubH (id) &#123;</div><div class="line">		// 	var ulList = document.getElementById(id);</div><div class="line">		// 	var h = ulList.offsetHeight;</div><div class="line">		// 	h -= 1;</div><div class="line">		// 	if (h &gt; 0) &#123;</div><div class="line">		// 		ulList.style.height = h + &quot;px&quot;;</div><div class="line">		// 		setTimeout(&quot;SubH(&apos;&quot; + id + &quot;&apos;)&quot;,10);</div><div class="line">		// 	&#125; else &#123;</div><div class="line">		// 		ulList.style.display = &quot;none&quot;;</div><div class="line">		// 		return ;</div><div class="line">		// 	&#125;</div><div class="line">		// &#125;</div><div class="line">	&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;ul class=&quot;top-nav&quot;&gt;</div><div class="line">		&lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;span class=&quot;note&quot;&gt;首页&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</div><div class="line">		&lt;li&gt;&lt;a href=&quot;&quot;&gt;课程&lt;/a&gt;&lt;/li&gt;</div><div class="line">		&lt;li&gt;&lt;a href=&quot;&quot;&gt;学习中心+&lt;/a&gt;	</div><div class="line">			&lt;ul id=&quot;munUL&quot;&gt;</div><div class="line">				&lt;li&gt;&lt;a href=&quot;&quot;&gt;前端+&lt;/a&gt;</div><div class="line">&lt;!-- 					&lt;ul&gt;</div><div class="line">						&lt;li&gt;&lt;a href=&quot;&quot;&gt;JavaScript&lt;/a&gt;&lt;/li&gt;</div><div class="line">						&lt;li&gt;&lt;a href=&quot;&quot;&gt;CSS&lt;/a&gt;&lt;/li&gt;</div><div class="line">						&lt;li&gt;&lt;a href=&quot;&quot;&gt;jquery&lt;/a&gt;&lt;/li&gt;</div><div class="line">					&lt;/ul&gt; --&gt;</div><div class="line">				&lt;/li&gt;</div><div class="line">				&lt;li&gt;&lt;a href=&quot;&quot;&gt;手机+&lt;/a&gt;</div><div class="line">&lt;!-- 					&lt;ul&gt;</div><div class="line">						&lt;li&gt;&lt;a href=&quot;&quot;&gt;IOS&lt;/a&gt;&lt;/li&gt;</div><div class="line">						&lt;li&gt;&lt;a href=&quot;&quot;&gt;WP&lt;/a&gt;&lt;/li&gt;</div><div class="line">						&lt;li&gt;&lt;a href=&quot;&quot;&gt;ANDROID&lt;/a&gt;&lt;/li&gt;</div><div class="line">					&lt;/ul&gt; --&gt;</div><div class="line">				&lt;/li&gt;</div><div class="line">				&lt;li&gt;&lt;a href=&quot;&quot;&gt;后台&lt;/a&gt;&lt;/li&gt;</div><div class="line">			&lt;/ul&gt;</div><div class="line">		&lt;/li&gt;</div><div class="line">		&lt;li&gt;&lt;a href=&quot;&quot;&gt;关于我们&lt;/a&gt;&lt;/li&gt;</div><div class="line">		&lt;li&gt;&lt;a href=&quot;&quot;&gt;这是什么&lt;/a&gt;&lt;/li&gt;</div><div class="line">	&lt;/ul&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="jquery版"><a href="#jquery版" class="headerlink" title="jquery版"></a>jquery版</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">	&lt;title&gt;Document&lt;/title&gt;</div><div class="line">	&lt;script type=&quot;text/javascript&quot; src = &quot;jquery-2.1.1.js&quot;&gt;&lt;/script&gt;</div><div class="line">	&lt;script&gt;</div><div class="line">		$(document).ready(function () &#123;</div><div class="line">			$(&apos;.top-nav li&apos;).mousemove(function() &#123;</div><div class="line">				$(this).find(&apos;ul&apos;).stop(true).slideDown(&apos;1000&apos;);</div><div class="line">			&#125;);</div><div class="line"></div><div class="line">			$(&apos;.top-nav li&apos;).stop(true,true).mouseleave(function() &#123;</div><div class="line">				$(this).find(&apos;ul&apos;).stop(true).slideUp(&apos;1000&apos;);</div><div class="line">			&#125;);			</div><div class="line">		</div><div class="line">		&#125;);</div><div class="line">	&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>对不起我就是这么懒哈哈哈<br>从实际的效果来看，为了防止手贱一直去滑动那个菜单触发效果往动画栈里一直塞，需要添加一个.stop()函数来停止动画，当鼠标移走时清空动画栈。</p>
+<h2 id="高级一点的菜单"><a href="#高级一点的菜单" class="headerlink" title="高级一点的菜单"></a>高级一点的菜单</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">	.navlist</div><div class="line">	&#123;</div><div class="line">		position: absolute;</div><div class="line">		top: 10px;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	a</div><div class="line">	&#123;</div><div class="line">		text-decoration: none;</div><div class="line">		color: #FFF;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	.navlist a </div><div class="line">	&#123;</div><div class="line">		margin-left: 60px;</div><div class="line">		color: #666;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	.expand</div><div class="line">	&#123;</div><div class="line">		height: 0px;</div><div class="line">		background-color: #333d4d;</div><div class="line">		overflow: hidden;</div><div class="line">		position: relative;</div><div class="line">		top: 30px;</div><div class="line">		width: 100%;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	.expdiv</div><div class="line">	&#123;</div><div class="line">		height: 130px;</div><div class="line">		width: 500%;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	.expdiv-list</div><div class="line">	&#123;</div><div class="line">		width: 20%;</div><div class="line">		text-align: center;</div><div class="line">		float: left;</div><div class="line">		line-height: 110px;</div><div class="line">		color: #FFF;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	.expand .close-btn</div><div class="line">	&#123;</div><div class="line">		width: 120px;</div><div class="line">		height: 20px;</div><div class="line">		background: url(images/broswer_home.png) no-repeat -13px -117px;</div><div class="line">		position: absolute;</div><div class="line">		left: 50%;</div><div class="line">		bottom: -2px;</div><div class="line">		margin-left: -60px;</div><div class="line">		cursor: pointer;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span> = <span class="string">"jquery-2.1.1.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">	$(function () &#123;</div><div class="line">		$('#menuList').on('click', 'a', function() &#123;</div><div class="line"></div><div class="line">			if ($(this).hasClass('btn-active')) &#123;</div><div class="line">				$('#expandZone #clostBtn').click();</div><div class="line">				return false;</div><div class="line">			&#125;;</div><div class="line"></div><div class="line">			var curIndex = $(this).index(),mlValue = "-" + curIndex * 100 + "%";</div><div class="line"></div><div class="line">			if ($("#expandZone").hasClass('active')) &#123;</div><div class="line">				$('#expandZone .expdiv').animate(&#123;marginLeft: mlValue&#125;);</div><div class="line">			&#125; else &#123;</div><div class="line">				$('#expandZone .expdiv').css(&#123;marginLeft: mlValue&#125;);</div><div class="line">				$('#expandZone').animate(&#123;height: "130px"&#125;).addClass('active');</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			$(this).addClass('btn-active').siblings().removeClass('btn-active');</div><div class="line"></div><div class="line">			return false;</div><div class="line">		&#125;);</div><div class="line"></div><div class="line">		$("#expandZone #close-btn").on('click', function() &#123;</div><div class="line">			$("#expandZone").animate(&#123;height: "0px"&#125;, function () &#123;</div><div class="line">				$(this).removeClass('active');</div><div class="line">				$('#menuList .btn-active').removeClass('btn-active');</div><div class="line">			&#125;);</div><div class="line">			return false;		</div><div class="line">		&#125;);</div><div class="line">	&#125;)</div><div class="line"></div><div class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"menuList"</span> <span class="attr">class</span>=<span class="string">"navlist"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>课程大厅<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>学习中心<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>这是什么<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>关于我们<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"expandZone"</span> <span class="attr">class</span>=<span class="string">"expand"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"expdiv"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"expdiv-list"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>幕客网主页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"expdiv-list"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>前段克成<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>手机开发<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>后台变成<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"expdiv-list"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>JavaScript<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>Jquery<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"expdiv-list"</span>&gt;</span></div><div class="line">				个人信息：</div><div class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"expdiv-list"</span>&gt;</span></div><div class="line">				这是公司地址呀~！</div><div class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"clostBtn"</span> <span class="attr">class</span>=<span class="string">"close-btn"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>还有点小bug。让我慢慢改一下</p>
+<h2 id="响应式菜单"><a href="#响应式菜单" class="headerlink" title="响应式菜单"></a>响应式菜单</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">		body </div><div class="line">		&#123;</div><div class="line">			margin: 0 auto;</div><div class="line">		&#125;</div><div class="line">		ul</div><div class="line">		&#123;</div><div class="line">			padding: 0;</div><div class="line">			margin: 0;</div><div class="line">		&#125;</div><div class="line">		a</div><div class="line">		&#123;</div><div class="line">			text-decoration: none;</div><div class="line">			color: #FFF;</div><div class="line">			font-size: 14px;</div><div class="line">			padding: 0 3px;</div><div class="line">			display: block;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.menu li </div><div class="line">		&#123;</div><div class="line">			display: block;</div><div class="line">			float: left;</div><div class="line">			margin: 3px;</div><div class="line">			background: Gray;</div><div class="line">			width: 140px;</div><div class="line">			text-align: center;</div><div class="line">			color: #FFF;</div><div class="line">			font-size: 9pt;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		#logo</div><div class="line">		&#123;</div><div class="line">			background: white;</div><div class="line">			width: 230px;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		#logo a </div><div class="line">		&#123;</div><div class="line">			color: Gray;</div><div class="line">			font-size: 35pt;</div><div class="line">			background: white;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		#toplogo</div><div class="line">		&#123;</div><div class="line">			display: none;</div><div class="line">			margin: 0 auto;</div><div class="line">			text-align: center;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		#toplogo a</div><div class="line">		&#123;</div><div class="line">			color: black;</div><div class="line">			font-size: 35pt;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.rMenu</div><div class="line">		&#123;</div><div class="line">			display: none;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		@media only screen and (min-width: 585px) and (max-width: 823px)&#123;</div><div class="line">				#logo</div><div class="line">				&#123;</div><div class="line">					display: none;</div><div class="line">				&#125;</div><div class="line"></div><div class="line">				#toplogo</div><div class="line">				&#123;</div><div class="line">					display: block;</div><div class="line">					width: 100%;</div><div class="line">				&#125;</div><div class="line"></div><div class="line">				.menu</div><div class="line">				&#123;</div><div class="line">					width: 585px;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		</div><div class="line">		@media only screen and (max-width: 585px) &#123;</div><div class="line">			#logo</div><div class="line">			&#123;</div><div class="line">				display: none;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			#toplogo</div><div class="line">			&#123;</div><div class="line">				display: block;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			.munu </div><div class="line">			&#123;</div><div class="line">				width: 100%;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			.menu li</div><div class="line">			&#123;</div><div class="line">				width: 100%;</div><div class="line">				</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			.rMenu</div><div class="line">			&#123;</div><div class="line">				display: block;</div><div class="line">				text-align: right;</div><div class="line">			&#125;</div><div class="line">		&#125;	</div><div class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"menu"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"toplogo"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>木渴望<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"rMenu"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"icon.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>课程大厅<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span>IT课程在这里<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>学习中心<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span>好好学习天天向上<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"logo"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>木刻万<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>个人中心<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span>个人中心 修改密码<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>关于我们<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span>单位地址 应聘信息<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>虽然很丑，真的很丑。但是让我入门了响应式设计。媒体查询Js什么的一起上。</p>
+<h3 id="CSS3菜单"><a href="#CSS3菜单" class="headerlink" title="CSS3菜单"></a>CSS3菜单</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">		.top-nav&#123; </div><div class="line">			width: 960px; </div><div class="line">			margin: 60px auto; </div><div class="line">			border: 1px solid #222; </div><div class="line">			background-color: #111; </div><div class="line">			background-image: linear-gradient(#444,#111); </div><div class="line">			border-radius: 6px; </div><div class="line">			box-shadow: 0 1px 1px #777;</div><div class="line">			padding: 0;</div><div class="line">			list-style: none;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav:before, .top-nav:after</div><div class="line">		&#123;</div><div class="line">			content: "";</div><div class="line">			display: table;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav:after</div><div class="line">		&#123;</div><div class="line">			clear: both;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav</div><div class="line">		&#123;</div><div class="line">			zoom: 1;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav li</div><div class="line">		&#123;</div><div class="line">			float: left;</div><div class="line">			border-right: 1px solid #222;</div><div class="line">			box-shadow: 1px 0 0 #444;</div><div class="line">			position: relative;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav li a</div><div class="line">		&#123;</div><div class="line">			float: left;</div><div class="line">			padding: 12px 30px;</div><div class="line">			color: #999;</div><div class="line">			font: bold 12px;</div><div class="line">			text-decoration: none;</div><div class="line">			text-shadow:0 1px 0 #000;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav li a:hover</div><div class="line">		&#123;</div><div class="line">			color: #fafafa;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav li ul</div><div class="line">		&#123;</div><div class="line">			visibility: hidden;</div><div class="line">			position: absolute;</div><div class="line">			list-style: none;</div><div class="line">			top: 40px;</div><div class="line">			left: 0;</div><div class="line">			z-index: 1;</div><div class="line">			padding: 0;</div><div class="line">			background-color: #444;</div><div class="line">			background-image: linear-gradient(#444,#111);</div><div class="line">			box-shadow: 0 -1 0 rgba(255,255,255,0.3);</div><div class="line">			border-radius: 3px;</div><div class="line">			opacity: 0;</div><div class="line">			margin: 20px 0 0 0 ;</div><div class="line">			_margin: 0;</div><div class="line">			transition: all 0.5s ease-in-out;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav li:hover &gt; ul</div><div class="line">		&#123;</div><div class="line">			opacity: 1;</div><div class="line">			visibility: visible;</div><div class="line">			margin: 0;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav ul li</div><div class="line">		&#123;</div><div class="line">			float: none;</div><div class="line">			display: block;</div><div class="line">			border: 0;</div><div class="line">			box-shadow: 0 1px 0 #111,0 2px 0 #666;</div><div class="line"></div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav ul a</div><div class="line">		&#123;</div><div class="line">			padding: 10px;</div><div class="line">			width: 130px;</div><div class="line">			display: block;</div><div class="line">			float: none;</div><div class="line">			_height: 10px;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav ul a:hover</div><div class="line">		&#123;</div><div class="line">			background-color: #0186ba;</div><div class="line">			background-image: linear-gradient(#04acec,#0186ba);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav ul li:first-child &gt; a</div><div class="line">		&#123;</div><div class="line">			border-radius: 3px 3px 0 0;</div><div class="line"></div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav ul li:last-child &gt; a</div><div class="line">		&#123;</div><div class="line">			border-radius: 0 0 3px 3px;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav ul li:first-child &gt; a:before</div><div class="line">		&#123;</div><div class="line">			content:  "";</div><div class="line">			position: absolute;</div><div class="line">			left: 40px;</div><div class="line">			top: -6px;</div><div class="line">			border-left: 6px solid transparent;</div><div class="line">			border-right: 6px solid transparent;</div><div class="line">			border-bottom: 6px solid #444;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav ul li:first-child &gt; a:hover:before</div><div class="line">		&#123;</div><div class="line">			border-bottom-color: #04acec;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav ul ul</div><div class="line">		&#123;</div><div class="line">			top: 0;</div><div class="line">			left: 150px;</div><div class="line">			margin: 0 0 0 20px;</div><div class="line">			_margin:0;</div><div class="line">			box-shadow: -1px 0 0 rgba(255,255,255,0.3);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav ul ul li:first-child a:before</div><div class="line">		&#123;</div><div class="line">			left: -6px ;</div><div class="line">			top: 50%;</div><div class="line">			margin-top: -6px;</div><div class="line">			border-left: 0;</div><div class="line">			border-bottom: 6px solid transparent;</div><div class="line">			border-top: 6px solid transparent;</div><div class="line">			border-right: 6px solid #3b3b3b;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.top-nav ul ul li:first-child a:hover:before</div><div class="line">		&#123;</div><div class="line">			border-right-color: #0299d3;</div><div class="line">			border-bottom-color: transparent;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"top-nav"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"note"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>课程<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>学习中心+<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	</div><div class="line">			<span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>前端+<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">						<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>JavaScript<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">						<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">						<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>jquery<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">					<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>手机+<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">						<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>IOS<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">						<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>WP<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">						<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>ANDROID<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">					<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>后台<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>关于我们<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>这是什么<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这个最喜欢啦~入门CSS3看的这个。也很漂亮！</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/01/27/下拉菜单-2/" data-id="cird76zba000e1klbpz7lmjxy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/01/27/下拉菜单-2/" data-title="下拉菜单(2)" data-url="http://weibo.com/biousco/2015/01/27/下拉菜单-2/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/01/30/CSS基础补充-1/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            CSS基础补充(1)
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/01/27/前端练习-Agentur-2/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">前端练习-Agentur(2)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

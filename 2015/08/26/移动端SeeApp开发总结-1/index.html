@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>移动端SeeApp开发总结-1 | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JS,Ajax,表单提交" />
+    
+    <meta name="description" content="暑假在See实习：See 一张图片找到全球同款。进去之后接手的第一个项目是继续完成移动端版的App。需求有：登录，发表心愿，同求等等，主要是把整个流程都完成。年少无知的我以为只是重构点移动端页面，竟然说2天半可以完成（其实如果只是重构是真的够了）；然后Sheen一脸惊讶，拍拍肩膀：”你确定？”。最后给了我5天左右的时间。好，不废话了。其实主要做的东西就是ajax和后台交互，移动端文件上传。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端SeeApp开发总结-1">
+<meta property="og:url" content="http://weibo.com/biousco/2015/08/26/移动端SeeApp开发总结-1/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="暑假在See实习：See 一张图片找到全球同款。进去之后接手的第一个项目是继续完成移动端版的App。需求有：登录，发表心愿，同求等等，主要是把整个流程都完成。年少无知的我以为只是重构点移动端页面，竟然说2天半可以完成（其实如果只是重构是真的够了）；然后Sheen一脸惊讶，拍拍肩膀：”你确定？”。最后给了我5天左右的时间。好，不废话了。其实主要做的东西就是ajax和后台交互，移动端文件上传。">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/86509675gw1evgc5wwhkmj21kw11xhbe.jpg">
+<meta property="og:updated_time" content="2015-08-26T13:40:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端SeeApp开发总结-1">
+<meta name="twitter:description" content="暑假在See实习：See 一张图片找到全球同款。进去之后接手的第一个项目是继续完成移动端版的App。需求有：登录，发表心愿，同求等等，主要是把整个流程都完成。年少无知的我以为只是重构点移动端页面，竟然说2天半可以完成（其实如果只是重构是真的够了）；然后Sheen一脸惊讶，拍拍肩膀：”你确定？”。最后给了我5天左右的时间。好，不废话了。其实主要做的东西就是ajax和后台交互，移动端文件上传。">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/86509675gw1evgc5wwhkmj21kw11xhbe.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/前端/">前端</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-移动端SeeApp开发总结-1" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        移动端SeeApp开发总结-1
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/08/26/移动端SeeApp开发总结-1/" class="article-date">
+    <time datetime="2015-08-26T13:37:11.000Z" itemprop="datePublished">2015-08-26</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/表单提交/">表单提交</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://ww3.sinaimg.cn/large/86509675gw1evgc5wwhkmj21kw11xhbe.jpg" alt=""><br>暑假在See实习：<a href="http://www.seeapp.com/" target="_blank" rel="external">See 一张图片找到全球同款</a>。<br>进去之后接手的第一个项目是继续完成移动端版的App。<br>需求有：登录，发表心愿，同求等等，主要是把整个流程都完成。<br>年少无知的我以为只是重构点移动端页面，竟然说2天半可以完成（其实如果只是重构是真的够了）；然后Sheen一脸惊讶，拍拍肩膀：”你确定？”。最后给了我5天左右的时间。<br>好，不废话了。其实主要做的东西就是ajax和后台交互，移动端文件上传。</p>
+<a id="more"></a>
+<h2 id="Fiddler"><a href="#Fiddler" class="headerlink" title="Fiddler"></a>Fiddler</h2><p>调试后台接口先介绍这个前端神器。</p>
+<blockquote>
+<p>Fiddler是一个http协议调试代理工具，它能够记录并检查所有你的电脑和互联网之间的http通讯，设置断点，查看所有的“进出”Fiddler的数据（指cookie,html,js,css等文件，这些都可以让你胡乱修改的意思）。 Fiddler 要比其他的网络调试器要更加简单，因为它不仅仅暴露http通讯还提供了一个用户友好的格式。</p>
+</blockquote>
+<p>刚开始的时候不知道这货能干什么。<br>从SVN拿到之前写了一半的H5（下面都这么叫）的代码后，直接打开<code>index.html</code>是没什么内容的，问了后台相关的人员，才知道是通过url上的参数来ajax提交获得数据再渲染到页面的。之前做的东西ajax都只是局部刷新，比如下拉菜单，搜索关键词提示；自己也有考虑过网页能不能不通过后台来渲染而直接是返回数据前端来填充呢？发现这不就是我想实现的前后端分离嘛~<br>加上参数后发现还是没有数据。有跨域问题：js请求的后台接口和当前的<code>index.html</code>并不在同一个域名。这时候就要祭出大杀器Fiddler了。</p>
+<p>按我的理解，Fiddler能把所有的请求和响应都收集起来，从本机发出的请求都通过Fiddler，从外面进来的响应也都通过Fiddler。除此之外，Fiddler能随意修改这些请求和响应。这点就是他强大的地方了。</p>
+<p>打开Fiddler和生产环境下的H5：<a href="http://m.seeapp.com/see/static/detail/index.html?tid=10222" target="_blank" rel="external">http://m.seeapp.com/see/static/detail/index.html?tid=10222</a>。在Fiddler里能看到他捕捉到了连接到这个网站的所有请求。现在选择一个请求，是他所需要的js文件：<code>detail.js</code>，在右边的<code>AutoResponder</code>里选择<code>add Rule</code>，制定一系列规则，就能让Fiddler修改返回的这个js的文件了，再次刷新页面，此时页面所引用的js文件就是Fiddler修改过的js文件。<br>那么这个规则是什么呢？就是指向我们本机的js文件。说白了就是开发环境的js。这样我们在本机的js文件里修改，马上就能反映在线上了。<br>回到前面的问题，为什么要这么麻烦用Fiddler呢，因为在线上api接口都对上了，没有跨域问题。当然跨域问题也可以在服务端加上：<code>Access-Control-Allow-Origin: *</code>。不过服务端那边不能修改，所以我这边只能自力更生了。<br>此外用Fiddler还有个好处，方便手机调试。具体方法如下：</p>
+<ul>
+<li>在Fiddler里设置好各种文件的对应规则后，打开Fiddler允许外部设备连接的功能，设置好端口号。</li>
+<li>让测试的手机端和PC端在同一个局域网下，设置手机端的HTTP代理服务器为PC端的IP地址，设置好端口号。</li>
+<li>这样一来，手机发送的请求也会通过Fiddler，接受的请求也会通过Fiddler，所以手机端浏览到的页面就和PC端一样了。不需要把修改好的文件放上服务器再在手机端刷新</li>
+</ul>
+<p>可以再延伸一下，由于Fiddler也能知道手机端发送的请求，所以一些App调用的后台请求接口也可以知道了；也可以修改请求的各种文件，比如还是js文件，然后加点代码啥的→_→，这样一些游戏可以写个小外挂出来哈哈哈哈（感谢贤哥）；Fiddler还能直接修改HOST文件，不用在系统文件那里修改。</p>
+<h2 id="js结构"><a href="#js结构" class="headerlink" title="js结构"></a>js结构</h2><p><code>$(function (){...})</code><br>在jQuery中，这个代表当DOM加载完成后要执行的函数，等价于<code>$(document).ready()</code>。<br>每个不同的页面加载不同的js，每个js文件的结构大体如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> reply = <span class="keyword">new</span> (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;...&#125;);</div><div class="line">    <span class="keyword">var</span> theme = <span class="keyword">new</span> (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;...&#125;);</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        reply.init();</div><div class="line">        theme.init();</div><div class="line">    &#125;,<span class="number">300</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>这是前辈的写法，感觉很新颖：把每个功能模块都通过匿名函数用类来实现，在最后统一进行初始化。虽然之前我也是用了类似的写法，但是每个类都是一个对象，在对象里面定义方法和变量觉得有点拘束；而这种匿名函数的写法就很自然了：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reply = <span class="keyword">new</span> (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> t = <span class="keyword">this</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//公共变量</span></div><div class="line">    t.user = <span class="string">''</span>;</div><div class="line">    t.avater = <span class="string">''</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//私有变量</span></div><div class="line">    <span class="keyword">var</span> _user = <span class="string">''</span>;</div><div class="line">    </div><div class="line">    t.init = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        t.setUser(t.getUser());</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    t.setUser = <span class="function"><span class="keyword">function</span> (<span class="params">user</span>) </span>&#123;</div><div class="line">        t.user = user;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>里面就很自由，定义私有变量/方法或者公共变量/方法都很方便。另外，虽然在整个运行的时候各个类可以互相调用，但是由于写在了DOM加载完成的匿名函数中，在执行外部（浏览器中）是访问不到这些变量的。要想暴露出来可以<code>window.fun = fun</code>。<br>当然啦，还是有其他的写法也能实现这样的效果，现在比较喜欢这种。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/08/26/移动端SeeApp开发总结-1/" data-id="cird76zen002t1klbjtoww61e" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/08/26/移动端SeeApp开发总结-1/" data-title="移动端SeeApp开发总结-1" data-url="http://weibo.com/biousco/2015/08/26/移动端SeeApp开发总结-1/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/09/01/移动端SeeApp开发总结-2/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            移动端SeeApp开发总结-2
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/07/14/数据库入门-2/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">数据库入门-2</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

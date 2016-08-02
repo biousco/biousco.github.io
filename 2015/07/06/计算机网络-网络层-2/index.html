@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>计算机网络-网络层-2 | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="计算机网络,网络层" />
+    
+    <meta name="description" content="因特网的路由选择协议路由选择协议
+理想路由算法
+算法是正确的，完整的
+在计算上简单
+自适应性
+稳定性
+公平的
+最佳的
+
+
+分层次的路由选择协议
+因特网采用自适应，分布式路由选择协议
+两大类：内部网关协议IGP和外部网关协议EGP
+IGP(Interior Gateway Protocol)：包括RIP和OSPF等
+EGP(External Gateway Protocol)：目前使用BGP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络-网络层-2">
+<meta property="og:url" content="http://weibo.com/biousco/2015/07/06/计算机网络-网络层-2/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="因特网的路由选择协议路由选择协议
+理想路由算法
+算法是正确的，完整的
+在计算上简单
+自适应性
+稳定性
+公平的
+最佳的
+
+
+分层次的路由选择协议
+因特网采用自适应，分布式路由选择协议
+两大类：内部网关协议IGP和外部网关协议EGP
+IGP(Interior Gateway Protocol)：包括RIP和OSPF等
+EGP(External Gateway Protocol)：目前使用BGP">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/86509675gw1ettcwt2lblj211y0lc43d.jpg">
+<meta property="og:updated_time" content="2015-07-11T13:50:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络-网络层-2">
+<meta name="twitter:description" content="因特网的路由选择协议路由选择协议
+理想路由算法
+算法是正确的，完整的
+在计算上简单
+自适应性
+稳定性
+公平的
+最佳的
+
+
+分层次的路由选择协议
+因特网采用自适应，分布式路由选择协议
+两大类：内部网关协议IGP和外部网关协议EGP
+IGP(Interior Gateway Protocol)：包括RIP和OSPF等
+EGP(External Gateway Protocol)：目前使用BGP">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/86509675gw1ettcwt2lblj211y0lc43d.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/计算机本科知识/">计算机本科知识</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-计算机网络-网络层-2" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        计算机网络-网络层-2
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/07/06/计算机网络-网络层-2/" class="article-date">
+    <time datetime="2015-07-06T12:40:36.000Z" itemprop="datePublished">2015-07-06</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络层/">网络层</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://ww4.sinaimg.cn/large/86509675gw1ettcwt2lblj211y0lc43d.jpg" alt="复习复习复习复习"></p>
+<h2 id="因特网的路由选择协议"><a href="#因特网的路由选择协议" class="headerlink" title="因特网的路由选择协议"></a>因特网的路由选择协议</h2><h3 id="路由选择协议"><a href="#路由选择协议" class="headerlink" title="路由选择协议"></a>路由选择协议</h3><ol>
+<li>理想路由算法<ul>
+<li>算法是正确的，完整的</li>
+<li>在计算上简单</li>
+<li>自适应性</li>
+<li>稳定性</li>
+<li>公平的</li>
+<li>最佳的</li>
+</ul>
+</li>
+<li>分层次的路由选择协议<ul>
+<li>因特网采用自适应，分布式路由选择协议</li>
+<li>两大类：<strong>内部网关协议IGP</strong>和<strong>外部网关协议EGP</strong></li>
+<li>IGP(Interior Gateway Protocol)：包括RIP和OSPF等</li>
+<li>EGP(External Gateway Protocol)：目前使用BGP</li>
+</ul>
+</li>
+</ol>
+<h3 id="内部网关协议RIP（Routing-Information-Protocal）"><a href="#内部网关协议RIP（Routing-Information-Protocal）" class="headerlink" title="内部网关协议RIP（Routing Information Protocal）"></a>内部网关协议RIP（Routing Information Protocal）</h3><h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><ul>
+<li>路由信息协议，基于距离向量的路由选择协议，优点是简单</li>
+<li>从一路由器到直接连接的网络的距离定义为1，距离也称为跳数</li>
+<li>一条路径最多包含15个路由器，16代表不可达，因此用于小型互联网</li>
+<li>只选择最短路由，哪怕有一条高速但多路由器的路由</li>
+<li>分布式路由选择协议，不断地和其他路由器交换信息</li>
+<li>协议特点<ol>
+<li>仅和相邻路由器交换信息</li>
+<li>交换的信息是当前本路由知道的全部信息（路由表）</li>
+<li>按固定的时间间隔交换信息（30秒）</li>
+</ol>
+</li>
+</ul>
+<h4 id="距离向量算法"><a href="#距离向量算法" class="headerlink" title="距离向量算法"></a>距离向量算法</h4><p>对于每一个相邻路由器发过来的RIP报文，进行下列步骤：</p>
+<ol>
+<li>对地址为X的路由器发来的RIP报文，先修改报文的所有项目：“下一跳”改为X，所有距离加一。每个项目有三个数据：到达目的网络N，距离d，下一跳路由器是X</li>
+<li>对修改后的每一个项目</li>
+</ol>
+<ul>
+<li>如果原来的路由表没有目的网络N，加入路由表</li>
+<li>否则如果有目的网络，下一跳地址也是X，更新路由表</li>
+<li>否则如果有目的网络，下一跳不是X，查看距离，更新路由表</li>
+</ul>
+<ol>
+<li>RIP协议使得从每一个路由器到每一个目的网络的路由都是最短的<a id="more"></a>
+<h4 id="RIP协议的报文格式"><a href="#RIP协议的报文格式" class="headerlink" title="RIP协议的报文格式"></a>RIP协议的报文格式</h4></li>
+</ol>
+<ul>
+<li>RIP2是新版本，改进性能，支持CIDR和变长子网掩码，多播</li>
+<li>使用运输层的用户数据报UDP进行传送（UDP的端口520）</li>
+<li>报文由首部和路由组成</li>
+<li>首部4字节，包括命令，版本，和一个0保证四字节对齐</li>
+<li>路由部分由若干个路由信息组成，20字节。包含地址族标识符，路由标记，后面是网络地址，子网掩码，下一跳路由地址，距离。重复出现最多25个</li>
+<li>问题：网络出现故障时，需要较长时间才能传送到所有路由器（栗子很有趣）</li>
+<li>特点：好消息传的快，坏消息传得慢</li>
+<li>优点：实现简单，开销较小</li>
+<li>缺点：限制网络规模；随着规模扩大，开销增加</li>
+<li>规模小的网络适合</li>
+</ul>
+<h3 id="内部网关协议OSPF（Open-Shortest-Path-First）"><a href="#内部网关协议OSPF（Open-Shortest-Path-First）" class="headerlink" title="内部网关协议OSPF（Open Shortest Path First）"></a>内部网关协议OSPF（Open Shortest Path First）</h3><h4 id="协议基本特点"><a href="#协议基本特点" class="headerlink" title="协议基本特点"></a>协议基本特点</h4><ul>
+<li>开放最短路径优先</li>
+<li>使用分布式的链路状态协议</li>
+<li>与RIP的不同之处：<ol>
+<li>用洪泛法（flooding）向本自治系统中的所有路由器发送信息</li>
+<li>发送的信息是与本路由器相邻的所有路由器的链路状态。链路状态还包括“度量”（metric）</li>
+<li>只有当链路状态发生变化时，才使用洪泛法发送信息</li>
+</ol>
+</li>
+<li>所有路由器都能建立<strong>链路状态数据库</strong>，也就是全网的拓扑结构图</li>
+<li>每一个路由器使用链路状态数据库中的数据构造自己的路由表（迪杰斯特拉算法）</li>
+<li>OSPF会将一个自治系统划分为若干个更小的范围，叫做区域，每个区域有32位的标识符</li>
+<li>划分区域的好处是洪泛法交换信息的范围局限于一个区域，减少通信量</li>
+<li>OSPF使用层次结构的划分<ol>
+<li>区域边界路由器</li>
+<li>主干路由器</li>
+<li>自治系统边界路由器</li>
+</ol>
+</li>
+<li>使用IP数据报传送，很短</li>
+<li>特点<ol>
+<li>允许管理员给每条路由指定代价</li>
+<li>如果有多条代价相同的路径，可以将通信量分配给这几条路径。即<strong>负载均衡</strong></li>
+<li>所有在OSPF路由器之间交换的分组都有鉴别的功能</li>
+<li>支持可变长的子网划分和CIDR</li>
+<li>每一个链路状态都有一个32位的序号，增长速率不超过5秒1次。</li>
+<li>只要一个路由器的链路状态发生变化，就用洪泛法向全网更新链路状态</li>
+<li>每30分钟刷新一次数据库的链路状态</li>
+</ol>
+</li>
+</ul>
+<h4 id="五种分组类型"><a href="#五种分组类型" class="headerlink" title="五种分组类型"></a>五种分组类型</h4><ol>
+<li>问候分组，发现和维持邻站的可达性</li>
+<li>数据库描述分组，给邻站自己的链路状态数据库中的链路状态项目</li>
+<li>链路状态请求分组，向对方请求链路状态项目</li>
+<li>链路状态更新分组，洪泛法，最复杂，最核心的部分</li>
+<li>链路状态确认分组</li>
+</ol>
+<h3 id="外部网关协议BGP"><a href="#外部网关协议BGP" class="headerlink" title="外部网关协议BGP"></a>外部网关协议BGP</h3><ul>
+<li>使用原因<ol>
+<li>因特网规模太大，使得AS之间路由选择太难</li>
+<li>AS之间的路由选择必须考虑有关策略</li>
+</ol>
+</li>
+<li>每一个自治系统的管理员要选择至少一个路由器作为“BGP发言人”。两个BGP发言人通过一个共享网络连接在一起，发言人一般是BGP边界路由器</li>
+<li>要交换路由信息，先建立TCP连接，在此连接上交换BGP报文以建立BGP会话</li>
+<li>使用TCP连接能提供可靠的服务，简化了路由选择协议</li>
+<li>使用TCP连接交换路由信息的两个BGP发言人，彼此成为对方的邻站或对等站</li>
+<li>每一个BGP发言人处理必须运行BGP协议外，还必须运行内部网关协议</li>
+<li>交换的信息是到达某个网络所要经过的一系列自治系统</li>
+<li>BGP支持无分类域间路由选择CIDR，因此路由表包括网络前缀，下一跳路由器，以及到达该面对网络所要经过的自治系统序列</li>
+<li>四种报文<ol>
+<li>OPEN报文：建立关系，通信初始化</li>
+<li>UPDATE报文，报告路由信息，列出要撤销的路由</li>
+<li>KEEPALIVE报文，周期性证实邻站连通性</li>
+<li>NOTIFICATION报文，发送检测到的差错</li>
+</ol>
+</li>
+<li>报文过程<ol>
+<li>先发送OPEN报文</li>
+<li>如果接受，用KEEPALIVE相应</li>
+<li>然后周期性地交换KEEPALIVE报文</li>
+<li>UPDATE报文可以撤销通知过的路由，也可以增加新的路由；撤销可以多条，增加只能一条</li>
+</ol>
+</li>
+<li>能解决“坏消息传播得慢”</li>
+</ul>
+<h3 id="路由器的构成"><a href="#路由器的构成" class="headerlink" title="路由器的构成"></a>路由器的构成</h3><h4 id="路由器的结构"><a href="#路由器的结构" class="headerlink" title="路由器的结构"></a>路由器的结构</h4><ul>
+<li>多个输入端口和多个输出端口的专用计算机</li>
+<li>任务是转发分组</li>
+<li>两部分结构：<strong>路由选择</strong>和<strong>分组转发</strong></li>
+<li>路由选择<ol>
+<li>核心构件是路由选择处理机</li>
+<li>任务是根据所选定的路由选择协议构造路由表，定期和相邻路由器交换路由信息而不断更新和维护路由表</li>
+</ol>
+</li>
+<li>分组转发<ol>
+<li>由交换结构，输入端口和输出端口组成</li>
+<li>交换结构：根据转发表对分组进行处理，将某个输入端口进入的分组从一个合适的输出端口转发出去</li>
+<li>输入输出各有三个模块：物理层，数据链路层，网络层</li>
+<li>网络层中有缓冲区</li>
+</ol>
+</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/07/06/计算机网络-网络层-2/" data-id="cird76zeb002k1klbgjbr4g5t" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/07/06/计算机网络-网络层-2/" data-title="计算机网络-网络层-2" data-url="http://weibo.com/biousco/2015/07/06/计算机网络-网络层-2/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/07/11/计算机网络-运输层/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            计算机网络-运输层
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/07/06/计算机网络-网络层-1/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">计算机网络-网络层-1</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Quanta杯总结-1 | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="SEO,雪碧图,Together,Quanta杯" />
+    
+    <meta name="description" content="简要地说一下这次的作品吧：时间大概是20天。项目的idea是运营部的人想的，设计师和冬令营的设计师一样，这次我就专注做重构（其实后来写了好多前台和后台的交互），后台找了舍友。我和舍友都是大二才参加Quanta，所以要和大一的一起做作品比赛。具体项目的功能是在线同步聊天看视频。运营说是参考这个网站：letsgaze（可能需要翻墙，而且必须要用Chrome浏览器）。简单的说就是两个人一起看视频，我暂停">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quanta杯总结-1">
+<meta property="og:url" content="http://weibo.com/biousco/2015/05/25/Quanta杯总结-1/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="简要地说一下这次的作品吧：时间大概是20天。项目的idea是运营部的人想的，设计师和冬令营的设计师一样，这次我就专注做重构（其实后来写了好多前台和后台的交互），后台找了舍友。我和舍友都是大二才参加Quanta，所以要和大一的一起做作品比赛。具体项目的功能是在线同步聊天看视频。运营说是参考这个网站：letsgaze（可能需要翻墙，而且必须要用Chrome浏览器）。简单的说就是两个人一起看视频，我暂停">
+<meta property="og:image" content="http://i4.tietuku.com/5d6968d6cea5a8ca.jpg">
+<meta property="og:updated_time" content="2015-05-25T11:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Quanta杯总结-1">
+<meta name="twitter:description" content="简要地说一下这次的作品吧：时间大概是20天。项目的idea是运营部的人想的，设计师和冬令营的设计师一样，这次我就专注做重构（其实后来写了好多前台和后台的交互），后台找了舍友。我和舍友都是大二才参加Quanta，所以要和大一的一起做作品比赛。具体项目的功能是在线同步聊天看视频。运营说是参考这个网站：letsgaze（可能需要翻墙，而且必须要用Chrome浏览器）。简单的说就是两个人一起看视频，我暂停">
+<meta name="twitter:image" content="http://i4.tietuku.com/5d6968d6cea5a8ca.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Quanta杯总结-1" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Quanta杯总结-1
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/05/25/Quanta杯总结-1/" class="article-date">
+    <time datetime="2015-05-25T04:20:06.000Z" itemprop="datePublished">2015-05-25</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quanta杯/">Quanta杯</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SEO/">SEO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Together/">Together</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/雪碧图/">雪碧图</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://i4.tietuku.com/5d6968d6cea5a8ca.jpg" alt="Quanta杯作品"><br>简要地说一下这次的作品吧：<br>时间大概是20天。项目的idea是运营部的人想的，设计师和冬令营的设计师一样，这次我就专注做重构（其实后来写了好多前台和后台的交互），后台找了舍友。我和舍友都是大二才参加Quanta，所以要和大一的一起做作品比赛。<br>具体项目的功能是在线同步聊天看视频。<br>运营说是参考这个网站：<a href="https://letsgaze.com/#/start" target="_blank" rel="external">letsgaze</a>（可能需要翻墙，而且必须要用Chrome浏览器）。<br>简单的说就是两个人一起看视频，我暂停，你也暂停，我播放，你也播放，看的内容是同步的。同时也可以聊天。<br>上面这个就是主页了。接下来写点东西记录一下做的时候遇到的坑吧。<br>静态页面：<a href="http://biouscowork.sinaapp.com/together/index.html" target="_blank" rel="external">Together</a>。其他的页面在根目录下可以找到。<br><a id="more"></a></p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">E:.</div><div class="line">├─Admin</div><div class="line">│  ├─css</div><div class="line">│  │  └─vendor</div><div class="line">│  ├─fonts</div><div class="line">│  │  └─glyphicons</div><div class="line">│  ├─img</div><div class="line">│  │  └─icons</div><div class="line">│  │      └─png</div><div class="line">│  ├─js</div><div class="line">│  │  └─vendor</div><div class="line">│  └─video</div><div class="line">├─css</div><div class="line">├─images</div><div class="line">└─js</div></pre></td></tr></table></figure>
+<p>页面主要分为前台和后台咯，后台用了Bootstrap框架，做完之后删掉了一些没用的文件。</p>
+<h2 id="CSS3动画"><a href="#CSS3动画" class="headerlink" title="CSS3动画"></a>CSS3动画</h2><p>写了几个动画之后感觉这个就没什么好说的啦，没用到什么太复杂的东西，就切图，写动画效果，把动画相关的都放在一个css里面。这里安利一个腾讯团队做的工具：<a href="http://tid.tenpay.com/labs/css3_keyframes_calculator.html" target="_blank" rel="external">CSS3动画帧数计算器</a><br>兼容性的前缀的话用了<code>AutoPrefixer</code>，不过貌似有BUG，在LESS下面使用完后在最后会生成很多个<code>}</code>，要手动删除掉，否则LESS编译的时候会报错。</p>
+<h2 id="SEO"><a href="#SEO" class="headerlink" title="SEO"></a>SEO</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">"together,在线同步分享，同步视频分享，聊天，视频，同步"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"together推出的在线同时共享功能，跨越空间的距离，让相隔千里的你们，分秒不差地一起看视频，一起听音乐……当你们一起欢笑，一起吐槽电影中的bug，一起欣赏某段音乐里的一段旋律时，ta早已在你身边陪伴着你，犹如不曾离开。"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>头部给搜索引擎用。（话说吐槽电影中的bug是不是有点奇怪=。=）<br>然后是上面用到的动画效果，因为文字是用了特殊字体，所以切图了，但是这样HTML里面没有什么<code>&lt;h1&gt;</code> <code>&lt;h2&gt;</code>标签来给搜索引擎获取内容，所以用了一点小小的技巧：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"animate-group"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"texthide"</span>&gt;</span>在你身边，不曾离开<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"arrows arrows-top"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"texthide"</span>&gt;</span>TOGETHER<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"arrows arrows-bottom"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"texthide"</span>&gt;</span>在线同步分享<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"computer computer-left"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"computer computer-right"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这个是主页中心的几个元素的HTML文件。然后<code>.texthide</code>是这样的：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.texthide</span></div><div class="line">&#123;</div><div class="line">	<span class="comment">/*文本隐藏黑魔法*/</span></div><div class="line">	<span class="attribute">font</span>: <span class="number">0px</span>/<span class="number">0</span> a;</div><div class="line">	<span class="attribute">color</span>: transparent;</div><div class="line">	<span class="attribute">background-color</span>: transparent;</div><div class="line">	<span class="attribute">border</span>: <span class="number">0</span> none;</div><div class="line">	<span class="attribute">overflow</span>: hidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>font: 0px/0 a</code><br>参考文章：<a href="http://www.zhangxinxu.com/wordpress/?p=3557" target="_blank" rel="external">letter-spacing+first-letter实现按钮文字隐藏</a><br>张鑫旭大神的一篇文章有提到这个东西。都是各种文字隐藏的方法。<br>其他的SEO相关的应该就是标签的语义化吧。该用<code>&lt;h1&gt;</code>啊<code>&lt;p&gt;</code>啊什么的就用这些。</p>
+<h2 id="登陆-注册模块"><a href="#登陆-注册模块" class="headerlink" title="登陆/注册模块"></a>登陆/注册模块</h2><p><img src="http://i4.tietuku.com/52df61d6e41e0abf.png" alt="登陆框"><br>登陆注册是个模态框，把点击浮现的这个功能单独写成了一个JS函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//登陆/注册模块(模态框实现)：点击按钮出现浮动框，点击浮动框之外的部分消失。</span></div><div class="line"><span class="comment">//不写成匿名函数，让其他模块也可以进行调用</span></div><div class="line"><span class="keyword">var</span> loginBar = &#123;</div><div class="line"></div><div class="line">    init: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            _this = loginBar;</div><div class="line">            _this.config = &#123;</div><div class="line">                $loginBtn: $(<span class="string">'#login-btn'</span>),</div><div class="line">                $regisBtn: $(<span class="string">'#regis-btn'</span>),</div><div class="line">                $loginOly: $(<span class="string">'#login-overlay'</span>),</div><div class="line">                $regisOly: $(<span class="string">'#regis-overlay'</span>)</div><div class="line">            &#125;;</div><div class="line">            _this.setup();</div><div class="line">        &#125;,</div><div class="line"></div><div class="line">        setup: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            _this.bindEvent(_this.config.$loginBtn, _this.config.$loginOly);</div><div class="line">            _this.bindEvent(_this.config.$regisBtn, _this.config.$regisOly);</div><div class="line">        &#125;,</div><div class="line"></div><div class="line">        <span class="comment">//事件绑定，外部也可以单独调用</span></div><div class="line">        bindEvent: <span class="function"><span class="keyword">function</span> (<span class="params">clickObj, targetObj</span>) </span>&#123;</div><div class="line">            clickObj.click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                targetObj.fadeIn(<span class="number">500</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line">                    <span class="keyword">if</span> (event.target == $(<span class="keyword">this</span>).context) &#123;</div><div class="line">                        $(<span class="keyword">this</span>).fadeOut(<span class="number">500</span>);</div><div class="line">                    &#125;;</div><div class="line">                &#125;)</div><div class="line">            &#125;)</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>后来发现这样单独出来相当有好处。因为后面也经常用到了这个模块。调用方法也超级简单：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//初始化绑定默认的登陆注册框</span></div><div class="line">loginBar.init();</div><div class="line"><span class="comment">//调用绑定特定的模态框</span></div><div class="line">loginBar.bindEvent($(<span class="string">"#adBtn"</span>),$(<span class="string">"#admin-overlay"</span>));</div></pre></td></tr></table></figure></p>
+<p>虽然看起来没有那么语义化=。=</p>
+<h3 id="LESS"><a href="#LESS" class="headerlink" title="LESS"></a>LESS</h3><p>这次全部CSS都用LESS来做。用LESS还没真正发挥出他真正的优势吧，还是只用到皮毛。做之前和设计师沟通后设计图都有按照网格来做：<br><img src="http://i4.tietuku.com/38f468bd4d2455e6.png" alt="设计图"><br>所以写LESS的时候就方便很多，尺寸基本都是数格子啦[]~(￣▽￣)~*<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@global-width:</span> 		<span class="number">24px</span>;</div><div class="line"><span class="selector-class">.logo</span></div><div class="line">&#123;</div><div class="line">	<span class="attribute">position</span>: absolute;</div><div class="line">	<span class="attribute">width</span>: <span class="number">4</span>*<span class="variable">@global-width</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">4</span>*<span class="variable">@global-width</span>;</div><div class="line">	<span class="attribute">left</span>: <span class="number">50%</span>;</div><div class="line">	<span class="attribute">margin-left</span>: -<span class="number">2</span>*<span class="variable">@global-width</span>;</div><div class="line">	<span class="selector-tag">img</span> </div><div class="line">	&#123;</div><div class="line">		<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>虽然很想用多点变量=。=可是写样式的时候就基本一口气写完了，后面也懒得去提取公用变量了。下次迭代（如果有的话）重构一下代码咯。</p>
+<h3 id="雪碧图"><a href="#雪碧图" class="headerlink" title="雪碧图"></a>雪碧图</h3><p>百度百科的介绍好像蛮全的：<a href="http://baike.baidu.com/link?url=PWyUGanjUHdtOpqDeipGGO3ghILsIgJUUWA8ncXWDeBFU4nPJ48V8x_CRTB_TlaW0CdM4dbrpQ5YwL7cMAK4q_" target="_blank" rel="external">CSS雪碧</a><br>CSS雪碧好处都有啥！<br>以前自己会思考要是面试官这么问我，我应该就是回答减少请求数吧，然后避免一些图片按钮的闪动。<br>看了介绍才知道原来大小还会减少总大小：</p>
+<blockquote>
+<p><strong>提高页面的加载速度</strong><br>sprite 技术的其中一个好处是图片的加载时间(在有许多 sprite 时，单张图片的加载时间)。由所需图片拼成的一张 GIF 图片的尺寸会明显小于所有图片拼合前的大小。单张的 GIF 只有相关的一个色表，而单独分割的每一张 GIF 都有自己的一个色表，这就增加了总体的大小。因此，单独的一张 JPEG 或者 PNG sprite 在大小上非常可能比把一张图分成多张得来的图片总尺寸小。</p>
+</blockquote>
+<p>让我想起了在益米主页用到的十几张头像和二维码哈哈哈哈哈，改成雪碧图吧，不然几十个请求数太恐怖了。<br>不过雪碧图还是有些缺点（百度百科），占用内存大？百度了一下在小项目还是没有太多问题的，然后多注意图片的组织，不要浪费太多空白，也不要把图标都挤在一起，导致有时候露出其他图标。<br>自己做雪碧图的时候要多注意使用图标的元素的大小，因为很有可能并不是纯粹的图标那么大，有可能是放在一个2~3倍的容器里面，这点需要注意，否则就要不断的改PSD，保存为PNG，看效果，再改PSD…<br>还有要注意的是定位属性用<code>top</code>和<code>left</code>吧，少用<code>bottom</code>，因为如果修改了雪碧图<code>bottom</code>可能就不是原来的位置了。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/05/25/Quanta杯总结-1/" data-id="cird76zdl00211klbobjmqe3a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/05/25/Quanta杯总结-1/" data-title="Quanta杯总结-1" data-url="http://weibo.com/biousco/2015/05/25/Quanta杯总结-1/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/05/26/Meteor学习笔记-1/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Meteor学习笔记-1
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/05/02/益米主页总结-3/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">益米主页总结(3)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

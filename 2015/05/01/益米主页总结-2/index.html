@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>益米主页总结(2) | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JS,Zepto" />
+    
+    <meta name="description" content="你们知道弄了一整天才把博客重新弄好是什么心情吗。。给笔记本换了固态硬盘格了C盘D盘什么软件都要重装。折腾了好久才知道原来HEXO升级为3.0了。之前2.7用的好好的现在弄了好久真的是心好累啊心好累啊。不过算是弄好了，自己把public文件夹手动deploy【再见】。好了记一下主页里用到的JS吧。最终页面：益米，让校园生活轻松自在
+JS-base不知道为什么我自己就是不喜欢用jQuery。就是喜欢自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="益米主页总结(2)">
+<meta property="og:url" content="http://weibo.com/biousco/2015/05/01/益米主页总结-2/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="你们知道弄了一整天才把博客重新弄好是什么心情吗。。给笔记本换了固态硬盘格了C盘D盘什么软件都要重装。折腾了好久才知道原来HEXO升级为3.0了。之前2.7用的好好的现在弄了好久真的是心好累啊心好累啊。不过算是弄好了，自己把public文件夹手动deploy【再见】。好了记一下主页里用到的JS吧。最终页面：益米，让校园生活轻松自在
+JS-base不知道为什么我自己就是不喜欢用jQuery。就是喜欢自">
+<meta property="og:updated_time" content="2015-05-01T14:26:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="益米主页总结(2)">
+<meta name="twitter:description" content="你们知道弄了一整天才把博客重新弄好是什么心情吗。。给笔记本换了固态硬盘格了C盘D盘什么软件都要重装。折腾了好久才知道原来HEXO升级为3.0了。之前2.7用的好好的现在弄了好久真的是心好累啊心好累啊。不过算是弄好了，自己把public文件夹手动deploy【再见】。好了记一下主页里用到的JS吧。最终页面：益米，让校园生活轻松自在
+JS-base不知道为什么我自己就是不喜欢用jQuery。就是喜欢自">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-益米主页总结-2" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        益米主页总结(2)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/05/01/益米主页总结-2/" class="article-date">
+    <time datetime="2015-05-01T14:16:16.000Z" itemprop="datePublished">2015-05-01</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zepto/">Zepto</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>你们知道弄了一整天才把博客重新弄好是什么心情吗。。<br>给笔记本换了固态硬盘格了C盘D盘什么软件都要重装。<br>折腾了好久才知道原来HEXO升级为3.0了。<br>之前2.7用的好好的现在弄了好久真的是心好累啊心好累啊。<br>不过算是弄好了，自己把public文件夹手动deploy【再见】。<br>好了记一下主页里用到的JS吧。<br>最终页面：<a href="http://biouscowork.sinaapp.com/yimihome/index.html" target="_blank" rel="external">益米，让校园生活轻松自在</a></p>
+<h2 id="JS-base"><a href="#JS-base" class="headerlink" title="JS-base"></a>JS-base</h2><p>不知道为什么我自己就是不喜欢用jQuery。就是喜欢自己写长长的JS代码。所以把自己之前写过的函数都收集起来真的是太有必要了：</p>
+<h4 id="判断是否在数组内"><a href="#判断是否在数组内" class="headerlink" title="判断是否在数组内"></a>判断是否在数组内</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">is_inArray</span> (<span class="params">array,target</span>) </span>&#123;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</div><div class="line">		<span class="keyword">if</span> (array[i] == target) &#123;</div><div class="line">			<span class="keyword">return</span> i;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其实我觉得写得还好。。不过来看看zepto.js的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.inArray = <span class="function"><span class="keyword">function</span>(<span class="params">elem, array, i</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> emptyArray.indexOf.call(array, elem, i)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>先来了解这个<code>call()</code>函数：<br>这是每个函数非继承而来的方法，还有一个是<code>apply()</code>。这两个方法的用途都是在特定的作用域中调用函数，实际上等于设置函数体内this对象的值。<code>apple()</code>接受两个参数：一个是在其中运行函数的作用域，另一个是参数数组。<br><code>call()</code>方法和<code>apply()</code>方法的区别在于接受参数的方式不同，第一个参数是this值，变化的是其余参数都直接传递给函数。具体参考《JavaScript高级程序设计》P117。这里写个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.color = <span class="string">"red"</span>;</div><div class="line"><span class="keyword">var</span> o = &#123;color: <span class="string">"blue"</span> &#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="keyword">this</span>.color);</div><div class="line">&#125;</div><div class="line"></div><div class="line">sayColor(); <span class="comment">//red</span></div><div class="line">sayColor.call(<span class="keyword">this</span>); <span class="comment">//red</span></div><div class="line">sayColor.call(<span class="built_in">window</span>); <span class="comment">//red</span></div><div class="line">sayColor.call(o); <span class="comment">//blue 函数执行的环境不一样了，之前是在window下，现在是在o下。</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>使用call()来扩充作用域的最大好处，就是对象不需要与方法有任何耦合关系。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.color = <span class="string">"red"</span>;</div><div class="line"><span class="keyword">var</span> o = &#123;color: <span class="string">"blue"</span> &#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="keyword">this</span>.color);</div><div class="line">&#125;</div><div class="line"></div><div class="line">sayColor(); <span class="comment">//red</span></div><div class="line">o.sayColor = sayColor;</div><div class="line">o.sayColor(); <span class="comment">//blue</span></div></pre></td></tr></table></figure>
+<p>对比这两种写法，发现前面那种好很多了。<br>然后是数组的<code>index()</code>方法：<br>接受两个参数：要查找的项和（可选的）表示查找起点位置的索引。<br>我之前一直以为这个方法只是在字符串里面使用。。用在查找类名。。<br>擦原来系统已经提供了这个方法我还在自己写。<br>对了，回到我写的那个方法。<br><code>for (var i = 0; i &lt; array.length; i++)</code>最好不要这么写，因为如果数组是DOM节点的集合，每次都需要获取一遍长度，比较消耗资源，所以改写成：<code>for(var i = 0,var max = array.length; i &lt; max; i++)</code></p>
+<h4 id="移除元素的某个类"><a href="#移除元素的某个类" class="headerlink" title="移除元素的某个类"></a>移除元素的某个类</h4><p>先不要脸的放上自己写的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeClassName</span> (<span class="params">target,clsName</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> allcls = target.className;</div><div class="line">	<span class="keyword">if</span> (allcls.indexOf(clsName)) &#123;</div><div class="line">		target.className = allcls.replace(clsName,<span class="string">" "</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>zepto.js版：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">removeClass: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params">idx</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (!(<span class="string">'className'</span> <span class="keyword">in</span> <span class="keyword">this</span>)) <span class="keyword">return</span></div><div class="line">    <span class="keyword">if</span> (name === <span class="literal">undefined</span>) <span class="keyword">return</span> className(<span class="keyword">this</span>, <span class="string">''</span>)</div><div class="line">    classList = className(<span class="keyword">this</span>)</div><div class="line">    funcArg(<span class="keyword">this</span>, name, idx, classList).split(<span class="regexp">/\s+/g</span>).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">klass</span>)</span>&#123;</div><div class="line">      classList = classList.replace(classRE(klass), <span class="string">" "</span>)</div><div class="line">    &#125;)</div><div class="line">    className(<span class="keyword">this</span>, classList.trim())</div><div class="line">  &#125;)</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p>看我慢慢读懂他在做些什么…<br>第4行有个函数className:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// access className property while respecting SVGAnimatedString</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">className</span>(<span class="params">node, value</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> klass = node.className || <span class="string">''</span>,</div><div class="line">      svg   = klass &amp;&amp; klass.baseVal !== <span class="literal">undefined</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> (value === <span class="literal">undefined</span>) <span class="keyword">return</span> svg ? klass.baseVal : klass</div><div class="line">  svg ? (klass.baseVal = value) : (node.className = value)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>哇擦后面他在干什么。。应该是在<code>respecting SVGAnimatedString</code><br>所以第四行就是如果传入的类名为空，则设置该元素的类为空（移除所有类）。<br>还有个funcArg()，一看就觉得是来获得函数参数的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">funcArg</span>(<span class="params">context, arg, idx, payload</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> isFunction(arg) ? arg.call(context, idx, payload) : arg</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>好像不是呢哈哈哈。。。<br>在这里是返回了原来的<code>name</code>。（name有可能是函数，这个会比较复杂）<br>然后对返回的字符串进行正则表达式匹配：<code>/\s+/g</code>。<code>\s</code>代表空格，<code>+</code>代表一个或者多个。所以这样就把类名通过空格分开来存放到数组里面了。<br>然后又有一个新函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">classRE</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> name <span class="keyword">in</span> classCache ?</div><div class="line">    classCache[name] : (classCache[name] = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'(^|\\s)'</span> + name + <span class="string">'(\\s|$)'</span>))</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里的正则表达式：<code>&#39;(^|\\s)&#39;</code>代表以空格或者什么都没有开始，<code>&#39;(\\s|$)&#39;</code>代表以空格或什么都没有结束。连起来就是：<br><code>className</code>可以匹配，<code>className</code>也可以匹配。<br>所以就是设置类名。。。<br>回到原来的函数，就是找到那个类名，然后换回” “。<br>最后是删除字符串前后的空格符<code>trim()</code>赋值给元素的类。和<code>String.prototype.trim()</code>一样。<br>啊终于看了个七七八八了。。</p>
+<h4 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 函数节流throttle */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span> (<span class="params">method, context</span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (method.tId) &#123;</div><div class="line">		clearTimeout(method.tId);</div><div class="line">	&#125;;</div><div class="line">	method.tId = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		method.call(context);</div><div class="line">	&#125;, <span class="number">150</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个东西用在<code>window.onsize()</code>或者<code>window.onscroll()</code>之前就在想我擦网页滚动一下就执行函数会不会太消耗性能了，后来就发现了这个东西，不过最后没有这么用，而是：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (onscrollTimer) &#123;</div><div class="line">		clearTimeout(onscrollTimer);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	onscrollTimer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="comment">//code</span></div><div class="line">	&#125;,</div><div class="line">	<span class="number">100</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>每隔0.1s触发一次。实际运行效果很OK。</p>
+<h4 id="事件函数"><a href="#事件函数" class="headerlink" title="事件函数"></a>事件函数</h4><p>前面有篇文章写了，这次也用到了。兼容性良好。。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/05/01/益米主页总结-2/" data-id="cird76zdb001s1klb36y53pkp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/05/01/益米主页总结-2/" data-title="益米主页总结(2)" data-url="http://weibo.com/biousco/2015/05/01/益米主页总结-2/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/05/02/益米主页总结-3/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            益米主页总结(3)
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/04/30/益米主页总结-1/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">益米主页总结(1)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

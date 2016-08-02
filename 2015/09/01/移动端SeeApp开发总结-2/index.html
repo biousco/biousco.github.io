@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>移动端SeeApp开发总结-2 | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JavaScript,WXJSSDK" />
+    
+    <meta name="description" content="上一次记录了Fiddler和js结构组织，这次写一下在js里具体一个模块是怎么写的。
+通用函数encodeURIComponent()和decodeURIComponent()encodeURIComponent：
+
+把字符串作为URI 组件进行编码
+不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII标点符号进行编码
+其他字符（比如：;/?:@&amp;amp;=+$,# 这些用于分隔UR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端SeeApp开发总结-2">
+<meta property="og:url" content="http://weibo.com/biousco/2015/09/01/移动端SeeApp开发总结-2/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="上一次记录了Fiddler和js结构组织，这次写一下在js里具体一个模块是怎么写的。
+通用函数encodeURIComponent()和decodeURIComponent()encodeURIComponent：
+
+把字符串作为URI 组件进行编码
+不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII标点符号进行编码
+其他字符（比如：;/?:@&amp;amp;=+$,# 这些用于分隔UR">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/86509675gw1evmsezb99ij21kw11xk4s.jpg">
+<meta property="og:updated_time" content="2015-09-01T03:26:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端SeeApp开发总结-2">
+<meta name="twitter:description" content="上一次记录了Fiddler和js结构组织，这次写一下在js里具体一个模块是怎么写的。
+通用函数encodeURIComponent()和decodeURIComponent()encodeURIComponent：
+
+把字符串作为URI 组件进行编码
+不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII标点符号进行编码
+其他字符（比如：;/?:@&amp;amp;=+$,# 这些用于分隔UR">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/86509675gw1evmsezb99ij21kw11xk4s.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/前端/">前端</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-移动端SeeApp开发总结-2" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        移动端SeeApp开发总结-2
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/09/01/移动端SeeApp开发总结-2/" class="article-date">
+    <time datetime="2015-09-01T03:12:45.000Z" itemprop="datePublished">2015-09-01</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WXJSSDK/">WXJSSDK</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://ww3.sinaimg.cn/large/86509675gw1evmsezb99ij21kw11xk4s.jpg" alt="哟"></p>
+<p>上一次记录了Fiddler和js结构组织，这次写一下在js里具体一个模块是怎么写的。</p>
+<h2 id="通用函数"><a href="#通用函数" class="headerlink" title="通用函数"></a>通用函数</h2><h3 id="encodeURIComponent-和decodeURIComponent"><a href="#encodeURIComponent-和decodeURIComponent" class="headerlink" title="encodeURIComponent()和decodeURIComponent()"></a>encodeURIComponent()和decodeURIComponent()</h3><p><code>encodeURIComponent</code>：</p>
+<ul>
+<li>把字符串作为URI 组件进行编码</li>
+<li>不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII标点符号进行编码</li>
+<li>其他字符（比如：<code>;/?:@&amp;=+$,#</code> 这些用于分隔URI组件的标点符号），都是由一个或多个十六进制的转义序列替换的。</li>
+<li>encodeURIComponent() 函数将转义用于分隔 URI 各个部分的标点符号。<br>栗子：<code>encodeURIComponent(&quot;你好，世界！&quot;)</code>输出为<code>%E4%BD%A0%E5%A5%BD%EF%BC%8C%E4%B8%96%E7%95%8C%EF%BC%81</code></li>
+</ul>
+<a id="more"></a>
+<p><code>decodeURIComponent</code>：</p>
+<ul>
+<li>decodeURIComponent() 函数可对 encodeURIComponent() 函数编码的 URI 进行解码。</li>
+<li>与<code>encodeURIComponent()</code>相反。</li>
+</ul>
+<p>什么时候用到这两个函数：登录成功后或者任何操作后对于跳转回原页面。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">t.login_a.attr(<span class="string">'href'</span>,<span class="string">'http://m.seeapp.com/see/static/detail/login.html?ref='</span>+ <span class="built_in">encodeURIComponent</span>(<span class="built_in">window</span>.location.href));</div></pre></td></tr></table></figure></p>
+<p>在链接后面加上一个参数<code>ref</code>，参数值为当前页面的URI。<br>为什么需要进行编码：<a href="http://blog.163.com/yaoping1986@126/blog/static/17141746620111155357404/" target="_blank" rel="external">为什么要对URI进行编码</a></p>
+<blockquote>
+<p>　　Url中有些字符会引起歧义：例如Url参数字符串中使用key=value键值对这样的形式来传参，键值对之间以&amp;符号分隔，如/s?q=abc&amp;ie=utf- 8。如果你的value字符串中包含了=或者&amp;，那么势必会造成接收Url的服务器解析错误，因此必须将引起歧义的&amp;和=符号进行转义， 也就是对其进行编码<br>　　Url的编码格式采用的是ASCII码，而不是Unicode，这也就是说你不能在Url中包含任何非ASCII字符，例如中文。否则如果客户端浏览器和服务端浏览器支持的字符集不同的情况下，中文可能会造成问题。</p>
+</blockquote>
+<p>在跳转到<code>login.html</code>之后点击登陆，在js里面获取<code>ref</code>参数，链接直接跳转到参数值，就能回到原来的页面了：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.location.href = see.get_param(<span class="string">'ref'</span>);</div></pre></td></tr></table></figure></p>
+<h3 id="获取URI中的参数"><a href="#获取URI中的参数" class="headerlink" title="获取URI中的参数"></a>获取URI中的参数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">t.get_param = <span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">window</span>.location.href.indexOf(<span class="string">'?'</span>)==<span class="number">-1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> uri = <span class="built_in">window</span>.location.href.replace(<span class="regexp">/^[^\?]*\?/</span>,<span class="string">''</span>);</div><div class="line"></div><div class="line">    <span class="keyword">var</span> data = &#123;&#125;;</div><div class="line">    <span class="keyword">var</span> pairs = uri.split(<span class="string">'&amp;'</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> pairs)&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span>(pairs[k])==<span class="string">'string'</span>) &#123;</div><div class="line">            <span class="keyword">var</span> k_v_arr = pairs[k].split(<span class="string">'='</span>);</div><div class="line">            <span class="keyword">if</span> (k_v_arr.length) &#123;</div><div class="line">                data[k_v_arr[<span class="number">0</span>]] = k_v_arr[<span class="number">1</span>] || <span class="string">''</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(key <span class="keyword">in</span> data)&#123;</div><div class="line">        <span class="keyword">return</span> data[key];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><code>window.location.href.replace(/^[^\?]*\?/,&#39;&#39;);</code><br>这个正则把URL中<code>?</code>之前的字符串都替换成了空格，只剩下<code>?</code>后面的参数<br>然后通过<code>split()</code>函数，把参数字符串通过<code>&amp;</code>分隔开来成为数组。<br>不断地对每一个数组项进行判断。对数组项比如<code>&quot;tid=10222&quot;</code>通过<code>=</code>来分隔，就得到参数名和参数值了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="string">"http://m.seeapp.com/see/static/detail/index.html?tid=10222&amp;h=121&amp;oo=0000"</span>.replace(<span class="regexp">/^[^\?]*\?/</span>,<span class="string">''</span>);</div><div class="line"><span class="comment">/* a = "tid=10222&amp;h=121&amp;oo=0000" */</span></div><div class="line">a.split(<span class="string">'&amp;'</span>);</div><div class="line"><span class="comment">/* a = ["tid=10222", "h=121", "oo=0000"] */</span></div><div class="line"><span class="keyword">var</span> barr = a[<span class="number">0</span>].split(<span class="string">'='</span>);</div><div class="line"><span class="comment">/* barr = ['tid','10222'];</span></div></pre></td></tr></table></figure></p>
+<p>当时阿里的网招的笔试题也有这道题目。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseQueryString</span>(<span class="params">input</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> output;</div><div class="line">  <span class="keyword">var</span> arr = input.replace(<span class="regexp">/^[^\?]*\?/</span>,<span class="string">''</span>);</div><div class="line"></div><div class="line">  <span class="keyword">var</span> data = [];</div><div class="line">  data = arr.split(<span class="string">'&amp;'</span>);</div><div class="line"></div><div class="line">  <span class="keyword">var</span> result = &#123;&#125;;</div><div class="line"></div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> data) &#123;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> data[key] == <span class="string">'string'</span>) &#123;</div><div class="line">      <span class="keyword">var</span> barr = data[key].split(<span class="string">'='</span>);</div><div class="line">      result[barr[<span class="number">0</span>]] = barr[<span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="built_in">console</span>.log(result);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注意<code>result[barr[0]] = barr[1];</code>这里如果直接用<code>result.barr[0] = barr[1];</code>会报错。</p>
+<h2 id="一般流程"><a href="#一般流程" class="headerlink" title="一般流程"></a>一般流程</h2><p>其实回过了头来看，大部分的流程其实很类似，一般的流程都是这样：</p>
+<ul>
+<li>创建一个匿名函数，代表一个功能</li>
+<li>在函数内定义将要使用到的各种DOM节点，请求的url</li>
+<li>在用jQuery找DOM节点的时候，多用<code>find()</code>方法，避免全局寻找节点。对应的标签用<code>name</code>属性来分辨</li>
+<li>创建一个初始化方法：包括一系列的判断，事件绑定</li>
+<li>在初始化方法里会用到一些请求，把请求包装成另外一个函数</li>
+<li>在请求函数里，判断对应返回的数据进行DOM节点的更新</li>
+<li>注意不要在异步请求里返回数据，要么直接在请求成功后的回调函数里处理，要么传入一个回调函数</li>
+<li>某些需要被其他类使用的状态可以保存在类的公共变量里，在执行时都能使用</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**获取页面求同款的详情*/</span></div><div class="line"><span class="keyword">var</span> theme = <span class="keyword">new</span> (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> t = <span class="keyword">this</span>;</div><div class="line"></div><div class="line">  <span class="comment">//在函数内定义将要使用到的各种DOM节点，请求的url</span></div><div class="line">  t.url = <span class="string">'http://m.seeapp.com/index.php/theme/getTheme?theme_id='</span>;</div><div class="line">  t.theme_box = $(<span class="string">'#theme_box'</span>);</div><div class="line">  t.banner_box = t.theme_box.find(<span class="string">'[name=banner_box]'</span>);</div><div class="line">  t.banner = t.theme_box.find(<span class="string">'[name=banner]'</span>);</div><div class="line">  t.img = t.theme_box.find(<span class="string">'[name=img]'</span>);</div><div class="line">  t.nick = t.theme_box.find(<span class="string">'[name=nick]'</span>);</div><div class="line">  t.time = t.theme_box.find(<span class="string">'[name=time]'</span>);</div><div class="line">  t.type = t.theme_box.find(<span class="string">'[name=type]'</span>);</div><div class="line">  t.content = t.theme_box.find(<span class="string">'[name=content]'</span>);</div><div class="line">  t.wish_list = t.theme_box.find(<span class="string">'[name=wish_list]'</span>);</div><div class="line">  t.price_range = t.theme_box.find(<span class="string">'[name=price_range]'</span>);</div><div class="line">  t.like_count = t.theme_box.find(<span class="string">'[name=like_count]'</span>);</div><div class="line">  t.reply_count = t.theme_box.find(<span class="string">'[name=reply_count]'</span>);</div><div class="line">  t.loading_box = $(<span class="string">'#loading_box'</span>);</div><div class="line">  t.like_btn = $(<span class="string">"#like_btn"</span>);</div><div class="line">  t.reply_count_num = <span class="number">0</span>;</div><div class="line">  t.adminBox = t.theme_box.find(<span class="string">'[name=adminBox]'</span>);</div><div class="line">  t.isbyowner = t.theme_box.find(<span class="string">'[name=isbyowner]'</span>);</div><div class="line">  t.replyBtnBox = t.theme_box.find(<span class="string">'[name=replyBtnBox]'</span>);</div><div class="line"></div><div class="line">  <span class="comment">//创建一个初始化方法：包括一系列的判断，事件绑定</span></div><div class="line">  <span class="comment">//在初始化方法里会用到一些请求，把请求包装成另外一个函数</span></div><div class="line">  t.get_theme = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $.getJSON(t.get_url(),<span class="function"><span class="keyword">function</span>(<span class="params">ret</span>)</span>&#123;</div><div class="line">      <span class="keyword">if</span>(ret.result == <span class="number">1</span>)&#123;</div><div class="line">        t.render_theme(ret.data);</div><div class="line">        t.loading_box.hide();</div><div class="line">        t.theme_box.show();</div><div class="line">      &#125;<span class="keyword">else</span>&#123;</div><div class="line">        see.tips(<span class="string">'OOPS！该内容获取不到...'</span>);</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;;</div><div class="line">  </div><div class="line">  t.get_theme_id = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> id = see.get_param(<span class="string">'tid'</span>);</div><div class="line">    <span class="keyword">if</span>($.isNumeric(id))&#123;</div><div class="line">      <span class="keyword">return</span> <span class="built_in">parseInt</span>(id);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">  &#125;;</div><div class="line">  </div><div class="line">  t.get_url = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> t.url + t.get_theme_id();</div><div class="line">  &#125;;</div><div class="line">  </div><div class="line">  <span class="comment">//对在请求函数里返回的数据进行DOM节点的更新</span></div><div class="line">  t.render_theme = <span class="function"><span class="keyword">function</span>(<span class="params">dt</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(dt.theme)&#123;</div><div class="line">      t.banner.attr(<span class="string">'src'</span>, dt.theme.t_imgurl);</div><div class="line">      t.nick.text(dt.theme.u_username);</div><div class="line">      t.img.attr(<span class="string">'src'</span>,dt.theme.u_headimg);</div><div class="line">      t.time.text(see.format_time(dt.theme.t_time));</div><div class="line">      t.content.text(dt.theme.t_title);</div><div class="line">      t.price_range.text(dt.theme.t_price);</div><div class="line">      t.like_count.text(dt.theme.t_followcount);</div><div class="line">      t.reply_count.text(dt.theme.t_findcount);</div><div class="line">      t.reply_count_num = <span class="built_in">parseInt</span>(dt.theme.t_findcount);</div><div class="line">      t.type.text(<span class="built_in">parseInt</span>(dt.theme.t_hunttype)==<span class="number">0</span>?<span class="string">'求同款'</span>:<span class="string">'求搭配'</span>);</div><div class="line">      t.wish_list.text(dt.wanted[<span class="number">0</span>].o_remark || dt.wanted[<span class="number">0</span>].o_name);</div><div class="line">      <span class="keyword">if</span>(dt.theme.isbyowner) &#123;</div><div class="line">        t.replyBtnBox.hide();</div><div class="line">        t.adminBox.show();</div><div class="line">        t.isbyowner.text(dt.theme.t_followcount);</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> dt.wanted[<span class="number">0</span>].clue)&#123;</div><div class="line">        <span class="keyword">var</span> c = dt.wanted[<span class="number">0</span>].clue[k];</div><div class="line">        <span class="keyword">var</span> param = <span class="built_in">JSON</span>.parse(c.cl_parameter);</div><div class="line">        <span class="keyword">var</span> span = $(<span class="string">'&lt;span class="tag tag-'</span>+param.direction+<span class="string">'" style="left:'</span>+<span class="built_in">parseFloat</span>(param.x)*<span class="number">100</span>+<span class="string">'%; top:'</span>+<span class="built_in">parseFloat</span>(param.y)*<span class="number">100</span>+<span class="string">'%;"&gt;&lt;i&gt;&lt;/i&gt;&lt;font&gt;'</span>+param.title+<span class="string">'&lt;/font&gt;&lt;/span&gt;'</span>);</div><div class="line">        t.banner_box.append(span);</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">if</span> (dt.isfollow) &#123;</div><div class="line">      t.like_btn.addClass(<span class="string">'liked'</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      t.like_btn.removeClass(<span class="string">'liked'</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="微信JSSDK"><a href="#微信JSSDK" class="headerlink" title="微信JSSDK"></a>微信JSSDK</h2><p>这次分享和图片预览用到了微信的SDK。</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$.getJSON(<span class="string">'http://m.seeapp.com/index.php/activity/getConfig?u='</span>+<span class="built_in">encodeURIComponent</span>(location.href), <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</div><div class="line">    wx.config(json);</div><div class="line">    wx.ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> url = <span class="string">''</span>;</div><div class="line">        <span class="keyword">var</span> img = <span class="string">''</span>;</div><div class="line">        <span class="keyword">var</span> global_share_title = <span class="string">'你负责看，See负责找'</span>;</div><div class="line">        <span class="keyword">var</span> desc = <span class="string">'你负责看，See负责找'</span>;</div><div class="line">        wx.onMenuShareTimeline(&#123;</div><div class="line">                title: global_share_title, <span class="comment">// 分享标题</span></div><div class="line">                link: url, <span class="comment">// 分享链接</span></div><div class="line">                imgUrl: img, <span class="comment">// 分享图标</span></div><div class="line">                success: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</div><div class="line">                cancel: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>公司之前是写了一个接口，传入当前的url获取JSSDK的参数对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">wx.config(&#123;</div><div class="line">    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。</div><div class="line">    appId: &apos;&apos;, // 必填，公众号的唯一标识</div><div class="line">    timestamp: , // 必填，生成签名的时间戳</div><div class="line">    nonceStr: &apos;&apos;, // 必填，生成签名的随机串</div><div class="line">    signature: &apos;&apos;,// 必填，签名，见附录1</div><div class="line">    jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>配置成功后就可以使用各种api了，最常用的是自定义分享的标题，图片。<br>有时候需要在分享后做一些处理，就在回调函数里写一些东西，比如发送请求来统计等。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">t.image_preview = <span class="function"><span class="keyword">function</span> (<span class="params">current_img</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> WeixinJSBridge != <span class="string">'undefined'</span>) &#123;</div><div class="line">    WeixinJSBridge.invoke(<span class="string">'imagePreview'</span>, &#123;</div><div class="line">      <span class="string">'current'</span> : current_img,</div><div class="line">      <span class="string">'urls'</span> : t.img_view_list</div><div class="line">    &#125;);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="comment">//留个空给后面补齐非微信浏览器</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个在旧版本的微信貌似可以使用，是图片预览插件。有时候可以用有时候不可以=。=</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/09/01/移动端SeeApp开发总结-2/" data-id="cird76zeq002x1klb6200r16w" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/09/01/移动端SeeApp开发总结-2/" data-title="移动端SeeApp开发总结-2" data-url="http://weibo.com/biousco/2015/09/01/移动端SeeApp开发总结-2/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/09/07/移动端SeeApp开发总结-3/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            移动端SeeApp开发总结-3
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/08/26/移动端SeeApp开发总结-1/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">移动端SeeApp开发总结-1</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

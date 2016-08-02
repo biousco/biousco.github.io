@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>移动端SeeApp开发总结-4 | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JavaScript,ajax,模板引擎,Angular" />
+    
+    <meta name="description" content="一晃眼已经2016年了，隔了几个月没有总结写文章好想抽死自己。而且要准备校招了得放点东西到这里呀。寒假又来See实习了。大三上学期也断断续续帮See写一些页面：http://biouscowork.sinaapp.com/，每次活动都各种熬夜，后面才慢慢改善。接下来写一些这些页面的总结和坑。这次是接口渲染。
+Ajax &amp;amp; Cgi
+CGI：通用网关接口（Common Gateway Int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端SeeApp开发总结-4">
+<meta property="og:url" content="http://weibo.com/biousco/2016/01/31/移动端SeeApp开发总结-4/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="一晃眼已经2016年了，隔了几个月没有总结写文章好想抽死自己。而且要准备校招了得放点东西到这里呀。寒假又来See实习了。大三上学期也断断续续帮See写一些页面：http://biouscowork.sinaapp.com/，每次活动都各种熬夜，后面才慢慢改善。接下来写一些这些页面的总结和坑。这次是接口渲染。
+Ajax &amp;amp; Cgi
+CGI：通用网关接口（Common Gateway Int">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/86509675gw1f0iprln524j20p00gon2e.jpg">
+<meta property="og:updated_time" content="2016-01-31T07:34:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端SeeApp开发总结-4">
+<meta name="twitter:description" content="一晃眼已经2016年了，隔了几个月没有总结写文章好想抽死自己。而且要准备校招了得放点东西到这里呀。寒假又来See实习了。大三上学期也断断续续帮See写一些页面：http://biouscowork.sinaapp.com/，每次活动都各种熬夜，后面才慢慢改善。接下来写一些这些页面的总结和坑。这次是接口渲染。
+Ajax &amp;amp; Cgi
+CGI：通用网关接口（Common Gateway Int">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/86509675gw1f0iprln524j20p00gon2e.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/前端/">前端</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-移动端SeeApp开发总结-4" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        移动端SeeApp开发总结-4
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2016/01/31/移动端SeeApp开发总结-4/" class="article-date">
+    <time datetime="2016-01-31T04:15:44.000Z" itemprop="datePublished">2016-01-31</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板引擎/">模板引擎</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://ww4.sinaimg.cn/large/86509675gw1f0iprln524j20p00gon2e.jpg" alt="水一水"></p>
+<p>一晃眼已经2016年了，隔了几个月没有总结写文章好想抽死自己。而且要准备校招了得放点东西到这里呀。<br>寒假又来See实习了。大三上学期也断断续续帮See写一些页面：<code>http://biouscowork.sinaapp.com/</code>，每次活动都各种熬夜，后面才慢慢改善。接下来写一些这些页面的总结和坑。这次是接口渲染。</p>
+<h2 id="Ajax-amp-Cgi"><a href="#Ajax-amp-Cgi" class="headerlink" title="Ajax &amp; Cgi"></a>Ajax &amp; Cgi</h2><blockquote>
+<p>CGI：通用网关接口（Common Gateway Interface）是一个Web服务器主机提供信息服务的标准接口。通过CGI接口，Web服务器就能够获取客户端提交的信息，转交给服务器端的CGI程序进行处理，最后返回结果给客户端。</p>
+</blockquote>
+<p>这就是经常说的接口啦。cgi这个词是看过某大大写的页面后才发现原来应该这么叫。一般请求接口返回的就是需要渲染的数据了，比如这个：<a href="http://m.seeapp.com/index.php/act/actShoppingYear/getActivity" target="_blank" rel="external">getActivity</a> 。一般后台给的都是json，如果是字符串的话就前端解析一下就好了。<br>一般一个活动页面是这样的流程：前端重构好，拿到接口后就直接渲染。运营提供数据给后台开发，后台改接口返回的数据。不是之前的php框架那样服务器渲染好后吐出html，用接口的html一般没有太多数据，所以要是接口请求失败了或者请求时间比较长页面会有很长的空白，体验没那么好。自己总结一下优缺点吧：<br>优点：</p>
+<ol>
+<li>简单的前后端分离，后端只提供数据，前端专注渲染</li>
+<li>容易控制一些异步的数据展现</li>
+<li>可以通过接口的代理简单实现本地开发，不需要太依赖后端环境</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>请求上多了接口，渲染工作放在了客户端，性能不太好</li>
+<li>和后台联调需要一些时间，沟通成本增加</li>
+<li>不利于SEO，不过这种做的一般是活动页面，SEO并不是很重要</li>
+<li>js代码需要一定的组织</li>
+</ol>
+<a id="more"></a>
+<h2 id="渲染的几种方式"><a href="#渲染的几种方式" class="headerlink" title="渲染的几种方式"></a>渲染的几种方式</h2><p>实习的时候有幸见到几种不同的方法渲染数据，总结一下，大概三种：jQuery的DOM操作，前端模板引擎，MV*框架</p>
+<h3 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h3><p>用jquery操作数据：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> li = t.li_sample.clone(<span class="literal">true</span>).attr(<span class="string">'name'</span>,<span class="string">'li_row'</span>).attr(<span class="string">'f_id'</span>, f.f_id).show();</div><div class="line"><span class="keyword">if</span> (f.u_id == see.user.uid) &#123;</div><div class="line">    li.find(<span class="string">'[name=delete]'</span>).attr(<span class="string">'f_id'</span>, f.f_id).show();</div><div class="line">&#125;</div><div class="line">li.find(<span class="string">'[name=img]'</span>).attr(<span class="string">'src'</span>, f.f_headimg).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> u_url = see.isInApps()?<span class="string">"see://userCenter?u_id="</span>+dt.circle.owner_id:<span class="string">"http://m.seeapp.com"</span>;</div><div class="line">    <span class="built_in">window</span>.location.href = u_url;</div><div class="line">&#125;);</div><div class="line">li.find(<span class="string">'[name=nick]'</span>).text(f.f_username);</div><div class="line">li.find(<span class="string">'[name=comment]'</span>).text(f.f_comment);</div><div class="line"><span class="keyword">if</span>(f.u_isdaren == <span class="number">1</span>) &#123;</div><div class="line">    li.find(<span class="string">'.daren-logo'</span>).show();</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span>(f.u_tag) &#123;</div><div class="line">    li.find(<span class="string">'[name=tag]'</span>).text(f.u_tag).css(<span class="string">'display'</span>, <span class="string">'inline-block'</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span>(f.circle) &#123;</div><div class="line">    li.find(<span class="string">'[name=circle_name]'</span>).text(f.circle.cir_name);</div><div class="line">    <span class="keyword">var</span> url = see.getUrlPrefix() + <span class="string">"/static/detail/circle.html?cir_id="</span> + f.circle.cir_id;</div><div class="line">    li.find(<span class="string">'.circle'</span>).show().attr(<span class="string">'data-href'</span>,url).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">        event.preventDefault();</div><div class="line">        <span class="built_in">window</span>.location.href = url;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>嗯，第一次实习见到的代码是这样的。当时觉得好厉害，原来jQuery可以这么用，之前都只会用来写动画。后面见到其他的方法后觉得这种方法一般般咯：</p>
+<ol>
+<li>需要不断的查找dom节点，觉得影响性能。而且一般通过属性name来查找，但是name属性一般用来给后台传值用，觉得可以用其他的字段来代替。</li>
+<li>需要判断字段的合法性。当某个字段不存在时特别容易报错，影响接下来的数据渲染。</li>
+<li>渲染和其他的操作混在一起了：比如添加类名、绑定事件</li>
+<li>优点是比较直观易懂。适合小片的数据展示</li>
+<li>主要流程是，复制一个html中的父节点，在里面渲染数据后append到容器中。</li>
+</ol>
+<p>还有一种同样是操作dom的方式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">collection: <span class="function"><span class="keyword">function</span>(<span class="params">ret</span>)</span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (render._check(ret))&#123;</div><div class="line"></div><div class="line">        <span class="keyword">var</span> goodsClass = ret.data.item_list;</div><div class="line">        <span class="keyword">var</span> $collections = $(<span class="string">'.mod_collection'</span>);</div><div class="line"></div><div class="line">        goodsClass.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">array,index</span>)</span>&#123;</div><div class="line"></div><div class="line">            <span class="keyword">var</span> virtualDOMs = array.map(render._collectionBox);</div><div class="line"></div><div class="line">            $collections.eq(index).append(virtualDOMs);</div><div class="line"></div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;,</div><div class="line">_collectionBox: <span class="function"><span class="keyword">function</span>(<span class="params">collectionObj</span>)</span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> $collectionBox = $(<span class="string">'&lt;div class="mod_collection_box"&gt;&lt;/div&gt;'</span>);</div><div class="line"></div><div class="line">    <span class="keyword">var</span> itemInfo = collectionObj.item_info.map(render._collectionItem);</div><div class="line"></div><div class="line">    <span class="keyword">var</span> $collectionGoods = $(<span class="string">'&lt;div class="box_content"&gt;&lt;/div&gt;'</span>);</div><div class="line">    $collectionGoods.html(itemInfo);</div><div class="line"></div><div class="line">    $collectionBox.append(render._collectionBanner(collectionObj.base_info));</div><div class="line">    $collectionBox.append($collectionGoods);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> $collectionBox;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p>用<code>map</code>函数返回做好的dom片段加入页面中，每个片段用$生成。感觉代码比上面的要好看的多。</p>
+<ol>
+<li>没有了dom的查找，用$生成html片段，但js里就包含太多html的东西了</li>
+<li>事件绑定都放到所有节点渲染完毕后来做</li>
+<li>很多数据结构必须为数组，不过这个和后台约定就好了</li>
+</ol>
+<p>刚开始做的活动基本都是这么干，然后js随随便便就67百行了：<a href="http://m.seeapp.com/see/static/dailyactivity/1025/index.html" target="_blank" rel="external">双11预热</a>，当时不懂封装什么的，代码只是简单的分了点层。后面学习了其他的写法，有几点可以进行改进：</p>
+<ol>
+<li>将所有请求的接口放到一个对象：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">t.RequestURL = &#123;</div><div class="line">    <span class="string">'getUserdetail'</span>: t.apiDomain + <span class="string">'/user/getUserdetail'</span>,</div><div class="line">    <span class="string">'getFormalData'</span>: t.apiDomain + <span class="string">'/act1111_formal/getFormalData'</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>或者这么写：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cgi = &#123;</div><div class="line">    getOneDayLimitData: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> $.getJSON(apiDomain + <span class="string">'/index.php/actBlack5/getOneDayLimitData'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>第二种方法可以很优雅的在函数里这么用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cgi.getOneDayLimitData().done(render.limit);</div></pre></td></tr></table></figure></p>
+<p>一股浓浓的angular的味道！缺点是用zepto就不能这么链式调用了。不过zepto改一下源码应该也能这么干。另外全部写在一起也方便对接口路径做一些处理，比如加上时间戳：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getActivity: <span class="string">'/actXmas/getActivity'</span> + <span class="string">'?timestamp='</span> + (<span class="keyword">new</span> <span class="built_in">Date</span>()).getTime(),</div></pre></td></tr></table></figure></p>
+<p>不用在函数里一个个找来修改了。</p>
+<ol>
+<li>能放到对象的不止接口，像一些cdn处理的后缀也可以放进去<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">t.ImageSnipper = &#123;</div><div class="line">    group : <span class="string">"?imageView2/2/w/600/q/80"</span>,</div><div class="line">    collection : <span class="string">"?imageView2/2/w/600/q/80"</span>,</div><div class="line">    collection_item : <span class="string">"?imageView2/2/w/200/q/80"</span>,</div><div class="line">    recommend : <span class="string">"?imageView2/2/w/300/q/80"</span>,</div><div class="line">    top_item: <span class="string">"?imageView2/2/w/300/q/80"</span>,</div><div class="line">    bottom_item: <span class="string">"?imageView2/2/w/300/q/80"</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>以前全部写在渲染的函数里真的太麻烦了，不方便维护和修改，当然这里也只是简单封装，后面angular可以配置得更灵活点</p>
+<h3 id="前端模板引擎"><a href="#前端模板引擎" class="headerlink" title="前端模板引擎"></a>前端模板引擎</h3><p>这个就类似后台的MVC的V了。只不过放到js来做。这是在另一个师兄的代码里看到的，第一眼又是惊艳到我：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">tags = $(Util.tmpl(tplCoverStr, &#123;</div><div class="line">    collection_info: data[i].collection_info,</div><div class="line">    url:see.getUrlPrefix() + <span class="string">"/static/detail/collection.html?id="</span></div><div class="line">&#125;));</div><div class="line">wrapper.appendChild(tags[<span class="number">0</span>]);</div></pre></td></tr></table></figure></p>
+<p>js真的超级简单，然后看一下html：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/template"</span> <span class="attr">id</span>=<span class="string">"tpl-collection-items"</span>&gt;</span><span class="javascript"></span></div><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"j-slide-list com-wrap"</span> curindex=<span class="string">"0"</span> size=<span class="string">"&lt;%= pageSize %&gt;"</span>&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">%</span> <span class="attr">for</span> (<span class="attr">var</span> <span class="attr">i</span> = <span class="string">0,</span> <span class="attr">k</span> = <span class="string">0;</span> <span class="attr">i</span> &lt; <span class="attr">list.length</span>; <span class="attr">i</span>+=<span class="string">3,</span> <span class="attr">k</span>++) &#123; %&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"com-list com&lt;%= k %&gt;"</span> <span class="attr">classindex</span>=<span class="string">"&lt;%= k %&gt;"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%</span> <span class="attr">for</span> (<span class="attr">var</span> <span class="attr">j</span> = <span class="string">0;</span> <span class="attr">j</span> &lt; <span class="attr">3</span>; <span class="attr">j</span>++) &#123; %&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">i</span> + <span class="attr">j</span> &gt;</span>= list.length) &#123; continue;&#125; %&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">                <span class="comment">&lt;!-- 假数据里面没看到超链接，如果有的话，需要自己加上去 --&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%=url + list[i + j].item_id %&gt;"</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">b</span> <span class="attr">style</span>=<span class="string">"background-image:url(&lt;%= list[i + j].item_imgurl %&gt;)"</span>&gt;</span><span class="tag">&lt;/<span class="name">b</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">list</span>[<span class="attr">i</span> + <span class="attr">j</span>]<span class="attr">.item_name</span> %&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"dis"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">list</span>[<span class="attr">i</span> + <span class="attr">j</span>]<span class="attr">.item_comments</span> %&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"price"</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"preferential"</span>&gt;</span>¥<span class="tag">&lt;<span class="name">%=</span> <span class="attr">list</span>[<span class="attr">i</span> + <span class="attr">j</span>]<span class="attr">.price</span> %&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"original"</span>&gt;</span>¥<span class="tag">&lt;<span class="name">%=</span> <span class="attr">list</span>[<span class="attr">i</span> + <span class="attr">j</span>]<span class="attr">.ori_price</span> %&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>和后台的MVC基本一样，用原生的js的语法进行循环赋值判断什么的。</p>
+<ol>
+<li>适合直白的列表展示，没有太多的条件逻辑。如果条件很多的话html会很多很乱</li>
+<li>可以在html里放一份注释的渲染后的样本例子，先改动栗子再改模板，方便调试</li>
+<li>一些数据需要在js里进行处理后再进行渲染，或者改成适合渲染的结构</li>
+<li>不好做数据有效性验证，最好渲染前处理一遍数据</li>
+<li>数据出错不好做定位</li>
+</ol>
+<p>在开发里试过一两次，用的模板引擎好像是腾讯出品，选其他的大概也不会差太多：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> top_item_list = &#123;</div><div class="line">    data: data.top_item_list</div><div class="line">&#125;;</div><div class="line">_html = template(<span class="string">'p_top_item_list'</span>,top_item_list);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'T_top_item_list'</span>).innerHTML = _html;</div><div class="line">$(<span class="string">".m-goods-card04"</span>).find(<span class="string">'img[name=lazyload]'</span>).on(<span class="string">'load'</span>,resizeImg);</div></pre></td></tr></table></figure></p>
+<p>用模板引擎的函数处理一遍html和数据，返回html片段，直接塞进父容器就好，后面再进行一些事件绑定。</p>
+<h3 id="MV-框架"><a href="#MV-框架" class="headerlink" title="MV*框架"></a>MV*框架</h3><p>现在都用这个来做活动了，用的是Angular。暑假实习的时候用这个写了后台，活动没有选他是因为觉得有点杀鸡用牛刀了。但是后面公司又来了一位大大，全部用Angular写，然后我也尝试了一下，发现效果真的很好~每次请求一次服务，在html里写好指令就ok了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">    BackEndList.getYearIndex().success(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (data.result == <span class="number">1</span>) &#123;</div><div class="line">            $scope.data = data.data;</div><div class="line"></div><div class="line">            $scope.cur_firstList = data.data.firstList[$scope.cur_first_date];</div><div class="line">            $scope.typeList = data.data.typeList;</div><div class="line">            $scope.typeSubList = filterSubList($scope.typeList);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'warn'</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>终于不用花太多精力在写数据渲染上了TAT。后面再单独写一篇关于Angular的总结。总之用了这个，代码量真的会少，工作效率真的提高了！另外事件绑定也没有以前那么麻烦，更直白一点了。</p>
+<p>今天周末来公司加班。然而老大说需求改了，先不做。啊，今天就在公司坐着吹吹水写这个东西了。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2016/01/31/移动端SeeApp开发总结-4/" data-id="cird76zew00331klb8xkbjk33" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2016/01/31/移动端SeeApp开发总结-4/" data-title="移动端SeeApp开发总结-4" data-url="http://weibo.com/biousco/2016/01/31/移动端SeeApp开发总结-4/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/03/07/移动端SeeApp开发总结-5/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            移动端SeeApp开发总结-5
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/09/07/移动端SeeApp开发总结-3/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">移动端SeeApp开发总结-3</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

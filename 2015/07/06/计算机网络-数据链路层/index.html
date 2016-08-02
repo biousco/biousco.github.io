@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>计算机网络-数据链路层 | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="数据链路层，计算机网络" />
+    
+    <meta name="description" content="引言信道类型
+点对点信道：一对一方式
+广播信道：一对多方式
+
+点对点信道数据链路和帧链路：从一个节点到相邻节点的物理线路，中间没有其他交换节点数据链路：链路的基础上加上通信协议，把实现这些协议的硬件和软件加到链路上网络适配器（网卡）来实现这些协议通信主要步骤：
+
+A的数据链路层吧网络层交下来的IP数据报添加首部和尾部封装成帧
+发送给B的数据链路层
+若B收到的帧无差错，就提取出IP数据报给网络层，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络-数据链路层">
+<meta property="og:url" content="http://weibo.com/biousco/2015/07/06/计算机网络-数据链路层/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="引言信道类型
+点对点信道：一对一方式
+广播信道：一对多方式
+
+点对点信道数据链路和帧链路：从一个节点到相邻节点的物理线路，中间没有其他交换节点数据链路：链路的基础上加上通信协议，把实现这些协议的硬件和软件加到链路上网络适配器（网卡）来实现这些协议通信主要步骤：
+
+A的数据链路层吧网络层交下来的IP数据报添加首部和尾部封装成帧
+发送给B的数据链路层
+若B收到的帧无差错，就提取出IP数据报给网络层，">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/86509675gw1ettcunk784j211y0lc7da.jpg">
+<meta property="og:updated_time" content="2015-07-13T04:11:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络-数据链路层">
+<meta name="twitter:description" content="引言信道类型
+点对点信道：一对一方式
+广播信道：一对多方式
+
+点对点信道数据链路和帧链路：从一个节点到相邻节点的物理线路，中间没有其他交换节点数据链路：链路的基础上加上通信协议，把实现这些协议的硬件和软件加到链路上网络适配器（网卡）来实现这些协议通信主要步骤：
+
+A的数据链路层吧网络层交下来的IP数据报添加首部和尾部封装成帧
+发送给B的数据链路层
+若B收到的帧无差错，就提取出IP数据报给网络层，">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/86509675gw1ettcunk784j211y0lc7da.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/计算机本科知识/">计算机本科知识</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-计算机网络-数据链路层" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        计算机网络-数据链路层
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/07/06/计算机网络-数据链路层/" class="article-date">
+    <time datetime="2015-07-06T12:37:16.000Z" itemprop="datePublished">2015-07-06</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据链路层，计算机网络/">数据链路层，计算机网络</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://ww4.sinaimg.cn/large/86509675gw1ettcunk784j211y0lc7da.jpg" alt="复习复习复习复习"></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><h3 id="信道类型"><a href="#信道类型" class="headerlink" title="信道类型"></a>信道类型</h3><ul>
+<li>点对点信道：一对一方式</li>
+<li>广播信道：一对多方式</li>
+</ul>
+<h2 id="点对点信道"><a href="#点对点信道" class="headerlink" title="点对点信道"></a>点对点信道</h2><h3 id="数据链路和帧"><a href="#数据链路和帧" class="headerlink" title="数据链路和帧"></a>数据链路和帧</h3><p>链路：从一个节点到相邻节点的物理线路，中间没有其他交换节点<br>数据链路：链路的基础上加上通信协议，把实现这些协议的硬件和软件加到链路上<br>网络适配器（网卡）来实现这些协议<br>通信主要步骤：</p>
+<ul>
+<li>A的数据链路层吧网络层交下来的IP数据报添加首部和尾部封装成帧</li>
+<li>发送给B的数据链路层</li>
+<li>若B收到的帧无差错，就提取出IP数据报给网络层，否则丢弃</li>
+</ul>
+<h3 id="三个基本问题"><a href="#三个基本问题" class="headerlink" title="三个基本问题"></a>三个基本问题</h3><p><strong>封装成帧，透明传输，差错检测</strong></p>
+<h3 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h3><ul>
+<li>在数据前后添加首部和尾部，同时根据这个判断帧的开始和结束，即<strong>帧定界</strong></li>
+<li>帧是数据链路层的数据传送单元</li>
+<li>链路层协议规定了<strong>数据部分长度上限–MTU（最大传送单元，Maximum Transfer Unit）</strong></li>
+<li>如果数据是ASCII码文件，使用帧定界符：SOH（Start Of Header）表示帧首部的开始，EOT（End Of Transmission）表示帧的结束。二进制编码是01和04</li>
+<li>数据传输出现差错时通过判断帧定界符来判断是否是一个完整的帧</li>
+</ul>
+<a id="more"></a>
+<h3 id="透明传输"><a href="#透明传输" class="headerlink" title="透明传输"></a>透明传输</h3><ul>
+<li>传输的数据中不可以包含帧定界符</li>
+<li>非ASCII码文件会出现帧定界符</li>
+<li>透明的意思是什么数据都能通过这个数据链路层。<strong>某一个实际存在的事物看起来却好像不存在一样</strong>，数据看不见那个帧定界符</li>
+<li>解决方法：发送时在数据中出现SOH和EOT的前面插入转义字符ESC（十六进制是1B），接受时在送往网络层之前删掉这个转义。如果数据中有也有转义，再插入一个转义</li>
+</ul>
+<h3 id="差错检测"><a href="#差错检测" class="headerlink" title="差错检测"></a>差错检测</h3><ul>
+<li>CRC计算 FCS是冗余码</li>
+<li>除法：数据加上（除数-1）位的<code>0</code>；模2除法，看头部，1就上1，0就上0；减法不同为1，相同为0；取出余数</li>
+<li>CRC只保证帧的无差错接受，即接受的帧都是几乎没有差错的</li>
+<li>传输差错：比特差错；帧丢失，帧重复，帧失序；</li>
+<li>CRC实现无比特差错的传输，但不是可靠传输</li>
+<li>历史上有帧编号，确认和重传机制，后来因为科技的发达。链路质量提高，取消了，能提高通信效率</li>
+</ul>
+<h2 id="点对点协议PPP"><a href="#点对点协议PPP" class="headerlink" title="点对点协议PPP"></a>点对点协议PPP</h2><p>计算机和ISP进行通信时使用的数据链路层协议</p>
+<h3 id="PPP协议的组成"><a href="#PPP协议的组成" class="headerlink" title="PPP协议的组成"></a>PPP协议的组成</h3><ol>
+<li>一个将IP数据报封装到串行链路的方法</li>
+<li>一个用来建立，配置和测试数据链路连接的链路控制协议LCP</li>
+<li>一套网络控制协议NCP</li>
+</ol>
+<h3 id="PPP协议的帧格式"><a href="#PPP协议的帧格式" class="headerlink" title="PPP协议的帧格式"></a>PPP协议的帧格式</h3><h4 id="各字段意义"><a href="#各字段意义" class="headerlink" title="各字段意义"></a>各字段意义</h4><p>首部：4个，尾部：2个<br>F是标识字段，表示一个帧的开始或结束，0x7E，连续两帧只用一个标志字段<br>A是地址字段，C是控制字段。这两个没有意义<br>协议字段两个字节：0x0021代表信息字段是IP数据报<br>信息字段长度可变，不超过1500字节<br>FCS是CRC的帧校验序列<br><code>F A C 协议 信息部分 FCS F</code></p>
+<h4 id="字节填充"><a href="#字节填充" class="headerlink" title="字节填充"></a>字节填充</h4><ul>
+<li>异步传输 转义字符为0x7D，字节填充</li>
+<li>因为标志字段是7E，所以一个7E就变成7D和5E</li>
+<li>如果出现了7D（转义字符），7D就变成7D和5D</li>
+<li>如果有ASCII控制字符（小于0x20），出现0x03变成7D和23</li>
+<li>EX：7D 5E FE 27 7D 5D 7D 5D 65 7D 5E =&gt; 7E FE 27 7D 7D 65 7E</li>
+<li>好像只要发现有<code>D 5</code>，那么就合并这两个，去掉D5</li>
+</ul>
+<h4 id="0比特填充"><a href="#0比特填充" class="headerlink" title="0比特填充"></a>0比特填充</h4><ul>
+<li>同步传输，使用SONET/SDH链路</li>
+<li>扫描信息字段，连续五个1填入一个0</li>
+<li>接收方会把连续的五个1后的0删除</li>
+</ul>
+<h3 id="PPP协议的工作状态"><a href="#PPP协议的工作状态" class="headerlink" title="PPP协议的工作状态"></a>PPP协议的工作状态</h3><ul>
+<li>4个状态：<strong>链路静止</strong>，<strong>链路建立</strong>，<strong>鉴别</strong>，<strong>网络层协议</strong>，<strong>链路打开</strong></li>
+</ul>
+<h2 id="广播信道的数据链路层"><a href="#广播信道的数据链路层" class="headerlink" title="广播信道的数据链路层"></a>广播信道的数据链路层</h2><ul>
+<li>双绞线是局域网中的主流传输媒体</li>
+<li>共享信道的两个方法：静态划分信道和动态媒体接入控制（随机接入，受控接入）</li>
+</ul>
+<h2 id="CSMA-CD协议"><a href="#CSMA-CD协议" class="headerlink" title="CSMA/CD协议"></a>CSMA/CD协议</h2><ul>
+<li>总线的特点：总线上的所有计算机都能检测都这个数据，也就是广播通讯</li>
+</ul>
+<h3 id="以太网采取的措施"><a href="#以太网采取的措施" class="headerlink" title="以太网采取的措施"></a>以太网采取的措施</h3><ul>
+<li>无连接的工作方式：不必建立连接就可以发送数据。</li>
+<li>以太网采取尽最大努力的交付，不可靠的交付</li>
+<li>使用曼彻斯特编码</li>
+<li>使用集线器的双绞线以太网，物理上是星形网，逻辑上是总线网</li>
+</ul>
+<h3 id="协议要点"><a href="#协议要点" class="headerlink" title="协议要点"></a>协议要点</h3><ul>
+<li>多点接入：总线型网络</li>
+<li><strong>载波接听</strong>：检测总线上有没有其他计算机也在发送。不管是在发送前还是在发送中，每个站都不停检测</li>
+<li><strong>碰撞检测</strong>：边发送边监听。如果有两个站在同时发送数据，就产生了碰撞<ol>
+<li>由于电磁波在总线上是以有限的速率传播的，所以数据在总线上会出现碰撞</li>
+<li>局域网最多经过两倍的总线端到端的传播时延</li>
+<li>一个站不能同时发送和接收，但必须边监听信道，所以进行半双工通信</li>
+<li>争用期：碰撞窗口，端到端的往返时间2r，只有经过争用期这段时间还没有碰撞，才能肯定发送不会发生碰撞</li>
+</ol>
+</li>
+<li>截断二进制指数退避<ol>
+<li>有个k和r。k=Min[重传次数,10]；r=random(0~2k-1)[2的k次方-1]</li>
+<li>重传时间是r倍的争用期</li>
+<li>争用期是512比特时间。1比特时间就是发送一个比特所需要的时间</li>
+</ol>
+</li>
+<li>强化碰撞<ol>
+<li>当发生碰撞时，立即停止发送数据，并且发送32bit或64bit的认为干扰信号</li>
+<li>让所有用户知道发生碰撞</li>
+<li>帧最小间隔是9.6微秒，96比特时间，让接收站缓存来得及清理</li>
+</ol>
+</li>
+</ul>
+<h2 id="广播信道的以太网"><a href="#广播信道的以太网" class="headerlink" title="广播信道的以太网"></a>广播信道的以太网</h2><h3 id="MAC层的硬件地址"><a href="#MAC层的硬件地址" class="headerlink" title="MAC层的硬件地址"></a>MAC层的硬件地址</h3><ul>
+<li>固化在适配器的ROM中的地址</li>
+<li>6个字节地址字段</li>
+</ul>
+<h2 id="MAC帧格式"><a href="#MAC帧格式" class="headerlink" title="MAC帧格式"></a>MAC帧格式</h2><ul>
+<li>五个字段<br><code>|---6---|--6--|-2--|--46~1500-|-4-|</code><br><code>|目的地址|源地址|类型|数据数据数据|FCS|</code></li>
+<li>类型字段用来表示上一层用什么协议</li>
+<li>当数据字段长度小于46字节时，会插入一个整数字节</li>
+<li>实际传送的帧还要多8个字节。7个字节是前同步码，使接收端的适配器在接受MAC帧时能迅速调整时钟频率，使它和发送端的时钟同步（位同步）；最后一个字节是帧开始定界符</li>
+<li>以太网传送数据以帧为单位传送，传送帧时，各帧之间有一定的间隙。因此以太网不需要帧结束定界符，也不需要使用字节插入保证透明传输</li>
+<li>无效帧：<ol>
+<li>帧的长度不是整数个字节</li>
+<li>FCS查出有错</li>
+<li>数据字段不再46~1500字节之间。因此MAC帧长度在64~1518之间</li>
+<li>无效帧直接丢弃</li>
+</ol>
+</li>
+</ul>
+<h2 id="拓展以太网"><a href="#拓展以太网" class="headerlink" title="拓展以太网"></a>拓展以太网</h2><h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><ul>
+<li>使用光纤和光纤调制解调器，进行电信号和光信号的转换，可以使主机和集线器相连接<ol>
+<li>使用多个集线器连接成多级星系结构的以太网</li>
+<li>一个以太网是一个独立的碰撞域，多个以太网互联后会变成一个碰撞域，这时最大吞吐量只有一个以太网的吞吐量。意思就是某个以太网内的两个站在通信时所传送的数据会通过所有的集线器进行转发，其他以太网内不能通信（会碰撞）</li>
+<li>不用以太网技术不能用集线器相连</li>
+</ol>
+</li>
+</ul>
+<h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><ul>
+<li>使用网桥，它根据MAC帧的目的地址对收到的帧进行转发和过滤</li>
+<li>两个以太网通过网桥连接起来后便成为更大的以太网，原来的以太网成为网段</li>
+<li>网桥依靠转发表来转发帧：查找转发表，如果在不同接口，就转发到不同网段，否则丢弃这个帧</li>
+<li>网桥通过内部接口管理软件和网桥协议实体完成操作</li>
+<li>网桥好处：<ol>
+<li>过滤通信量，增大吞吐量。网桥可以使网段成为隔离开的碰撞域</li>
+<li>扩大物理范围/提高可靠性</li>
+<li>可互联不通物理层，MAC层和不同速率的以太网</li>
+</ol>
+</li>
+<li>网桥缺点：<ol>
+<li>对接受的帧要存储和查找转发表，然后执行CSMA/CD算法，才转发，增加了时延</li>
+<li>没有流量控制，可能导致缓存溢出，帧丢失</li>
+<li>用户数不能过多，传播过多会造成广播风暴</li>
+</ol>
+</li>
+<li>网桥转发帧时不改变帧的源地址</li>
+</ul>
+<h3 id="透明网桥"><a href="#透明网桥" class="headerlink" title="透明网桥"></a>透明网桥</h3><ul>
+<li>以太网上的站点不知道所发送的帧将经过哪几个网桥</li>
+<li>是即插即用设备</li>
+<li>不需要人工配置转发表</li>
+<li><strong>自学习算法</strong><ol>
+<li>网桥每接收到一个帧，记下源地址和进入网桥的接口</li>
+<li>帧的源地址写在转发表的地址中</li>
+<li>转发帧时根据收到的帧中的目的地址进行转发</li>
+<li>此时目的地址就是前面的源地址</li>
+</ol>
+</li>
+<li>网桥是存储转发方式工作的，先把整个帧接受（集线器和转发器是按比特转发）再进行处理，不管目的地址是什么</li>
+<li>丢弃CRC检错/帧长过长/短的帧</li>
+<li>转发过程：<ol>
+<li>在初始化中，网桥接受到一个帧，会记录下源地址以及接口，然后转发到其他所有接口，即使帧的目的地址和源地址在同一个网段</li>
+<li>如果在一个网段中有目的地址以及另外一个网桥，另外一个网桥还是会接受到转发的帧，这是为了记录并学习下来</li>
+<li>如果转发表中已经包含目的地址的接口，直接舍弃</li>
+</ol>
+</li>
+<li>转发表中还会写入帧进入网桥的时间，为了使转发表能反映网络拓补的最新状态。接口管理软件会在一定时间内删除转发表中的项目</li>
+<li><strong>生成树算法</strong><ol>
+<li>互联在一起的网桥在进行彼此通信后，就能找出原来的网络拓扑的一个子集，这个子集里不存在回路</li>
+<li>避免帧在网络中兜圈子</li>
+<li>一定时间会对生成树拓扑进行更新</li>
+</ol>
+</li>
+</ul>
+<h3 id="源路由网桥"><a href="#源路由网桥" class="headerlink" title="源路由网桥"></a>源路由网桥</h3><ul>
+<li>发送帧时把详细的路由信息放在帧首部中</li>
+<li>能帮助源站确定整个网络可以通过的帧的最大长度</li>
+</ul>
+<h3 id="多接口网桥–以太网交换机"><a href="#多接口网桥–以太网交换机" class="headerlink" title="多接口网桥–以太网交换机"></a>多接口网桥–以太网交换机</h3><ul>
+<li>以太网交换机的每个接口都直接与一个单个主机或另一个集线器相连</li>
+<li>全双工方式，通信时能同时连通多对接口，这样能无碰撞地传输数据</li>
+<li>自学习算法，即插即用设备，具有多种速率的接口</li>
+<li>大多以存储转发方式转发，一些使用直通方式</li>
+</ul>
+<h3 id="虚拟局域网VLAN"><a href="#虚拟局域网VLAN" class="headerlink" title="虚拟局域网VLAN"></a>虚拟局域网VLAN</h3><ul>
+<li>由局域网网段组成的与物理位置无关的逻辑组，这些网段有共同的需求</li>
+<li>VLAN帧有一个标识符，指明发送这个帧的工作站是哪一个VLAN</li>
+<li>利用以太网交换机划分局域网</li>
+<li>虚拟局域网上的每个站都能收到同一个虚拟局域网上其他成员发出的广播</li>
+<li>在同一个以太网交换机上但不在一个VLAN上的工作站不会接受到其他VLAN发出的信息</li>
+<li>虚拟局域网协议在以太网的帧格式中插入4字节的标识符<br><code>目的地址|源地址|VLAN标记|类型|数据|FCS</code></li>
+<li>2字节的标记类型和2字节的标记控制信息</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/07/06/计算机网络-数据链路层/" data-id="cird76ze6002e1klbjpf9lxf9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/07/06/计算机网络-数据链路层/" data-title="计算机网络-数据链路层" data-url="http://weibo.com/biousco/2015/07/06/计算机网络-数据链路层/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/07/06/计算机网络-网络层-1/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            计算机网络-网络层-1
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/06/11/前端面试问题-1/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">前端面试问题-1</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

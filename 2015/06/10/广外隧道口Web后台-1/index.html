@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>广外隧道口Web后台（1） | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="CSS,JavaScript,插件" />
+    
+    <meta name="description" content="最近在学Node的知识，学没一个星期又有一个项目要做了。哇新的Cmd Markdown更新了苹果的字体看起来好舒服。关键字： 全屏背景 字体图标 data-* 颜色插件 kindeditor项目页面：Submit Activity
+全屏背景设计图用了个全屏背景：正常屏幕（1366768)1080P宽屏 (19801080)是的我买了个显示器！好爽！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="广外隧道口Web后台（1）">
+<meta property="og:url" content="http://weibo.com/biousco/2015/06/10/广外隧道口Web后台-1/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="最近在学Node的知识，学没一个星期又有一个项目要做了。哇新的Cmd Markdown更新了苹果的字体看起来好舒服。关键字： 全屏背景 字体图标 data-* 颜色插件 kindeditor项目页面：Submit Activity
+全屏背景设计图用了个全屏背景：正常屏幕（1366768)1080P宽屏 (19801080)是的我买了个显示器！好爽！">
+<meta property="og:image" content="http://i1.tietuku.com/17046b71e4362010.jpg">
+<meta property="og:updated_time" content="2015-07-12T13:02:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="广外隧道口Web后台（1）">
+<meta name="twitter:description" content="最近在学Node的知识，学没一个星期又有一个项目要做了。哇新的Cmd Markdown更新了苹果的字体看起来好舒服。关键字： 全屏背景 字体图标 data-* 颜色插件 kindeditor项目页面：Submit Activity
+全屏背景设计图用了个全屏背景：正常屏幕（1366768)1080P宽屏 (19801080)是的我买了个显示器！好爽！">
+<meta name="twitter:image" content="http://i1.tietuku.com/17046b71e4362010.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-广外隧道口Web后台-1" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        广外隧道口Web后台（1）
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/06/10/广外隧道口Web后台-1/" class="article-date">
+    <time datetime="2015-06-10T14:48:01.000Z" itemprop="datePublished">2015-06-10</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/插件/">插件</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://i1.tietuku.com/17046b71e4362010.jpg" alt="Material Design"></p>
+<p>最近在学Node的知识，学没一个星期又有一个项目要做了。<br>哇新的Cmd Markdown更新了苹果的字体看起来好舒服。<br><strong>关键字： 全屏背景 字体图标 data-* 颜色插件 kindeditor</strong><br>项目页面：<a href="http://biouscowork.sinaapp.com/SuidaoHoutai/index.html" target="_blank" rel="external">Submit Activity</a></p>
+<h2 id="全屏背景"><a href="#全屏背景" class="headerlink" title="全屏背景"></a>全屏背景</h2><p>设计图用了个全屏背景：<br>正常屏幕（1366<em>768)<br><img src="http://i1.tietuku.com/3b62563cfbf034c2.png" alt="笔记本宽屏"><br>1080P宽屏 (1980</em>1080)<br><img src="http://i1.tietuku.com/fb0ca2e9fe2a02a7.png" alt="1080P屏幕"><br><strong>是的我买了个显示器！好爽！</strong><br><a id="more"></a><br>全屏背景的话可以用<code>backgroud-size: cover;</code>只不过兼容性有点问题，只支持IE9+。<br>具体是切一张2K的背景图，使用的时候在主内容外面加上：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"superbg"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/bg.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>设置这个层为fixed，100%显示，然后里面图片的高度的话有不同情况：</p>
+<p>这里面有两个高度：<code>.superbg</code>和<code>img</code></p>
+<ul>
+<li>高度如果写成百分比是按照父元素的高度来计算的，所以<code>img</code>写成100%会完整显示图片，高度为父层的高度；如果不写就是默认<code>auto</code>，显示区域会自动截取，好像是从中间开始截取，图片就不完整了。</li>
+<li>由于外层用了定位，所以必须明确设置高度，我就一刀切650px了=。=所以最后背景图片会有一定变形，不过看不出来啦哈哈哈。</li>
+<li>可以用JS来先获取到里层<code>img</code>的高度，然后设置到外层的高度中，这样图片就不会变形了。不过没有这么做</li>
+</ul>
+<p>不过用fixed的话还有其他问题。在正常屏幕下，这个层真的就是fixed的了，内容滚动的时候这个层不滚动，背景不会滚动，达不到设计图想要的下面是纯色的效果，就把这个fixed改成absolute了。<br>还有一点就是设置<code>z-index</code>为负值，后面的内容才不会被遮住。</p>
+<h2 id="字体图标"><a href="#字体图标" class="headerlink" title="字体图标"></a>字体图标</h2><p>阿里巴巴字体图标：<a href="http://www.iconfont.cn/" target="_blank" rel="external">iconfont</a><br>昨天用的时候好像还没有这个阿里巴巴，话说功能和排版和<a href="https://icomoon.io/" target="_blank" rel="external">icomoon</a>好像啊~<br><a href="http://jingyan.baidu.com/article/63acb44ae0c03061fdc17e61.html" target="_blank" rel="external">几步打造您自己的图标字体</a><br>照着这个教程一步步来就可以了。不过设计师用了开源的图标库，有SVG格式，直接导入网站生成字体文件就OK了。<br>其实想用字体图标是因为需要图标变色。本来是做成雪碧图的，改变颜色就不方便。用了字体图标可以加上各种CSS属性，最喜欢的是<code>transition</code>，颜色也有渐变效果了。大小通过<code>font-size</code>。我用的时候先转成<code>inline-block</code>，设置好宽高。</p>
+<h2 id="data-属性"><a href="#data-属性" class="headerlink" title="data-*属性"></a>data-*属性</h2><p>不知道为什么网上很多说这个是HTML5特性=。= W3C写着所有浏览器支持，自己在IE7下也成功了。<br>这次用在了字数限制：<br><code>&lt;input type=&quot;text&quot; data-listen=&quot;true&quot; data-charlimit=&quot;16&quot; placeholder=&quot;活动标题&quot;&gt;</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> charListen = &#123;</div><div class="line"></div><div class="line">	init: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		_charListen = <span class="keyword">this</span>;</div><div class="line">		_charListen.config = $(<span class="string">"input:text[data-listen='true']"</span>);</div><div class="line">		_charListen.setup();</div><div class="line">	&#125;,</div><div class="line"></div><div class="line">	setup: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">		_charListen.config.each(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">			<span class="keyword">var</span> currentlength = <span class="number">0</span>;</div><div class="line"></div><div class="line">			$<span class="keyword">this</span>.bind(<span class="string">'keyup keydown'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">				<span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">				<span class="keyword">var</span> str = <span class="string">''</span>;</div><div class="line">				<span class="keyword">var</span> $alerttag = $<span class="keyword">this</span>.next()</div><div class="line"></div><div class="line">				<span class="keyword">var</span> limit = $<span class="keyword">this</span>.data(<span class="string">"charlimit"</span>);</div><div class="line">				str = $<span class="keyword">this</span>.val();</div><div class="line"></div><div class="line">				<span class="comment">//显示</span></div><div class="line">				$alerttag.css(<span class="string">"opacity"</span>,<span class="string">"1"</span>);</div><div class="line">				<span class="comment">//超过长度进行字符串截取</span></div><div class="line">				<span class="keyword">if</span> (str.length &gt; limit) &#123;</div><div class="line">					$<span class="keyword">this</span>.val(str.substr(<span class="number">0</span>,limit));</div><div class="line">				&#125; <span class="keyword">else</span> &#123;</div><div class="line">				<span class="comment">//正则匹配前面的数字（当前的输入字数）</span></div><div class="line">					<span class="keyword">var</span> temp = $alerttag.text().replace(<span class="regexp">/^\d&#123;0,2&#125;/</span>,str.length);</div><div class="line">					$alerttag.text(temp);</div><div class="line">				&#125;</div><div class="line">			&#125;).bind(<span class="string">"blur"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">				$(<span class="keyword">this</span>).next().css(<span class="string">"opacity"</span>,<span class="string">"0"</span>);</div><div class="line">			&#125;)</div><div class="line"></div><div class="line">		&#125;)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>初始化的时候把所有<code>input</code>都执行了一遍这个函数。在html里存储数据感觉写JS特别方便~而且可以随时更改。如果纯JS实现的话初始化得到JS里面设置参数，还要判断不同输入框不同限制。<br>字符限制自己想到的就是字符串截取了，网上查了资料也是一样的想法。不过有个bug：因为中文用拼音的关系，输入的时候例如这样：<code>这是广外这是广外zheshiguangwai</code>，其实用户只是想再输入四个汉字，但是因为拼音的关系，会先输入拼音，这样很有可能后面的拼音打不出来因为被截取了=。=<br>这里的正则截取弄了我好长时间=。=。=。=<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"limit"</span> &gt;</span>0/16<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在<code>input</code>后面是这个标签，其实我完全可以把会改变的这个0给个标签套起来，不过还是想算了别套太多标签直接正则获取斜杠前面的数字吧。<br>然后是这样：<code>/^\d{0,2}/</code>以数字开头，获取0~2位。完全和斜杠没关系。。搜索的时候是按照截取某个字符前的内容，然后发现很复杂而且不能用。什么时候再学一下正则吧。</p>
+<h2 id="颜色选择器"><a href="#颜色选择器" class="headerlink" title="颜色选择器"></a>颜色选择器</h2><p>这个果断找了插件来用：<a href="http://www.supersite.me/index.php?p=2_1" target="_blank" rel="external">iColorPicker</a><br>翻了一下源码发现竟然很短。。100行不到。好多行都是写CSS样式。<br>主要思路：</p>
+<ul>
+<li>在选中的输入框中创建新的<code>div#iColorPicker</code>，主要内容就是一个table，里面有预定好的颜色16*7个，然后再创建一个<code>div#iColorPickerBg</code>,这个是全屏的fixed的<code>div</code>，给这个<code>div</code>绑定点击事件，把创建的<code>div</code>都隐藏掉</li>
+<li>接下来是给<code>div#iColorPicker</code>添加各种样式。以上这些在第一个颜色输入框中初始化完成</li>
+<li>然后在颜色输入框中添加背景颜色，数值为选中的颜色，再创建<code>a</code>标签，内容是色板的icon，可以定义这个icon的图片路径，在输入框之后添加</li>
+<li>第一步中的点击事件是一个函数，传入两个id，一个是输入框的id，一个是色板icon的id。</li>
+<li>函数的内容：点击的时候显示<code>div#iColorPicker</code>和<code>div#iColorPickerBg</code>，获取输入框的内容，传入色板中显示的数值并修改背景色。</li>
+<li>接下来遍历获取色板中的每个<code>tr</code>元素，绑定鼠标移过事件：每个<code>tr</code>标签都已经带有自己的颜色属性：<code>hx=&#39;f00&#39;</code>代表红色，然后就给各个内容赋值改变背景色；再绑定点击事件：隐藏色板，给内容赋值，返回点击的结点jQuery对象。</li>
+</ul>
+<p>当时用的时候发现有一些不方便的地方：默认点击后给输入框添加背景色，太丑了太丑了。把这句话去掉。<br>后来希望点击后旁边的icon图标也能变相应的颜色，所以修改了源码添加了一点东西。<br>这种把源码都搞一遍的感觉真好哈哈哈</p>
+<h2 id="kindEditor"><a href="#kindEditor" class="headerlink" title="kindEditor"></a>kindEditor</h2><p>这又是一个插件：<a href="http://kindeditor.net/demo.php" target="_blank" rel="external">kindEditor</a>。<br>其实没啥好说的，多看看文档就知道怎么弄了：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">KindEditor.ready(<span class="function"><span class="keyword">function</span>(<span class="params">K</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> options = &#123;</div><div class="line">		items :</div><div class="line">		[</div><div class="line">			<span class="string">'fontsize'</span>, <span class="string">'|'</span>, <span class="string">'image'</span></div><div class="line">		],</div><div class="line">		fontSizeTable :</div><div class="line">		[</div><div class="line">			<span class="string">'16px'</span>,<span class="string">'14px'</span></div><div class="line">		],</div><div class="line">		resizeType : <span class="number">0</span>,</div><div class="line">		<span class="comment">//IE11下失效</span></div><div class="line">		pasteType : <span class="number">1</span>,</div><div class="line">		uploadJson : <span class="string">'../php/upload_json.php'</span>,</div><div class="line">		fileManagerJson : <span class="string">'../php/file_manager_json.php'</span>,</div><div class="line">		allowFileManager : <span class="literal">true</span>,</div><div class="line">		afterChange : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">this</span>.sync();</div><div class="line">			$(<span class="string">'#contentShow'</span>).html($(<span class="string">'#editor'</span>).val());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">    <span class="built_in">window</span>.editor = K.create(<span class="string">'#editor'</span>,options);</div><div class="line">    $(<span class="string">'iframe'</span>).contents().find(<span class="string">'.ke-content'</span>).css(<span class="string">"background-color"</span>,<span class="string">"#e6e6e6"</span>)</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>然后根据需求，插件里面的字体只显示：小标题和段落，又去翻了这个源码，直接搜索关键字<code>font</code>很快就定位到了，自己加了一点判断，就OK了。<br>对了这里有个jQuery获取不同iframe下的元素的方法：<code>$(&#39;iframe&#39;).contents().find(&#39;.ke-content&#39;)</code><br>好像哪个面试题问过这个。<br>然后里面也有事件处理啦，就能同步显示输入的内容了。<br>粘贴这个东西，我在网易云音乐里面复制了一些歌词过去，发现自动加载各种样式了。<br>后面这个后台还要再改一下，要确定传过去的内容和图片路径等等东西。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/06/10/广外隧道口Web后台-1/" data-id="cird76zdz002a1klb6n4eh8pm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/06/10/广外隧道口Web后台-1/" data-title="广外隧道口Web后台（1）" data-url="http://weibo.com/biousco/2015/06/10/广外隧道口Web后台-1/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/06/11/前端面试问题-1/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            前端面试问题-1
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/05/27/Quanta杯总结-2/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Quanta杯总结-2</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

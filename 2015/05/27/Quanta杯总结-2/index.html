@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Quanta杯总结-2 | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JS,Ajax,表单提交" />
+    
+    <meta name="description" content="JS交互（后台）这次作品和后台交互还是蛮多的，自己已经不只是再单纯的重构写页面了，这次也花了很多时间在这里导致没有太多时间打重构的代码=。=主要涉及这几个：表单验证，表单提交，Ajax，数据传递。
+整体结构参考的博文找不到了。。1234567891011121314151617181920212223242526272829var loginBar = &amp;#123;    init: funct">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quanta杯总结-2">
+<meta property="og:url" content="http://weibo.com/biousco/2015/05/27/Quanta杯总结-2/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="JS交互（后台）这次作品和后台交互还是蛮多的，自己已经不只是再单纯的重构写页面了，这次也花了很多时间在这里导致没有太多时间打重构的代码=。=主要涉及这几个：表单验证，表单提交，Ajax，数据传递。
+整体结构参考的博文找不到了。。1234567891011121314151617181920212223242526272829var loginBar = &amp;#123;    init: funct">
+<meta property="og:image" content="http://i4.tietuku.com/aaf28c374d18ed2d.jpg">
+<meta property="og:updated_time" content="2015-07-12T13:01:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Quanta杯总结-2">
+<meta name="twitter:description" content="JS交互（后台）这次作品和后台交互还是蛮多的，自己已经不只是再单纯的重构写页面了，这次也花了很多时间在这里导致没有太多时间打重构的代码=。=主要涉及这几个：表单验证，表单提交，Ajax，数据传递。
+整体结构参考的博文找不到了。。1234567891011121314151617181920212223242526272829var loginBar = &amp;#123;    init: funct">
+<meta name="twitter:image" content="http://i4.tietuku.com/aaf28c374d18ed2d.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Quanta杯总结-2" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Quanta杯总结-2
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/05/27/Quanta杯总结-2/" class="article-date">
+    <time datetime="2015-05-27T15:17:32.000Z" itemprop="datePublished">2015-05-27</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/表单提交/">表单提交</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://i4.tietuku.com/aaf28c374d18ed2d.jpg" alt="啊~！"></p>
+<h2 id="JS交互（后台）"><a href="#JS交互（后台）" class="headerlink" title="JS交互（后台）"></a>JS交互（后台）</h2><p>这次作品和后台交互还是蛮多的，自己已经不只是再单纯的重构写页面了，这次也花了很多时间在这里导致没有太多时间打重构的代码=。=<br>主要涉及这几个：表单验证，表单提交，Ajax，数据传递。</p>
+<h3 id="整体结构"><a href="#整体结构" class="headerlink" title="整体结构"></a>整体结构</h3><p>参考的博文找不到了。。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> loginBar = &#123;</div><div class="line"></div><div class="line">    init: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            _this = loginBar;</div><div class="line">            _this.config = &#123;</div><div class="line">                $loginBtn: $(<span class="string">'#login-btn'</span>),</div><div class="line">                $regisBtn: $(<span class="string">'#regis-btn'</span>),</div><div class="line">                $loginOly: $(<span class="string">'#login-overlay'</span>),</div><div class="line">                $regisOly: $(<span class="string">'#regis-overlay'</span>)</div><div class="line">            &#125;;</div><div class="line">            _this.setup();</div><div class="line">        &#125;,</div><div class="line"></div><div class="line">        setup: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            _this.bindEvent(_this.config.$loginBtn, _this.config.$loginOly);</div><div class="line">            _this.bindEvent(_this.config.$regisBtn, _this.config.$regisOly);</div><div class="line">        &#125;,</div><div class="line"></div><div class="line">        <span class="comment">//事件绑定，外部也可以单独调用</span></div><div class="line">        bindEvent: <span class="function"><span class="keyword">function</span> (<span class="params">clickObj, targetObj</span>) </span>&#123;</div><div class="line">            clickObj.click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                targetObj.fadeIn(<span class="number">500</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line">                    <span class="keyword">if</span> (event.target == $(<span class="keyword">this</span>).context) &#123;</div><div class="line">                        $(<span class="keyword">this</span>).fadeOut(<span class="number">500</span>);</div><div class="line">                    &#125;;</div><div class="line">                &#125;)</div><div class="line">            &#125;)</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>这种方法就是每个独立的方法都是一个对象，在对象里面有各种各样的方法可以内部互相调用。在初始化的匿名函数中：<code>_this = loginBar</code>，这个刚开始我觉得很巧妙，通过这个变量让内部来互相调用。不过在后来自己想，发现这个<code>_this</code>是个全局变量，全局变量，全局变量啊！！！所以在控制台中输入<code>_this</code>出来的结果一般都是指向最后使用的匿名函数。<br>刚开始觉得还没什么，后来用到了定时器就蛋疼了。因为定时器里面也用到了这个<code>_this</code>，在不同的匿名函数方法中开了两个定时器，<code>_this</code>的指向就开始混乱了。<br>好吧说一下这种JQ封装的方法：在<code>init()</code>中初始化用到的JQ对象，在<code>setup()</code>中对JQ对象进行事件绑定什么的，或者是作为程序的入口，相应调用其他方法，其他的方法就是具体到细节，处理各种各样的事情。另外也可以把这种模式换一种写法，让外界不能直接调用，但是能返回一个对象还是什么的=。=我忘记了。。下次找回那篇文章再贴上去。</p>
+<h3 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#regis-overlay input[name='email']"</span>).blur(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> status = _this.checkValidate.checkEmail($(<span class="keyword">this</span>).attr(<span class="string">'value'</span>));</div><div class="line">    <span class="keyword">if</span> (!status) &#123;</div><div class="line">        $(<span class="string">'.validateinfo'</span>).text(<span class="string">"邮箱格式不正确"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        $(<span class="string">'.validateinfo'</span>).text(<span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line">&#125;).change(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> status = _this.checkValidate.checkEmail($(<span class="keyword">this</span>).attr(<span class="string">'value'</span>));</div><div class="line">    <span class="keyword">if</span> (!status) &#123;</div><div class="line">        $(<span class="string">'.validateinfo'</span>).text(<span class="string">"邮箱格式不正确"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        $(<span class="string">'.validateinfo'</span>).text(<span class="string">""</span>);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>不行让我重构一下。。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> commonOperate = <span class="function"><span class="keyword">function</span> (<span class="params">status, text</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!status) &#123;</div><div class="line">        $(<span class="string">'.validateinfo'</span>).text(text);</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        $(<span class="string">'.validateinfo'</span>).text(<span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">//表单提交前验证</span></div><div class="line">$(<span class="string">"#regis-overlay input[name='email']"</span>).blur(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> status = _this.checkValidate.checkEmail($(<span class="keyword">this</span>).attr(<span class="string">'value'</span>));</div><div class="line">    commonOperate(status, <span class="string">"邮箱格式不正确"</span>);</div><div class="line">&#125;).change(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> status = _this.checkValidate.checkEmail($(<span class="keyword">this</span>).attr(<span class="string">'value'</span>));</div><div class="line">    commonOperate(status, <span class="string">"邮箱格式不正确"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>把公用部分提取出来了，因为后面其实还有三个要绑定的输入框。不过这样不同的事件绑定相同的事件处理程序应该有更好的写法吧。看着相同的代码写了两遍好不爽。<br>然后是正则表达式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">checkValidate: &#123;</div><div class="line"></div><div class="line">        checkEmail: <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> re = <span class="regexp">/^[A-Za-z0-9]+([._\\-]*[a-z0-9])*@([A-Za-z0-9]+[A-Z-a-z0-9]*[A-Za-z0-9]+.)&#123;1,63&#125;[A-Za-z0-9]+$/</span>;</div><div class="line">            <span class="keyword">return</span> re.test(str);</div><div class="line">        &#125;,</div><div class="line"></div><div class="line">        checkUser: <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> re = <span class="regexp">/^[A-Za-z].*[0-9a-zA-Z]&#123;5,30&#125;$|^[A-Za-z][0-9].*[A-Za-z]&#123;5,30&#125;$/</span>;</div><div class="line">            <span class="keyword">return</span> re.test(str);</div><div class="line">        &#125;,</div><div class="line"></div><div class="line">        checkPassword: <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> re = <span class="regexp">/^[A-Za-z0-9]+$/</span>;</div><div class="line">            <span class="keyword">return</span> re.test(str);</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>写得好臭的感觉= =不过多多少少又对正则入门了一些。对于：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">reurn re.test(str);</div><div class="line"><span class="comment">//</span></div><div class="line"><span class="keyword">if</span>(re.test(str))&#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>本来是下面这样写的，然后WebStorm帮我改成了上面这种/(ㄒoㄒ)/~~<br>正则表达式验证：<a href="http://tool.chinaz.com/regex/?jdfwkey=t2rhx" target="_blank" rel="external">正则表达式验证</a></p>
+<h3 id="表单提交"><a href="#表单提交" class="headerlink" title="表单提交"></a>表单提交</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">submitForm: <span class="function"><span class="keyword">function</span> (<span class="params">btn, tform, turl</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (btn.attr(<span class="string">"id"</span>) == <span class="string">'logS'</span>) &#123;</div><div class="line">        btn.click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="comment">///code</span></div><div class="line">        &#125;)</div><div class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">//通用方法 给所有表单使用</span></div><div class="line">                btn.click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                    tform.submit();</div><div class="line">                &#125;)</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p>因为在重构的时候所有按钮都用<code>&lt;a&gt;</code>标签来写了，所以后台一直在喊”哇不是吧你怎么这么坑啊submit在哪里啊”…<br>所以写了个方法给他调用，不过要在每个要提交的按钮加个Id咯，还有form也要=。=然后在一些特定的按钮就加了一些判断，普通表单直接提交，像登陆注册这种就做了一层合法性验证。</p>
+<h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><p>这次用了很多。在表单提交啊，聊天视频同步啊，搜索啊，添加信息什么的都用到了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">    url: turl,</div><div class="line">    data: $(<span class="string">"#loginForm"</span>).serialize(),</div><div class="line">    dataType: <span class="string">'json'</span>,</div><div class="line">    type: <span class="string">'POST'</span>,</div><div class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (data.status == <span class="number">1</span>) &#123;</div><div class="line">                tform.submit();</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!data.content.verifyresult) &#123;</div><div class="line">                <span class="built_in">console</span>.log(data);</div><div class="line">                $(<span class="string">'.validateinfo'</span>).text(<span class="string">"验证码错误"</span>);</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!data.content.userresult) &#123;</div><div class="line">                $(<span class="string">'.validateinfo'</span>).text(<span class="string">"用户名不存在"</span>);</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!data.content.pwresult) &#123;</div><div class="line">                $(<span class="string">'.validateinfo'</span>).text(<span class="string">"密码错误"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;,</div><div class="line">        error: <span class="function"><span class="keyword">function</span> (<span class="params">XMLHttpRequest, textStatus, errorThrown</span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(XMLHttpRequest, textStatus, errorThrown);</div><div class="line">            <span class="built_in">console</span>.log($(<span class="string">"#loginForm"</span>).serialize());</div><div class="line">        &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>这个是登陆用的Ajax。也是第一个写的Ajax。<br>后台在我重构页面的时候一直催我催我”哈哈浩笙快写Ajax啊我后台函数都写好了啊就靠你了啊”…然后出现了不少坑：<br><strong>url问题</strong>：因为后台写提交链接是使用了Thinkphp的内置写法：<code>__URL__</code>，<code>__PUBLIC__</code>什么的，如果在这JS里面写，以为这个放在了静态资源那里，所以Thinkphp并不会渲染修改字符串。刚开始就妥协的写法，直接写路径，不久就出现了问题：<code>/../getpauseplay?creatermd5=</code>像这样，是绝对路径，而登陆注册框几乎在每个页面都有，所以不可能每个页面写一个路径。后来就直接给这个方法传递路径参数了，调用写在了HTML里，就能正确渲染后传值给JS这里了。<br><strong>data</strong>：刚开始查JQ的文档的时候还弄错了这个参数，用了<code>content</code>…理解成向后台发送的数据了，实际上是：</p>
+<blockquote>
+<p>content: 一个以”{字符串:正则表达式}”配对的对象，用来确定jQuery将如何解析响应，给定其内容类型。</p>
+</blockquote>
+<p>改完之后就能传递表单数据了：<code>$(&quot;#loginForm&quot;).serialize()</code></p>
+<blockquote>
+<p>serialize():序列表表格内容为字符串。</p>
+</blockquote>
+<p><strong>datatype</strong> : 这个会自动判断，不过当Ajax请求成功但是却不是你要的内容，可以设置为<code>text</code>来查看具体返回了什么。这次后台一律使用<code>json</code>来传递数据。</p>
+<p><strong>type</strong> ： 默认是<code>get</code>，有时候需要改为<code>post</code>。后台应该说清楚不然我总是请求不成功=。=</p>
+<p><strong>success</strong> ： 函数参数就是请求成功返回的数据了。然后就对数据进行各种调教…</p>
+<p><strong>error</strong> ： 这个前期总是发生=。=基本都是上面提到的问题，然后给我抛出各种错误长长的一串我也不知道是什么意思不过有些数字记下来：<br><a href="http://www.cnblogs.com/sking7/archive/2011/10/19/2217859.html" target="_blank" rel="external">AJAX状态值与状态码</a><br>一般遇到404.或者200但是textStatus返回这个：<br><code>unexpected token &lt;</code>类似这样的。设置返回内容为文本后发现数据返回的是HTML…<br>然后不断的check。一般有两个原因：</p>
+<ol>
+<li>该死的后台用了<code>dump()</code>，返回的数据带了后台测试的输出</li>
+<li>请求的地址中没有发送任何内容，会直接返回原页面…<br>写多几个Ajax后面就没什么太多的问题了。</li>
+</ol>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/05/27/Quanta杯总结-2/" data-id="cird76zdr00281klby7rpl2ut" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/05/27/Quanta杯总结-2/" data-title="Quanta杯总结-2" data-url="http://weibo.com/biousco/2015/05/27/Quanta杯总结-2/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/06/10/广外隧道口Web后台-1/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            广外隧道口Web后台（1）
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/05/26/Meteor学习笔记-1/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Meteor学习笔记-1</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

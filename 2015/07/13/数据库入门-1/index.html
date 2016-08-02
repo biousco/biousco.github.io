@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>数据库入门-1 | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="数据库,SQLServer,SQL" />
+    
+    <meta name="description" content="关系代数学
+选择select（$\sigma$）
+
+
+选择符合所给的谓词条件的元组
+
+$$\sigma_{p} (r) = \left \{ t|t\in r\; and \; p(t) \right \}$$
+p是条件谓词
+$$\sigma_{deptname=”Physics”}(instructor)$$
+
+投影project（$\prod$）
+
+
+选择表中对应属性名的元组
+
+$$\prod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库入门-1">
+<meta property="og:url" content="http://weibo.com/biousco/2015/07/13/数据库入门-1/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="关系代数学
+选择select（$\sigma$）
+
+
+选择符合所给的谓词条件的元组
+
+$$\sigma_{p} (r) = \left \{ t|t\in r\; and \; p(t) \right \}$$
+p是条件谓词
+$$\sigma_{deptname=”Physics”}(instructor)$$
+
+投影project（$\prod$）
+
+
+选择表中对应属性名的元组
+
+$$\prod">
+<meta property="og:updated_time" content="2015-07-13T08:42:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库入门-1">
+<meta name="twitter:description" content="关系代数学
+选择select（$\sigma$）
+
+
+选择符合所给的谓词条件的元组
+
+$$\sigma_{p} (r) = \left \{ t|t\in r\; and \; p(t) \right \}$$
+p是条件谓词
+$$\sigma_{deptname=”Physics”}(instructor)$$
+
+投影project（$\prod$）
+
+
+选择表中对应属性名的元组
+
+$$\prod">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/计算机本科知识/">计算机本科知识</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-数据库入门-1" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        数据库入门-1
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/07/13/数据库入门-1/" class="article-date">
+    <time datetime="2015-07-13T08:28:40.000Z" itemprop="datePublished">2015-07-13</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLServer/">SQLServer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="关系代数学"><a href="#关系代数学" class="headerlink" title="关系代数学"></a>关系代数学</h2><ul>
+<li>选择select（$\sigma$）</li>
+</ul>
+<ol>
+<li>选择符合所给的谓词条件的元组</li>
+</ol>
+<p>$$\sigma_{p} (r) = \left \{ t|t\in r\; and \; p(t) \right \}$$</p>
+<p>p是条件谓词</p>
+<p>$$\sigma_{deptname=”Physics”}(instructor)$$</p>
+<ul>
+<li>投影project（$\prod$）</li>
+</ul>
+<ol>
+<li>选择表中对应属性名的元组</li>
+</ol>
+<p>$$\prod_{A1,A2,A3…,Ak}(r)$$</p>
+<p>A是属性名</p>
+<p>$$\prod_{deptname,salary}(instructor)$$</p>
+<a id="more"></a>
+<ul>
+<li>取并集union（$\cup$）</li>
+<li>减法set difference（-）</li>
+<li>笛卡儿积Cartesian-Product（X）</li>
+<li>重命名Rename</li>
+<li>取交集Set-Intersection（$\bigcap $）</li>
+<li>自然连接Natural-Join（$\triangleright\! \triangleleft $）</li>
+</ul>
+<h2 id="SQL查询语句"><a href="#SQL查询语句" class="headerlink" title="SQL查询语句"></a>SQL查询语句</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> Student</div><div class="line">  (Sno <span class="built_in">char</span>(<span class="number">5</span>) <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">    Sname <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">unique</span>,</div><div class="line">    Ssex <span class="built_in">char</span>(<span class="number">1</span>));</div><div class="line"></div><div class="line"><span class="keyword">drop</span> <span class="keyword">table</span> student;</div><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> student;</div><div class="line"></div><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> student <span class="keyword">add</span> <span class="keyword">time</span> Datetime;</div><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">drop</span> <span class="keyword">time</span>;</div><div class="line"></div><div class="line"><span class="comment">-- SQLServer不支持natural join</span></div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> instructor <span class="keyword">natural</span> <span class="keyword">join</span> teaches.</div><div class="line"><span class="keyword">select</span> <span class="keyword">name</span>, course_id <span class="keyword">from</span> instructor, teaches <span class="keyword">where</span> instructor.ID = teaches.ID;</div><div class="line"></div><div class="line"><span class="comment">-- natural join 默认选择具有相同值的属性列进行连接 删掉重复的列</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> instructor <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'%char%'</span> escape <span class="string">'c'</span>;</div><div class="line"></div><div class="line"><span class="comment">--order by</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> <span class="keyword">name</span> <span class="keyword">from</span> instructor <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">name</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> <span class="keyword">name</span> <span class="keyword">from</span> instructor <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">name</span> <span class="keyword">desc</span></div><div class="line"></div><div class="line"><span class="comment">-- between</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> instructor <span class="keyword">where</span> salary <span class="keyword">between</span> <span class="number">900000</span> <span class="keyword">and</span> <span class="number">10000000</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> instructor <span class="keyword">where</span> salary <span class="keyword">not</span> <span class="keyword">between</span> <span class="number">900000</span> <span class="keyword">and</span> <span class="number">10000000</span></div><div class="line"></div><div class="line"><span class="comment">-- union 相当于并集</span></div><div class="line">(<span class="keyword">select</span> course_id <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">where</span> semester = <span class="string">'Fall'</span> <span class="keyword">and</span> <span class="keyword">year</span> = <span class="number">2009</span>)</div><div class="line"><span class="keyword">union</span></div><div class="line">(<span class="keyword">select</span> course_id <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">where</span> semester = <span class="string">'Spring'</span> <span class="keyword">and</span> <span class="keyword">year</span> = <span class="number">2010</span>)</div><div class="line"></div><div class="line"><span class="comment">-- intersect 相当于交集</span></div><div class="line">(<span class="keyword">select</span> course_id <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">where</span> semester = <span class="string">'Fall'</span> <span class="keyword">and</span> <span class="keyword">year</span> = <span class="number">2009</span>)</div><div class="line"><span class="keyword">intersect</span></div><div class="line">(<span class="keyword">select</span> course_id <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">where</span> semester = <span class="string">'Spring'</span> <span class="keyword">and</span> <span class="keyword">year</span> = <span class="number">2010</span>)</div><div class="line"></div><div class="line"><span class="comment">-- except 相当于减法</span></div><div class="line">(<span class="keyword">select</span> course_id <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">where</span> semester = <span class="string">'Fall'</span> <span class="keyword">and</span> <span class="keyword">year</span> = <span class="number">2009</span>)</div><div class="line"><span class="keyword">except</span></div><div class="line">(<span class="keyword">select</span> course_id <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">where</span> semester = <span class="string">'Spring'</span> <span class="keyword">and</span> <span class="keyword">year</span> = <span class="number">2010</span>)</div><div class="line"></div><div class="line"><span class="comment">-- union intersect except 默认自动删除重复的行 加上all 取消删除 但是SQLServer不支持all这种写法</span></div><div class="line"><span class="comment">-- is null也是操作符</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> instructor <span class="keyword">where</span> salary <span class="keyword">is</span> <span class="literal">null</span></div><div class="line"></div><div class="line"><span class="comment">-- 聚合函数</span></div><div class="line"><span class="keyword">avg</span>() <span class="keyword">min</span>() <span class="keyword">max</span>() <span class="keyword">sum</span>() <span class="keyword">count</span>()</div><div class="line"><span class="comment">-- select 中出现聚集函数之外的属性必须在group by中也出现</span></div><div class="line"><span class="keyword">select</span> dept_name, <span class="keyword">avg</span> (salary) <span class="keyword">from</span> instructor <span class="keyword">group</span> <span class="keyword">by</span> dept_name;</div><div class="line"><span class="comment">-- having 中也可以出现where，但不能是select中的属性</span></div><div class="line"><span class="keyword">select</span> dept_name, <span class="keyword">avg</span> (salary)</div><div class="line">  <span class="keyword">from</span> instructor</div><div class="line">  <span class="keyword">where</span> <span class="keyword">ID</span> = <span class="string">'Biology'</span></div><div class="line">  <span class="keyword">group</span> <span class="keyword">by</span> dept_name</div><div class="line">  <span class="keyword">having</span> <span class="keyword">avg</span> (salary) &gt; <span class="number">42000</span>;</div><div class="line"></div><div class="line"><span class="comment">-- Subqueries嵌套子查询</span></div><div class="line"><span class="comment">-- in 和 not in/exis 和 not exis</span></div><div class="line"></div><div class="line"><span class="comment">-- in 和 intersect 有相同的效果</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> course_id <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">where</span> semester = <span class="string">'Fall'</span> <span class="keyword">and</span> <span class="keyword">year</span>= <span class="number">2009</span></div><div class="line"><span class="keyword">and</span> course_id <span class="keyword">in</span></div><div class="line">(<span class="keyword">select</span> course_id <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">where</span> semester = <span class="string">'Spring'</span> <span class="keyword">and</span> <span class="keyword">year</span>= <span class="number">2010</span>);</div><div class="line"><span class="comment">-- 等价</span></div><div class="line">(<span class="keyword">select</span> course_id <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">where</span> semester = <span class="string">'Fall'</span> <span class="keyword">and</span> <span class="keyword">year</span> = <span class="number">2009</span>)</div><div class="line"><span class="keyword">intersect</span></div><div class="line">(<span class="keyword">select</span> course_id <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">where</span> semester = <span class="string">'Spring'</span> <span class="keyword">and</span> <span class="keyword">year</span> = <span class="number">2010</span>)</div><div class="line"></div><div class="line"><span class="comment">--Find courses offered in Fall 2009 but not in Spring 2010</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> course_i <span class="keyword">from</span> <span class="keyword">section</span></div><div class="line"><span class="keyword">where</span> semester = ’Fall’ <span class="keyword">and</span> <span class="keyword">year</span>= <span class="number">2009</span> <span class="keyword">and</span> course_id  <span class="keyword">not</span> <span class="keyword">in</span></div><div class="line">(<span class="keyword">select</span> course_id <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">where</span> semester = ’Spring’ <span class="keyword">and</span> <span class="keyword">year</span>= <span class="number">2010</span>);</div><div class="line"></div><div class="line"><span class="comment">--查询与‘柳橙’在同一个系学习的学生。</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">id</span>,<span class="keyword">name</span>,dept <span class="keyword">from</span> student</div><div class="line"><span class="keyword">where</span> dept <span class="keyword">in</span></div><div class="line">(<span class="keyword">select</span> dept <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'柳橙'</span>)</div><div class="line"></div><div class="line"><span class="comment">-- exist 有点搞不懂 exist或者not exist是把主查询的字段传到后边的查询中作为条件，返回值是TRUE或者FALSE。</span></div><div class="line"><span class="keyword">EXISTS</span> <span class="literal">TRUE</span>，那么就是查询条件成立，结果会显示出来。<span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="literal">TRUE</span>，则为<span class="literal">FALSE</span>，查询连接条件不成立。</div><div class="line"><span class="keyword">select</span> course_id <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">as</span> S</div><div class="line"><span class="keyword">where</span> semester = <span class="string">'Fall'</span> <span class="keyword">and</span> <span class="keyword">year</span> = <span class="number">2009</span></div><div class="line"><span class="keyword">and</span> <span class="keyword">exists</span></div><div class="line">(<span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">as</span> Twhere semester = <span class="string">'Spring'</span> <span class="keyword">and</span> <span class="keyword">year</span>= <span class="number">2010</span> <span class="keyword">and</span> S.course_id= T.course_id)</div><div class="line"></div><div class="line"><span class="comment">-- not exist 和 except 一起使用</span></div><div class="line"><span class="comment">-- Find all students who have taken all courses offered in the Biology department.</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> S.ID, S.name <span class="keyword">from</span> student <span class="keyword">as</span> S</div><div class="line"><span class="keyword">where</span> <span class="keyword">not</span> <span class="keyword">exists</span> (</div><div class="line">(<span class="keyword">select</span> course_id <span class="keyword">from</span> course <span class="keyword">where</span> dept_name = <span class="string">'Biology'</span>)</div><div class="line"><span class="keyword">except</span></div><div class="line">(<span class="keyword">select</span> T.course_id <span class="keyword">from</span> takes <span class="keyword">as</span> T <span class="keyword">where</span> S.ID = T.ID)</div><div class="line">);</div><div class="line"></div><div class="line"><span class="comment">-- with 新建临时的表给下面的查询使用</span></div><div class="line"><span class="comment">-- Find all departments where the total salary is greater than the average of the total salary at all departments.</span></div><div class="line">with dept_total (dept_name, value) as</div><div class="line">   (<span class="keyword">select</span> dept_name, <span class="keyword">sum</span>(salary)</div><div class="line">       <span class="keyword">from</span> instructor  <span class="keyword">group</span> <span class="keyword">by</span> dept_name),</div><div class="line"> dept_total_avg(<span class="keyword">value</span>) <span class="keyword">as</span></div><div class="line">   (<span class="keyword">select</span> <span class="keyword">avg</span>(<span class="keyword">value</span>) <span class="keyword">from</span> dept_total)</div><div class="line"> <span class="keyword">select</span> dept_name</div><div class="line"> <span class="keyword">from</span> dept_total, dept_total_avg</div><div class="line"> <span class="keyword">where</span>  dept_total.value &gt;= dept_total_avg.value</div><div class="line"></div><div class="line"><span class="comment">-- delete/update/insert</span></div><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> instructor <span class="keyword">where</span> dept_name = <span class="string">'Finance'</span>;</div><div class="line"><span class="keyword">update</span> instructor <span class="keyword">set</span> salary = salary * <span class="number">0.1</span> <span class="keyword">where</span> salary &gt; <span class="number">10000</span>;</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> course<span class="keyword">values</span> (’CS<span class="number">-437</span>’, ’<span class="keyword">Database</span> Systems’, ’Comp. Sci.’, <span class="number">4</span>);</div></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/07/13/数据库入门-1/" data-id="cird76zee002n1klbafw8g7rt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/07/13/数据库入门-1/" data-title="数据库入门-1" data-url="http://weibo.com/biousco/2015/07/13/数据库入门-1/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/07/14/数据库入门-2/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            数据库入门-2
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/07/11/计算机网络-运输层/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">计算机网络-运输层</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

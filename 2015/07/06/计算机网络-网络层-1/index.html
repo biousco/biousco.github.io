@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>计算机网络-网络层-1 | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="计算机网络,网络层" />
+    
+    <meta name="description" content="网络层提供的两种服务
+电信网：面向连接，可靠传输，虚电路
+因特网：网络层向上只提供简单灵活的，无连接的，尽最大努力交付的数据报服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络-网络层-1">
+<meta property="og:url" content="http://weibo.com/biousco/2015/07/06/计算机网络-网络层-1/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="网络层提供的两种服务
+电信网：面向连接，可靠传输，虚电路
+因特网：网络层向上只提供简单灵活的，无连接的，尽最大努力交付的数据报服务">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/86509675gw1ettcudizfqj211y0lcdki.jpg">
+<meta property="og:updated_time" content="2015-07-12T12:55:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络-网络层-1">
+<meta name="twitter:description" content="网络层提供的两种服务
+电信网：面向连接，可靠传输，虚电路
+因特网：网络层向上只提供简单灵活的，无连接的，尽最大努力交付的数据报服务">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/86509675gw1ettcudizfqj211y0lcdki.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/计算机本科知识/">计算机本科知识</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-计算机网络-网络层-1" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        计算机网络-网络层-1
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/07/06/计算机网络-网络层-1/" class="article-date">
+    <time datetime="2015-07-06T12:40:30.000Z" itemprop="datePublished">2015-07-06</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络层/">网络层</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://ww2.sinaimg.cn/large/86509675gw1ettcudizfqj211y0lcdki.jpg" alt="复习复习复习复习"></p>
+<h2 id="网络层提供的两种服务"><a href="#网络层提供的两种服务" class="headerlink" title="网络层提供的两种服务"></a>网络层提供的两种服务</h2><ul>
+<li>电信网：面向连接，可靠传输，虚电路</li>
+<li>因特网：网络层向上只提供简单灵活的，无连接的，尽最大努力交付的数据报服务<br><img src="http://ww2.sinaimg.cn/large/86509675gw1ettcl7x272j20ny0ar0wm.jpg" alt="对比"></li>
+</ul>
+<a id="more"></a>
+<h2 id="网际协议IP"><a href="#网际协议IP" class="headerlink" title="网际协议IP"></a>网际协议IP</h2><ul>
+<li>是TCP/IP体系中最重要的协议之一</li>
+<li>配套使用另外三个协议：<ol>
+<li>地址解析协议ARP</li>
+<li>网际控制报文协议ICMP</li>
+<li>网际组管理协议IGMP</li>
+</ol>
+</li>
+<li>IP使用ARP，ICMP和IGMP使用IP</li>
+</ul>
+<h3 id="虚拟互联网络"><a href="#虚拟互联网络" class="headerlink" title="虚拟互联网络"></a>虚拟互联网络</h3><ul>
+<li>中间设备<ol>
+<li>物理层：转发器</li>
+<li>数据链路层：网桥或桥接器</li>
+<li>网络层：路由器</li>
+<li>网络层以上：网关</li>
+</ol>
+</li>
+<li>利用IP协议使性能各异的网络在网络层上看起来好像是一个统一的网络</li>
+</ul>
+<h3 id="分类的IP地址"><a href="#分类的IP地址" class="headerlink" title="分类的IP地址"></a>分类的IP地址</h3><h4 id="IP地址及其表示方法"><a href="#IP地址及其表示方法" class="headerlink" title="IP地址及其表示方法"></a>IP地址及其表示方法</h4><ul>
+<li>编址方法的三个阶段<ol>
+<li>分类的IP地址</li>
+<li>子网的划分</li>
+<li>构成超网</li>
+</ol>
+</li>
+</ul>
+<h4 id="分类IP地址"><a href="#分类IP地址" class="headerlink" title="分类IP地址"></a>分类IP地址</h4><ul>
+<li>由两个固定长度的字段组成：网络号和主机号</li>
+<li>一个IP地址在整个因特网范围内是唯一的</li>
+<li>由ICANN进行分配，32位标识符</li>
+<li>A，B，C类地址分别是1，2，3字节长，网络号字段的最前面有1~3位的类别位，数值分别是0，10，110</li>
+<li>一共4个字节长</li>
+<li>D类地址用于多播，前四位是1110；E类地址保留为今后所用，前四位是1111</li>
+<li>现在已经用无分类IP地址，不使用这种方法了</li>
+<li><strong>IP地址不仅仅指明一个主机，还指明主机所连接到的网络</strong></li>
+<li>点分十进制记法：每八位插入一个点，把二进制换为十进制</li>
+<li><strong>IP地址指派范围</strong><br><img src="http://ww2.sinaimg.cn/large/86509675gw1ettclbynu9j20nw04kwfu.jpg" alt="IP地址指派范围"></li>
+<li><strong>特殊IP地址</strong><br><img src="http://ww2.sinaimg.cn/large/86509675gw1ettclgc5xgj20ny06kq4m.jpg" alt="特殊IP地址"></li>
+<li>IP地址特点<ol>
+<li>IP地址管理机构只分配网络号</li>
+<li>路由器仅根据网络号转发分组，减少路由表的空间和查表时间</li>
+<li>主机连接到两个网络以上时，就具有两个相应的IP地址</li>
+<li>用转发器或网桥连接起来的若干个局域网仍为一个网络</li>
+<li>路由器有两个或两个以上的IP地址</li>
+</ol>
+</li>
+</ul>
+<h3 id="IP地址与硬件地址"><a href="#IP地址与硬件地址" class="headerlink" title="IP地址与硬件地址"></a>IP地址与硬件地址</h3><ul>
+<li>IP地址放在IP数据报的首部，硬件地址放在MAC帧的首部</li>
+<li>数据链路层看不见数据报的IP地址</li>
+<li>路由器只根据目的站的IP地址的网络号进行路由选择</li>
+<li>IP数据报的源地址和目的地址一直不改变</li>
+<li>MAC帧在不同网络传送时，首部中的源地址和目的地址要发生变化，但IP层却不知道</li>
+</ul>
+<h3 id="地址解析协议ARP"><a href="#地址解析协议ARP" class="headerlink" title="地址解析协议ARP"></a>地址解析协议ARP</h3><ul>
+<li>知道一个机器的IP地址来找出硬件地址</li>
+<li>解决方法是：在主机ARP高速缓存中存放一个从IP地址到硬件地址的映射表，这个映射表经常动态更新</li>
+<li>每个主机都有<strong>ARP高速缓存</strong>（ARP cache），里面有<strong>本局域网上</strong>的各主机和路由器的IP地址到硬件地址的映射表</li>
+<li>具体过程：<ol>
+<li>主机A向本局域网的B发送数据报时，在ARP cache中看有没有B的IP地址，有的话查出硬件地址，改写MAC帧的源地址和目的地址，发送这个MAC帧</li>
+<li>如果没有（B刚入网，A刚加电，高速缓存是空的），运行ARP，找出硬件地址</li>
+</ol>
+</li>
+<li><strong>ARP运行</strong><ol>
+<li>ARP进程在本局域网广播发送ARP请求分组，包含的信息：主机的IP地址和硬件地址，需要知道某个IP地址的硬件地址</li>
+<li>局域网内所有主机都接受到，如果其他主机的IP地址和请求分组请求的IP地址不一样，就不理睬</li>
+<li>如果IP地址和请求的IP地址一致，接受这个请求分组，并向源主机发送相应分组，包含信息：IP地址和硬件地址。这是一个单播</li>
+<li>源主机接收到响应分组后，向高速缓存中写入映射</li>
+<li>目的主机也会把源主机中的请求分组中的映射写入高速缓存</li>
+</ol>
+</li>
+<li>每一个映射项目都有生存时间，10~20分钟</li>
+<li>ARP是解决<strong>同一个局域网</strong>上的主机或路由器的IP地址和硬件地址的映射问题</li>
+<li>不在同一个局域网上的是通过路由器的转发表，找出下一跳的路由器，然后才用ARP找出下一跳的路由器的硬件地址</li>
+<li>为何需要IP地址和ARP来找出硬件地址？直接硬件地址转发不好吗？<ol>
+<li>世界上有各种网络，使用不同的硬件地址</li>
+<li>由于1，主机和用户需要非常复杂的硬件地址转换工作，不可能</li>
+</ol>
+</li>
+</ul>
+<h3 id="IP数据报的格式"><a href="#IP数据报的格式" class="headerlink" title="IP数据报的格式"></a>IP数据报的格式</h3><ul>
+<li>以4个字节为单位进行描述</li>
+<li>由首部和数据两部分组成。首部前一部分是固定长度，<strong>20字节</strong>；后面是可选字段，长度可变</li>
+</ul>
+<h4 id="IP数据报首部的固定本分中的各字段"><a href="#IP数据报首部的固定本分中的各字段" class="headerlink" title="IP数据报首部的固定本分中的各字段"></a>IP数据报首部的固定本分中的各字段</h4><ol>
+<li><strong>版本</strong>：4位，IP协议的版本（IPv4或IPv6）</li>
+<li><strong>首部长度</strong>：4位，单位是32位字（4字节），所以最小值是5（IP首部长度为20字节），最多15，60字节。最常用就是5，（0101）</li>
+<li><strong>区分服务</strong>：8位，使用区分服务才用</li>
+<li><strong>总长度</strong>：16位，首部和数据之和的长度<ul>
+<li>由于数据链路层的<strong>最大传送单元MTU</strong>的限制，如果传送的数据报长度超过MTU，那么必须分片</li>
+<li>IP数据报越短，路由器转发越快</li>
+<li>IP数据报越长，传输效率越高</li>
+<li>分片后总长度代表分片后每一个分片的首部长度与该分片的数据长度的总和</li>
+</ul>
+</li>
+<li><strong>标识(identification)</strong>：16位，使分片后的各数据报片能正确地重装，存放着IP软件在存储器中的计数器的值，计数器每产生一个数据报就加1</li>
+<li><strong>标志(flag)</strong>：3位，两位有意义<ul>
+<li>最低位是MF（More Fragment）。<strong>MF=1代表还有分片</strong>，MF=0代表这是数据包片中的最后一个</li>
+<li>中间一位是DF（Dont’t Fragment）。不能分片，<strong>DF=0时才允许分片</strong></li>
+</ul>
+</li>
+<li><strong>片偏移</strong>：13位，较长的分组在分片后，某片原分组中的相对位置。以8个字节为单位<ul>
+<li>计算：先确定首部长度（一般是20字节），然后划分数据长度</li>
+<li><strong>片偏移 = 数据开始的字节号 / 8</strong></li>
+<li>要修改有关字段的值：总长度，MF，DF，片偏移</li>
+<li>如果某个报片经过某个网络还需要分片，片偏移计算公式仍然不变</li>
+</ul>
+</li>
+<li><strong>生存时间</strong>：8位，TTL，数据报在网络中的寿命。防止无法交付的数据报无限制地在因特网中兜圈子。以前是以秒作为单位，TTL为0时丢弃；如今是跳数限制，表明可以经过多少个路由器，最多255。设置为1代表只能在局域网中传送。为0时被路由器丢弃。</li>
+<li><strong>协议</strong>：8位，指出此数据报携带的数据是何种协议。IP是4，TCP是6，UDP是17，IPv6是41</li>
+<li><strong>首部检验和</strong>：16位，只检验数据报首部，不包括数据部分；不使用CRC，另外一种算法：<ul>
+<li>首部分为16位字的序列，检验和字段置为0</li>
+<li>反码运算把16位字相加后，得到的和的反码写入检验和字段</li>
+<li>接收方做同样的事，（但这时检验和不是0），如果16位字相加后的反码是0说明没有差错，否则丢弃</li>
+</ul>
+</li>
+<li><strong>源地址</strong>：32位</li>
+<li><strong>目的地址</strong>：32位</li>
+</ol>
+<h3 id="IP层转发分组的流程"><a href="#IP层转发分组的流程" class="headerlink" title="IP层转发分组的流程"></a>IP层转发分组的流程</h3><ul>
+<li>分组在互联网上转发分组时，是从一个路由器转发到下一个路由器</li>
+<li>IP数据报最终一定可以找到目的主机所在目的网络上的转发器</li>
+<li>只有到达最后一个路由器时，才向目的主机进行直接交付</li>
+<li><strong>分组转发算法</strong><ul>
+<li>从数据报首部提取目的主机IP地址D，得出网络地址N</li>
+<li>如果N就在与路由器相连的某个网络地址，直接交付（ARP转换为硬件地址，封装MAC帧，发送帧），否则简介交付</li>
+<li>如果有目的地址为D的特定主机路由，就传送数据报给路由指明的下一跳路由器</li>
+<li>如果有到N的路由，就传送数据报给路由指明的下一跳路由器</li>
+<li>如果有默认路由，就传送数据报给路由指明的默认路由器</li>
+<li>报告转发出错</li>
+</ul>
+</li>
+</ul>
+<h2 id="划分子网和构造超网"><a href="#划分子网和构造超网" class="headerlink" title="划分子网和构造超网"></a>划分子网和构造超网</h2><h3 id="划分子网"><a href="#划分子网" class="headerlink" title="划分子网"></a>划分子网</h3><ul>
+<li><p>为何划分</p>
+<ol>
+<li>IP地址空间利用率有时候很低</li>
+<li>给每一个物理网络分配一个网络号会使路由表变得太大使网络性能变坏</li>
+<li>两级IP地址不够灵活</li>
+</ol>
+</li>
+<li><p>划分子网思路</p>
+<ol>
+<li>单位可以将物理网络划分为若干个子网，对外仍然表现为一个网络</li>
+<li>划分的方法是从网络的主机号借用若干位作为子网号<br><code>IP地址 ::= { &lt;网络号&gt;, &lt;子网号&gt;, &lt;主机号&gt; }</code></li>
+<li>路由器仍然根据IP数据报的目的网络号找到路由器，但路由器接收到后，按照目的网络号和子网号找到目的子网，再将IP数据报交给主机</li>
+</ol>
+</li>
+</ul>
+<h3 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h3><ol>
+<li>不管网络有没有划分子网，只要把<strong>子网掩码和IP地址进行逐位与运算</strong>，就能得出网络地址</li>
+<li>如果一个网络不划分子网，那么子网掩码就使用默认子网掩码</li>
+<li>默认子网掩码就是分类地址中的网络号全为255，其余为0：A类：255.0.0.0，转为二进制就是<code>11111111|00000000|00000000|00000000</code>。C类就是255.255.255.0</li>
+<li>子网划分有多种方法，确定好子网号的位数就能求出子网掩码和子网数，每个子网的主机数：（B类地址为例，使用固定长度子网）<ul>
+<li>子网号位数为2，说明子网掩码是：<br><code>11111111|11111111|11000000|00000000</code></li>
+<li>也就是255.255.192.0</li>
+<li>子网数是<code>11</code>这两位取所有的取值，<code>00</code> <code>01</code> <code>10</code> <code>11</code></li>
+<li>由于不能有全0和全1的情况，所以子网数为2，也就是2^n-2种子网</li>
+<li>子网的主机数：<code>000000|00000000</code>这里取最大值减去2，16382</li>
+</ul>
+</li>
+<li>现在全1和全0的子网号也可以使用</li>
+<li>划分子网增加了灵活性，却减少了能够连接在网络上的主机总数</li>
+<li>同样的IP地址和不同的子网掩码可以得出相同的网络地址</li>
+</ol>
+<h3 id="使用子网时分组的转发"><a href="#使用子网时分组的转发" class="headerlink" title="使用子网时分组的转发"></a>使用子网时分组的转发</h3><ul>
+<li>使用子网划分后，路由表必须包含：<strong>目的网络地址，子网掩码，下一跳地址</strong></li>
+<li>和之前的分组转发算法不同的是：分析转发表中的地址时，用各网络的子网掩码和目的IP地址逐位与操作，看是否与网络地址匹配</li>
+</ul>
+<h3 id="无分类编址CIDR（构成超网）"><a href="#无分类编址CIDR（构成超网）" class="headerlink" title="无分类编址CIDR（构成超网）"></a>无分类编址CIDR（构成超网）</h3><h4 id="网络前缀"><a href="#网络前缀" class="headerlink" title="网络前缀"></a>网络前缀</h4><ul>
+<li>由变长子网掩码VLSM研究而来，正式名称是无分类域间路由选择CIDR</li>
+<li>消除了A,B,C类地址和子网划分的概念</li>
+<li>32位地址划分为<strong>网络前缀</strong>和<strong>主机号</strong>，还使用斜线记法，斜线后面是网络前缀所占的位数<br><code>128.14.35.7/20 = 10000000 00001110 00100011 00000111</code><br>前20位是网络前缀</li>
+<li>网络前缀都相同的连续IP地址组成CIDR地址块</li>
+<li>求最大地址和最小地址：主机号都置0和置1之间的范围</li>
+<li>CIDR使用32位的地址掩码，也可以称为子网掩码，斜线后面的数字就是地址掩码中1的个数</li>
+<li><strong>路由聚合</strong>：由于一个CIDR地址块中有很多地址，所以在路由表中利用CIDR地址块查找目的网络，地址的聚合称为路由聚合，也叫构成超网</li>
+<li>能有效分配IPv4的资源，一般地址块包含多个C类地址</li>
+</ul>
+<h4 id="最长前缀匹配"><a href="#最长前缀匹配" class="headerlink" title="最长前缀匹配"></a>最长前缀匹配</h4><ul>
+<li>路由表项目改变：由<strong>网络前缀</strong>和<strong>下一跳地址</strong>组成</li>
+<li>由于查找路由表会有多个结果，选择的时候是从匹配结果中选择具有最长网络前缀的路由，即最长前缀匹配</li>
+<li>将目的IP地址和路由表中的项目的掩码逐位相与，查看哪个匹配最长</li>
+</ul>
+<h3 id="二叉线索查找路由表"><a href="#二叉线索查找路由表" class="headerlink" title="二叉线索查找路由表"></a>二叉线索查找路由表</h3><ul>
+<li>把路由表存放在二叉线索中，自上而下按层次进行查找</li>
+<li>搜索到叶节点时将目的地址和该叶子节点的子网掩码进行按位与运算看是否匹配</li>
+<li>为了提高技术还是用了压缩技术</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/07/06/计算机网络-网络层-1/" data-id="cird76ze8002h1klb1dye6e6i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/07/06/计算机网络-网络层-1/" data-title="计算机网络-网络层-1" data-url="http://weibo.com/biousco/2015/07/06/计算机网络-网络层-1/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/07/06/计算机网络-网络层-2/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            计算机网络-网络层-2
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/07/06/计算机网络-数据链路层/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">计算机网络-数据链路层</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

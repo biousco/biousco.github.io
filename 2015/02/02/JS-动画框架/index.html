@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>JS-动画框架 | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JS,慕课网" />
+    
+    <meta name="description" content="准备把慕课网上的前端教程都过一遍啦啦啦">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS-动画框架">
+<meta property="og:url" content="http://weibo.com/biousco/2015/02/02/JS-动画框架/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="准备把慕课网上的前端教程都过一遍啦啦啦">
+<meta property="og:updated_time" content="2015-05-01T08:56:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS-动画框架">
+<meta name="twitter:description" content="准备把慕课网上的前端教程都过一遍啦啦啦">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/前端/">前端</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-JS-动画框架" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        JS-动画框架
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/02/02/JS-动画框架/" class="article-date">
+    <time datetime="2015-02-02T14:24:31.000Z" itemprop="datePublished">2015-02-02</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/慕课网/">慕课网</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>慕课网教程地址：<a href="http://www.imooc.com/learn/167" target="_blank" rel="external">JS动画效果</a></p>
+<h2 id="速度动画"><a href="#速度动画" class="headerlink" title="速度动画"></a>速度动画</h2><p>本门教程的基础。实现的是分享按钮的移出。首先要知道一个东西：定时器</p>
+<blockquote>
+<p><strong>HTML DOM setInterval() 方法</strong><br>定义和用法<br>setInterval() 方法可按照指定的周期（以毫秒计）来调用函数或计算表达式。<br>setInterval() 方法会不停地调用函数，直到 clearInterval() 被调用或窗口被关闭。由 setInterval() 返回的 ID 值可用作 clearInterval() 方法的参数。<br>语法<br><code>setInterval(code,millisec[,&quot;lang&quot;])</code><br>–W3Cschool</p>
+</blockquote>
+<p>网页中的JS就是不断的执行改变属性的函数，比如距离，透明度来达到动画的效果:<br><code>timer = setInterval(function (){},30)</code><br>后面的就是时间啦，每隔多少秒重复执行前面的（匿名）函数。<br>用<code>clearInterval(timer)</code>来结束计时器。<br>最基本的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> oDiv = <span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>);</div><div class="line">	oDiv.onmouseover = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		startMove(<span class="number">0</span>);</div><div class="line">	&#125;</div><div class="line">	oDiv.onmouseout = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		startMove(<span class="number">-200</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> timer = <span class="literal">null</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startMove</span> (<span class="params">iTarget</span>) </span>&#123;</div><div class="line">	clearInterval(timer);</div><div class="line">	<span class="keyword">var</span> oDiv = <span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>);</div><div class="line">	timer = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">var</span> speed = <span class="number">0</span>;</div><div class="line">		<span class="keyword">if</span> (oDiv.offsetLeft &gt; iTarget) &#123;</div><div class="line">			speed = <span class="number">-10</span>;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			speed = <span class="number">10</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (oDiv.offsetLeft == iTarget) &#123;</div><div class="line">			clearInterval(timer);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			oDiv.style.left = oDiv.offsetLeft+speed+<span class="string">'px'</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;,<span class="number">30</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>首先是鼠标一入一出的时候执行函数。</p>
+<ul>
+<li>当函数的开头没有<code>clearInterval(timer)</code>时，每次移入DIV就会触发一次定时器：<code>timer = setInterval()</code>，旧的定时器还没关闭，新的定时器就开始工作了，就会造成叠加，速度就会不是匀速运动而是越来越快（鼠标放在上面越久）</li>
+<li>下面的逻辑就通过对动画的分析能知道应该怎么写。</li>
+</ul>
+<a id="more"></a>
+<h2 id="obj-style-left和obj-offsetLeft的区别"><a href="#obj-style-left和obj-offsetLeft的区别" class="headerlink" title="obj.style.left和obj.offsetLeft的区别"></a>obj.style.left和obj.offsetLeft的区别</h2><p>obj.style.left 返回的属性是String类型，<br>obj.offsetLeft 返回的属性是int类型；<br>此外offsetLeft是指：<strong>当前对象的外边框到它上层对象的内边框之间的距离</strong> 意思就是会包括padding border margin。后面使用的时候会有些不方便。<br>这两个东西用的时候是这样的：<br><code>obj.style.left = obj.offsetLeft + 10 + &#39;px&#39;;</code><br>看，最后把他转化为字符串。</p>
+<h2 id="透明度动画"><a href="#透明度动画" class="headerlink" title="透明度动画"></a>透明度动画</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">filter</span>: <span class="selector-tag">alpha</span>(<span class="selector-tag">opacity</span><span class="selector-pseudo">:30)</span>;</div><div class="line"><span class="selector-tag">opacity</span>: 0<span class="selector-class">.3</span>;</div></pre></td></tr></table></figure>
+<p>css里面写透明度是这样的。<br>那么在JS里需要稍微处理一下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">obj.style.filter = <span class="string">'alpha(opacity:'</span>+obj.alpha+<span class="string">')'</span>;</div><div class="line">obj.style.opacity = obj.alpha/<span class="number">100</span>;</div></pre></td></tr></table></figure></p>
+<p>另外由于JS没有像之前那样obj.offsetWidth这样的属性可以获取来比较当前透明度和目标透明度，所以可以先自定义一个透明度来进行比较。</p>
+<h2 id="缓冲动画"><a href="#缓冲动画" class="headerlink" title="缓冲动画"></a>缓冲动画</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> speedX = iTarget-oDiv.offsetLeft;</div><div class="line"><span class="keyword">var</span> speed = (speedX)*(speedX)*<span class="number">0.001</span>;</div><div class="line"><span class="keyword">if</span> (speedX&lt;<span class="number">0</span>) &#123;</div><div class="line">	<span class="keyword">var</span> speed = -speed;</div><div class="line">&#125;;</div><div class="line">speed = speed&gt;<span class="number">0</span>?<span class="built_in">Math</span>.ceil(speed):<span class="built_in">Math</span>.floor(speed);</div></pre></td></tr></table></figure>
+<ul>
+<li>其实就是需要改变速度曲线啦~<code>var speedX = iTarget-oDiv.offsetLeft;</code><br><code>var speed = (speedX)*(speedX)*0.001;</code>这是我自己尝试的一个函数，二次函数。教程中是用一次函数：<code>var speed = (iTarget-oDiv.offsetLeft)/8</code>显然教程的比较方便计算哈哈。不过实现的效果也是差不多，注意系数。另外我这个是二次函数，所以速度的正负需要处理。如果是一次函数就不需要。</li>
+<li>然后为了避免小数点的产生（px没有小数），用两个函数：<code>Math.ceil()</code>和<code>Math.floor()</code>前面是向上取整，后面是向下取整。</li>
+<li>而且这样写还有个好处，那就是当用整数时，如果没有刚刚好整除，达到相应的目标值时，会不停的抖抖抖抖。但是这样写会保证最后是1px慢慢加，一定可以达到目标值。</li>
+</ul>
+<p>##多物体运动<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">var</span> aLi = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'li'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; aLi.length; i++) &#123;</div><div class="line">	aLi[i].timer = <span class="literal">null</span>;</div><div class="line">	aLi[i].alpha = <span class="number">30</span>;</div><div class="line">	aLi[i].onmouseover = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		startMove(<span class="keyword">this</span>,<span class="number">400</span>);</div><div class="line">	&#125;</div><div class="line">	aLi[i].onmouseout = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		startMove(<span class="keyword">this</span>,<span class="number">200</span>);</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>循环给每一个标签都绑定事件</li>
+<li>给每一个标签都加上自己的定时器。避免用同一个定时器混淆动画。</li>
+<li>绑定事件需要使用this表示给当前的标签执行动画。有点不太明白=。=</li>
+</ul>
+<h2 id="获取样式"><a href="#获取样式" class="headerlink" title="获取样式"></a>获取样式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStyle</span> (<span class="params">obj,attr</span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (obj.currentStyle) &#123;</div><div class="line">		<span class="keyword">return</span> obj.currentStyle[attr];</div><div class="line">	&#125; <span class="keyword">else</span> </div><div class="line">	&#123;</div><div class="line">		<span class="keyword">return</span> getComputedStyle(obj,<span class="literal">false</span>)[attr];</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>自定义的一个函数，用于获取obj的CSS属性值。前者的<code>currentStyle</code>是给IE用的，后者的<code>getComputedStyle(obj,false))</code>是给FF用的。返回的属性值是String类型，需要用parseInt()转化为数字类型。这个是为了解决offsetWidth的一个好像是bug的bug。</p>
+<h2 id="任意属性值"><a href="#任意属性值" class="headerlink" title="任意属性值"></a>任意属性值</h2><p>使代码更为通用，结合前面的<code>getStyle()</code>把运动函数修改一下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startMove</span> (<span class="params">obj,attr,iTarget</span>) </span>&#123;</div><div class="line">	clearInterval(obj.timer);</div><div class="line">	obj.timer = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">var</span> oattr = <span class="number">0</span>;</div><div class="line">		<span class="keyword">if</span> (attr == <span class="string">'opacity'</span>) &#123;</div><div class="line">			oattr = <span class="built_in">Math</span>.round(<span class="built_in">parseFloat</span>(getStyle(obj,attr))*<span class="number">100</span>);</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			oattr = <span class="built_in">parseInt</span>(getStyle(obj,attr));</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">var</span> speed = (iTarget-oattr)/<span class="number">8</span>;</div><div class="line">		speed = speed &gt;<span class="number">0</span>?<span class="built_in">Math</span>.ceil(speed):<span class="built_in">Math</span>.floor(speed);</div><div class="line">		<span class="keyword">if</span> (oattr == iTarget) &#123;</div><div class="line">			clearInterval(obj.timer);</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">if</span> ( attr == <span class="string">'opacity'</span>) &#123;</div><div class="line">				obj.style.filter = <span class="string">'alpha(opacity:'</span> + (oattr + speed) + <span class="string">')'</span>;</div><div class="line">				obj.style.opacity = <span class="built_in">Math</span>.round((oattr + speed)/<span class="number">100</span>);</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				obj.style[attr] = oattr + speed + <span class="string">'px'</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;,<span class="number">30</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>增加传递的参数，属性值；</li>
+<li>判断是否是透明度，然后使用<code>getStyle()</code>进行处理，还有有小数的时候使用<code>Math.round()</code>进行四舍五入；</li>
+<li><code>obj.style.attr</code> 可以写成<code>obj.style[attr]</code>；</li>
+</ul>
+<h2 id="链式动画"><a href="#链式动画" class="headerlink" title="链式动画"></a>链式动画</h2><p>使用函数回调来实现（感觉好有逼格呀~）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function startMove (obj,attr,iTarget,fn)</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (oattr == iTarget) &#123;</div><div class="line">	clearInterval(obj.timer);</div><div class="line">		<span class="keyword">if</span> (fn) &#123;</div><div class="line">			fn();</div><div class="line">		&#125;;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>改一下传递的参数；</li>
+<li>使用的时候直接写匿名函数：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Li1.onmouseover = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	startMove(Li1,<span class="string">'width'</span>,<span class="number">400</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		startMove(Li1,<span class="string">'height'</span>,<span class="number">400</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">			startMove(Li1,<span class="string">'opacity'</span>,<span class="number">100</span>);</div><div class="line">		&#125;)</div><div class="line">	&#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>太棒啦！！</p>
+<h2 id="同时运动"><a href="#同时运动" class="headerlink" title="同时运动"></a>同时运动</h2><p>涉及到JSON.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> json = &#123;a:<span class="number">12</span>,b:<span class="number">13</span>&#125;;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> json)&#123;</div><div class="line">	<span class="comment">//alert(i);//弹出的是name;</span></div><div class="line">	alert(json[i]);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>有点像数组，前面是name，后面是Key；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startMove</span> (<span class="params">obj,json,fn</span>) </span>&#123;	</div><div class="line">	clearInterval(obj.timer);</div><div class="line">	obj.timer = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">var</span> flag = <span class="literal">true</span>;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> attr <span class="keyword">in</span> json)&#123;</div><div class="line">			<span class="keyword">var</span> oattr = <span class="number">0</span>;</div><div class="line">			<span class="keyword">if</span> (attr == <span class="string">'opacity'</span>) &#123;</div><div class="line">				oattr = <span class="built_in">Math</span>.round(<span class="built_in">parseFloat</span>(getStyle(obj,attr))*<span class="number">100</span>);</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				oattr = <span class="built_in">parseInt</span>(getStyle(obj,attr));</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">var</span> speed = (json[attr]-oattr)/<span class="number">8</span>;</div><div class="line">			speed = speed &gt;<span class="number">0</span>?<span class="built_in">Math</span>.ceil(speed):<span class="built_in">Math</span>.floor(speed);</div><div class="line">			<span class="keyword">if</span> (oattr != json[attr]) &#123;</div><div class="line">				flag = <span class="literal">false</span>;</div><div class="line">				<span class="keyword">if</span> ( attr == <span class="string">'opacity'</span>) &#123;</div><div class="line">					obj.style.filter = <span class="string">'alpha(opacity:'</span> + (oattr + speed) + <span class="string">')'</span>;</div><div class="line">					obj.style.opacity = (oattr + speed)/<span class="number">100</span>;</div><div class="line">				&#125; <span class="keyword">else</span> &#123;</div><div class="line">					obj.style[attr] = oattr + speed + <span class="string">'px'</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (flag) &#123;</div><div class="line">				clearInterval(obj.timer);</div><div class="line">				<span class="keyword">if</span> (fn) &#123;</div><div class="line">					fn();</div><div class="line">				&#125;;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;,<span class="number">30</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>传递JSON格式的内容，使用的时候像这样：<code>startMove(Li1,{width:300,height:400,opacity:100});</code></li>
+<li>函数改变：遍历JSON，每个属性都进行动画。不过其实还是顺序执行啦~只是速度太快看不出来而已，微观上还是顺序执行，宏观上就是同时执行了。</li>
+<li>为了避免某个属性完成目标而停止计时器，需要设置一个flag。当所有的动完都执行完毕后才开始停止计时器，再进行下一个函数。flag的位置要放好，视频中放错了。</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>嗯，学到不少知识呢。<br>我要睡觉了.<br>为什么MD用<code>~~~~~</code>会消失呢。好像也是默认字符之一。。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/02/02/JS-动画框架/" data-id="cird76zc2000v1klbvx8b6xpq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/02/02/JS-动画框架/" data-title="JS-动画框架" data-url="http://weibo.com/biousco/2015/02/02/JS-动画框架/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/03/04/移动端重构小结-1/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            移动端重构小结(1)
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/02/02/前端练习-大讲堂-2/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">前端练习-大讲堂(2)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

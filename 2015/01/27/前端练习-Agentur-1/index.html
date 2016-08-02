@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>前端练习-Agentur(1) | Biousco&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="HTML,CSS,JS" />
+    
+    <meta name="description" content="看到好看的网页就保存下来，自己重新把它打一遍。学到了不少东西。这是自己第一次打的代码。接下来是重新看一遍修改修改，最后对比原网页的代码。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端练习-Agentur(1)">
+<meta property="og:url" content="http://weibo.com/biousco/2015/01/27/前端练习-Agentur-1/index.html">
+<meta property="og:site_name" content="Biousco's Blog">
+<meta property="og:description" content="看到好看的网页就保存下来，自己重新把它打一遍。学到了不少东西。这是自己第一次打的代码。接下来是重新看一遍修改修改，最后对比原网页的代码。">
+<meta property="og:updated_time" content="2015-05-01T08:58:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端练习-Agentur(1)">
+<meta name="twitter:description" content="看到好看的网页就保存下来，自己重新把它打一遍。学到了不少东西。这是自己第一次打的代码。接下来是重新看一遍修改修改，最后对比原网页的代码。">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-81826013-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Biousco</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JS/">JS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/知识积累/">知识积累</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/移动端/">移动端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/计算机本科知识/">计算机本科知识</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/前端/">前端</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-前端练习-Agentur-1" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        前端练习-Agentur(1)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2015/01/27/前端练习-Agentur-1/" class="article-date">
+    <time datetime="2015-01-27T10:29:29.000Z" itemprop="datePublished">2015-01-27</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
+
+            </div>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML&amp;CSS"></a>HTML&amp;CSS</h1><h2 id="CSS初始化"><a href="#CSS初始化" class="headerlink" title="CSS初始化"></a>CSS初始化</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">* &#123;<span class="attribute">margin</span>: <span class="number">0</span>; <span class="attribute">padding</span>: <span class="number">0</span>; &#125;</div><div class="line"><span class="selector-tag">a</span> &#123;<span class="attribute">color</span>: <span class="number">#FFF</span>; <span class="attribute">text-decoration</span>: none; &#125;</div><div class="line"><span class="selector-pseudo">::selection</span> &#123;<span class="attribute">background</span>: <span class="number">#F0694B</span>; <span class="attribute">color</span>: <span class="number">#FFF</span>;&#125;</div><div class="line"><span class="selector-pseudo">::-moz-selection</span> &#123;<span class="attribute">background</span>: <span class="number">#F0694B</span>; <span class="attribute">color</span>: <span class="number">#FFF</span>;&#125;</div><div class="line"><span class="comment">/*.content::selection &#123;color: #FFF;&#125;</span></div><div class="line">.content::-moz-selection &#123;color: #FFF;&#125;*/</div></pre></td></tr></table></figure>
+<p>啊这个自带的代码高亮好丑啊~<br>刚开始没有在意用了*，现在改过来。<br><code>body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{padding:0; margin:0;}</code><br>嗯，改成这样。<br>然后是超链接的样式，去掉下划线，改变颜色。<br>接下来是新学到的东西：元素状态伪类<code>::selection: {attibute}</code> 然后刚好用的是FF,刚开始怎么也没有效果，加上-moz-.</p>
+<a id="more"></a>
+<h2 id="头部header"><a href="#头部header" class="headerlink" title="头部header"></a>头部header</h2><h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"header"</span> <span class="attr">id</span>=<span class="string">"header"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"logo"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>helllicht medien<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"menu"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>AGENTUR<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>KOMPETENZEN<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>PROZESS<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>PROJEKTE<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>BLOG<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"contaktli"</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"contakt"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>KONTAKT<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 		&lt;div class="contakt"&gt;</span></div><div class="line">			&lt;a href="#"&gt;KONTAKT&lt;/a&gt;</div><div class="line">		&lt;/div&gt; --&gt;</div><div class="line">		<span class="comment">&lt;!-- 这里放了出来却不知道怎么排版 --&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>通过看样例的图片，发现最右边的一个子项和前面的不太一样，有不同的hover样式，有外边框，左外边距也不同。所以刚开始的想法是把这个独立出来，但是后来写样式的时候发现有问题，写起来麻烦了很多。又发现实际上一整个菜单栏都是在一个水平线上的，于是把KONTAKT这个按钮写进li里面，在往a里添加一个class。</p>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.header</span> </div><div class="line">&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">75px</span>;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#656B74</span>;</div><div class="line">	<span class="attribute">position</span>: fixed;</div><div class="line">	<span class="attribute">top</span>: <span class="number">0</span>;</div><div class="line">	<span class="attribute">opacity</span>: <span class="number">0.9</span>;</div><div class="line">	<span class="attribute">transition</span>: all <span class="number">0.3s</span> ease-in-out;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.logo</span> </div><div class="line">&#123;</div><div class="line">	<span class="attribute">float</span>: left;</div><div class="line">	<span class="attribute">font-size</span>: <span class="number">20px</span>;</div><div class="line">	<span class="attribute">line-height</span>: <span class="number">20px</span>;</div><div class="line">	<span class="attribute">padding</span>: <span class="number">30px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">30px</span>;</div><div class="line">	<span class="attribute">transition</span>: all <span class="number">0.3s</span> ease-in-out;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*又是这样= = 当有a标签的时候写动画好死鬼麻烦 */</span></div><div class="line"></div><div class="line"><span class="selector-class">.logo</span> <span class="selector-tag">a</span></div><div class="line">&#123;</div><div class="line">	<span class="attribute">transition</span>: all <span class="number">0.3s</span> ease-in-out;		</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.logo</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span></div><div class="line">&#123;</div><div class="line">	<span class="attribute">color</span>: <span class="number">#CED3DB</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.menu</span> </div><div class="line">&#123;</div><div class="line">	<span class="attribute">float</span>: right;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.menu</span> <span class="selector-tag">li</span> </div><div class="line">&#123;</div><div class="line">	<span class="attribute">float</span>: left;</div><div class="line">	<span class="attribute">display</span>: block;</div><div class="line"><span class="comment">/*	height: 75px;*/</span></div><div class="line"><span class="comment">/*	写了高度又写padding容易混乱*/</span></div><div class="line">	<span class="attribute">margin-left</span>: <span class="number">25px</span>;</div><div class="line">	<span class="attribute">padding</span>: <span class="number">35px</span> <span class="number">0</span> <span class="number">0</span>;</div><div class="line">	<span class="attribute">font-size</span>: <span class="number">14px</span>;</div><div class="line">	<span class="attribute">transition</span>: all <span class="number">0.3s</span> ease-in-out;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.menu</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span></div><div class="line">&#123;</div><div class="line">	<span class="attribute">transition</span>: all <span class="number">0.3s</span> ease-in-out;	</div><div class="line">&#125;</div><div class="line"><span class="comment">/* 感觉这样写有点蛋疼= =*/</span></div><div class="line"><span class="selector-class">.menu</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span></div><div class="line">&#123;</div><div class="line">	<span class="attribute">color</span>: <span class="number">#F17357</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.menu</span> <span class="selector-class">.contaktli</span> </div><div class="line">&#123;</div><div class="line">	<span class="attribute">padding</span>: <span class="number">0</span>;</div><div class="line"><span class="comment">/* 如何避免为了更高的优先级写这些东西呢。。。*/</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.contakt</span> </div><div class="line">&#123;</div><div class="line">	<span class="attribute">display</span>: block;</div><div class="line">	<span class="attribute">margin</span>: <span class="number">23px</span> <span class="number">25px</span> <span class="number">9px</span> <span class="number">0</span> ;</div><div class="line">	<span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">20px</span>;</div><div class="line">	<span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#FFF</span>;</div><div class="line">	<span class="attribute">transition</span>: all <span class="number">0.4s</span> ease-in-out;</div><div class="line"><span class="comment">/*  要计算好距离 包括Padding和border   */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.contakt</span><span class="selector-pseudo">:hover</span></div><div class="line">&#123;</div><div class="line">	<span class="attribute">color</span>: <span class="number">#F2694B</span>;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#FFF</span>;</div><div class="line">	<span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#FFF</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* 这里发现写出来挺冗余的而且也实现不了效果 决定换html */</span></div><div class="line"></div><div class="line"><span class="selector-class">.contakt</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>:</div><div class="line">&#123;</div><div class="line">	<span class="attribute">color</span>: <span class="number">#F2694B</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在一看写的好多，而且很多是只有一句的=。=。直接改了：</p>
+<ol>
+<li>先改Hover相关的样式： 在有Hover的a标签那里直接定义一个类好了，不用每次都要单独写一遍：类名定义为hoverani，给需要的HTML加上，css里面写<code>.hoverani{transition: all 0.3s ease-in-out;}</code>蛋疼的问题解决了。后面也是这么改。</li>
+<li>按钮那里感觉好败笔啊。觉得如果把全部设置成固定的大小就没这么多事了= = 不需要改padding和margin算得苦逼苦逼的。可是现在该Js就要重新写一下。先放在这里吧。另外发现在li里的属性：<code>display:{block;}</code>可以去掉列表的圆点。还是在开头定义吧。<h2 id="大图banner"><a href="#大图banner" class="headerlink" title="大图banner"></a>大图banner</h2><h3 id="HTML-1"><a href="#HTML-1" class="headerlink" title="HTML"></a>HTML</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"banner-wrap"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"banner"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>MIT LEIDENSCHAFT FOR DIGITALE MEDIEN<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">h1</span>&gt;</span>helllicht ist eine Agentur, spezialisiert auf Interface Design und Web Development.<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="CSS-1"><a href="#CSS-1" class="headerlink" title="CSS"></a>CSS</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="selector-class">.banner-wrap</span></div><div class="line">&#123;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#656B74</span>;</div><div class="line">	<span class="attribute">padding</span>: <span class="number">160px</span> <span class="number">290px</span> <span class="number">180px</span> <span class="number">290px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.banner</span></div><div class="line">&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	</div><div class="line"><span class="comment">/*  设置Padding值使该div撑出屏幕了  */</span></div><div class="line"><span class="comment">/*	解决办法：在外面套一个wrap设置Padding 内容div再设置成width：100% </span></div><div class="line">不要一起设置 不同浏览器会有问题 */</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.banner</span> <span class="selector-tag">p</span> </div><div class="line">&#123;</div><div class="line">	<span class="attribute">display</span>: block;</div><div class="line">	<span class="attribute">width</span>: <span class="number">260px</span>;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#000</span>;</div><div class="line">	<span class="attribute">color</span>: <span class="number">#FFF</span>;</div><div class="line">	<span class="attribute">font-size</span>: <span class="number">10px</span>;</div><div class="line">	<span class="attribute">padding</span>: <span class="number">5px</span>;</div><div class="line">	<span class="attribute">margin</span>: <span class="number">0</span> auto;</div><div class="line">	<span class="attribute">text-align</span>: center;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.banner</span> <span class="selector-tag">h1</span></div><div class="line">&#123;</div><div class="line">	<span class="attribute">display</span>: block;</div><div class="line">	<span class="attribute">color</span>: <span class="number">#FFF</span>;</div><div class="line">	<span class="attribute">text-align</span>: center;</div><div class="line">	<span class="attribute">margin-top</span>: <span class="number">40px</span>;</div><div class="line">	<span class="attribute">font-size</span>: <span class="number">35px</span>;</div><div class="line"><span class="comment">/*  添加了宽度后不能居中  */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>在这里终于知道了之前提到过的wrap的含义。对一个div来说，不要直接设置宽度和padding值。引用一篇博文：<a href="http://blog.csdn.net/yaoyuan_difang/article/details/24735529" target="_blank" rel="external">Afar的专栏-关于width与padding </a></li>
+</ol>
+<blockquote>
+<p>首先谈谈!important问题的引起（盒模型问题）:<br> 在CSS标准中，一个盒模型包括4个区，分别是：内容、内边距（padding）、边框（border）和外边距（margin）。而Width宽度的计算，CSS有它的标准。但是实际上，不同的浏览器的表现却不同。比如，<br>   Firefox（FF）是准确按照CSS标准：width为内容的宽度，也就是说：    层的宽度 = width + padding(left and right) + border-width；    而IE则把width作为整个层的宽度：    内容的宽度 = width - padding - border-width；<br>   IE的这种解析，被认为是一个BUG。但事实上，这种解释也不无道理，人们在设计页面的时候关注得更多的是盒子的大小，而不是内容的大小。正是因为浏览器的不同解析，给CSS的设计带来一些困难。<br>   针对这个问题，我们经常使用!important来区分Firefox和IE6.0：   程序代码:   #content   {<br>    width: 414px !important;     width: 400px;     padding: 5px;     border-width: 2px;   }<br>  Firefox识别!important，而IE不识别，且!important的width优先级高，因此FF理解为width: 400px，IE6.0理解为width: 414px，从而显示就相同了。<br>    但是问题出在IE7，IE7.0对!important有了识别能力，但是对盒模型的解析却和IE6.0等一样，从而造成很大的麻烦。也就是说，!important的方法在IE7.0下变得不适用了。     而一般的情况下，border的使用相对较少的，并且border-width一般较小，因此最主要的问题就出在padding上了。网上很多人总结的经验是：padding要尽量少用，能用margin<br>的，就别用padding。这种说法是消极的，问题的解决不应该总是回避。<br>  盒模型问题的解决：<br>   仔细想想，其实问题就出在“width与padding/border-width的同时定义”上。而明白了这一点，解决的方法就不难想到了，只要添加一个无width定义的wrapper层，把原来的一个content层拆分成2个层，在wrapper中定义padding和border-width，然后在content中定义width：   程序代码:<br>  .wrapper { padding: 5px; border-width: 2px; }<br>  .content { margin: 0px; width: 400px; }   程序代码:   <div id="wrapper">     <div id="content">       …     </div>   </div><br>   这样问题就可以得到解决，FF，IE6.0以及IE7.0都会获得相同的显示效果。更重要的是，没有使用任何CSS hack。<br>   这种解决方法可以说是最终的方案，使用CSS hack的方法只是目前过渡阶段的临时方法。<br>  对于网站构造，特别是对于样式比较复杂的网站，个人建议在重要的层快外加上wrapper层。但是对于目前现成的模板，可以有选择修改部分样式，或者使用其他方法。<br>  是否适合所有的浏览器？<br>   理论上，这种方法应该适用于各种浏览器。<br>  但是本人认为除非大型网站，兼容FF，IE6.0，IE7.0已经足够，这里也是主要针对这三个最主流的浏览器，IE更低版本，以及其他浏览器上的可行性有待验证  </p>
+</blockquote>
+<p>总而言之，就是用wrap和content来一起用啦~<br>不过问题远远没有我想的那么简单= =<br>当把浏览器缩小的时候，我的心灵受到了伤害。<br>好！做响应式布局！然后看看案例是怎么写的。。。<br>另外p h1是块级元素。。。</p>
+<h2 id="主内容content"><a href="#主内容content" class="headerlink" title="主内容content"></a>主内容content</h2><h3 id="HTML-2"><a href="#HTML-2" class="headerlink" title="HTML"></a>HTML</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content-wrap"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">h2</span>&gt;</span>helllicht führt digitale Projekte zum Erfolg – und das bereits seit vielen Jahren<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>Wir sind davon überzeugt, dass Usability der ausschlaggebende Faktor für den Erfolg von digitalen Projekten ist. Mit unserem Gespür für relevante Details sowie dem Blick fürs große Ganze wissen wir, worauf es ankommt und sind mit absoluter Leidenschaft bei der Sache. <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>Für unsere Auftraggeber aus Industrie, Mittelstand und der Kreativbranche konzipieren und realisieren wir Onepager, Corporate Websites sowie Online-Magazine. Dabei unterstützen wir unsere Kunden über den gesamten Prozess als Berater und schaffen so die Grundlage für richtige und nachhaltige Entscheidungen. <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"emp"</span>&gt;</span>Von der Idee bis zum Roll-Out<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>Unsere Lösungen zeichnen sich durch messbare Ergebnisse aus, die langfristig den Wertschöpfungsprozess unserer Auftraggeber unterstützen. Für das perfekte Ergebnis begleiten wir sie von der ersten Idee bis zum finalen Roll-Out.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>嗯。不要在意我用的是什么语言。这篇文章有点小长~</p>
+<h3 id="css"><a href="#css" class="headerlink" title="css"></a>css</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.content-wrap</span></div><div class="line">&#123;</div><div class="line">	<span class="attribute">padding</span>: <span class="number">120px</span> <span class="number">320px</span> <span class="number">55px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.content</span> <span class="selector-tag">h2</span> </div><div class="line">&#123;</div><div class="line">	<span class="attribute">font-size</span>: <span class="number">33px</span>;</div><div class="line">	<span class="attribute">margin-bottom</span>: <span class="number">55px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.content</span> <span class="selector-tag">p</span> </div><div class="line">&#123;</div><div class="line">	<span class="attribute">margin-bottom</span>: <span class="number">55px</span>;</div><div class="line">	<span class="attribute">line-height</span>: <span class="number">32px</span>;</div><div class="line">	<span class="attribute">color</span>: <span class="number">#454545</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.content</span> <span class="selector-class">.emp</span> </div><div class="line">&#123;</div><div class="line">	<span class="attribute">color</span>: <span class="number">#F0694B</span>;</div><div class="line">	<span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这次终于好像没什么好说的了！除了窗口过小排版会很恶心之外。。<br>然后后面的内容用相同的类也可以渲染了。<br>发现个小东西：在.wrap ，.content 和 p 中，p本身设置了margin-bottom。但是它的父元素.content的高度大小不包括这个margin。而.content的父元素.wrap的高度大小却包括了p的margin-bottom。花插这是什么情况!?待我百度一下。。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://weibo.com/biousco/2015/01/27/前端练习-Agentur-1/" data-id="cird76zbg000j1klbx2zc1esd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/01/27/前端练习-Agentur-1/" data-title="前端练习-Agentur(1)" data-url="http://weibo.com/biousco/2015/01/27/前端练习-Agentur-1/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100008888385214" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/108498515337097237503" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/01/27/前端练习-Agentur-2/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            前端练习-Agentur(2)
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/01/16/下拉菜单/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">下拉菜单</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/02/实习招聘面试经历-4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/86509675gw1f6fg8tvt52j21kw11xnio.jpg)" alt="实习招聘面试经历-4" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/02/实习招聘面试经历-4/" class="title">实习招聘面试经历-4</a></p>
+                            <p class="item-date"><time datetime="2016-08-02T05:33:07.000Z" itemprop="datePublished">2016-08-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/05/实习招聘面试经历-3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f2ly638szvj21kw11x1kx.jpg)" alt="实习招聘面试经历-3" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/05/实习招聘面试经历-3/" class="title">实习招聘面试经历-3</a></p>
+                            <p class="item-date"><time datetime="2016-04-05T07:46:48.000Z" itemprop="datePublished">2016-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/13/实习招聘面试经历-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1w9nd9tqrj20p00go77p.jpg)" alt="实习招聘面试经历-2" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/13/实习招聘面试经历-2/" class="title">实习招聘面试经历-2</a></p>
+                            <p class="item-date"><time datetime="2016-03-13T14:25:14.000Z" itemprop="datePublished">2016-03-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/09/实习招聘面试经历-1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/86509675jw1f1r0sn5v2gj20p00go40j.jpg)" alt="实习招聘面试经历-1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/09/实习招聘面试经历-1/" class="title">实习招聘面试经历-1</a></p>
+                            <p class="item-date"><time datetime="2016-03-09T15:10:32.000Z" itemprop="datePublished">2016-03-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/07/移动端SeeApp开发总结-5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww2.sinaimg.cn/large/86509675jw1f1okchnhjhj20p00godkf.jpg)" alt="移动端SeeApp开发总结-5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2016/03/07/移动端SeeApp开发总结-5/" class="title">移动端SeeApp开发总结-5</a></p>
+                            <p class="item-date"><time datetime="2016-03-07T12:15:44.000Z" itemprop="datePublished">2016-03-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识积累/">知识积累</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机本科知识/">计算机本科知识</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Biousco</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'biouscowork'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
